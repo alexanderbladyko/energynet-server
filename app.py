@@ -1,5 +1,5 @@
 from flask import Flask, flash, request, jsonify
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user, login_user
 from flask_socketio import SocketIO
 from gevent import monkey
 
@@ -13,6 +13,8 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = config.get('socketio', 'secret')
 app.debug = config.get('app', 'debug')
 
+game_api = config.get('urls', 'game_api')
+
 io = SocketIO(app)
 login_manager = LoginManager()
 
@@ -24,7 +26,7 @@ def load_user(user_id):
     return User.get_by_id(user_id)
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login', methods=['POST'])
 def login():
     return 'login_form'
 
@@ -35,9 +37,16 @@ def get_config():
     port = config.get('app', 'port')
     game_api = config.get('urls', 'game_api')
     return jsonify({
-        'server_url': '%s:%s' % (host, port),
-        'game_api': game_api,
+        'serverUrl': '%s:%s' % (host, port),
+        'gameApi': game_api,
     })
+
+
+@app.route('{0}/user_info'.format(game_api))
+def get_user_info():
+    response = {}
+    response['isAuthenticated'] = current_user.is_authenticated
+    return jsonify(response)
 
 
 @io.on('connect')
@@ -49,6 +58,16 @@ def ws_connect():
 @io.on('disconnect')
 def ws_disconnect():
     flash('Somebody disconnected %s' % request.namespace)
+
+
+@io.on_error()
+def error_handler(e):
+    print("Websocket error: %s" % e)
+
+
+@io.on_error_default
+def default_error_handler(e):
+    print("Unknown websocket error: %s" % e)
 
 
 if __name__ == '__main__':
