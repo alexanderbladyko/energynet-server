@@ -1,11 +1,12 @@
-from flask import Flask, flash, request, jsonify
-from flask_login import LoginManager, current_user, login_user
+from flask import Flask, request, jsonify
+from flask_login import LoginManager, current_user, login_user, login_required
 from flask_socketio import SocketIO
 from gevent import monkey
 
 from auth.models import User
 
 from helpers.config import config
+from helpers.logger import handler
 
 monkey.patch_all()
 
@@ -28,10 +29,24 @@ def load_user(user_id):
 
 @app.route('/login', methods=['POST'])
 def login():
-    return 'login_form'
+    if request.method == 'POST':
+        data = dict(request.form)
+
+        user = User.get_by_username(data['username'][0])
+
+        login_user(user)
+        return jsonify({
+            'isAuthenticated': True,
+        })
 
 
-@app.route('/config.json', methods=['GET'])
+@app.route('%s/test_auth' % game_api)
+@login_required
+def test_auth_response():
+    return 'Hurray, you did it'
+
+
+@app.route('/config', methods=['GET'])
 def get_config():
     host = config.get('app', 'host')
     port = config.get('app', 'port')
@@ -46,32 +61,40 @@ def get_config():
 def get_user_info():
     response = {}
     response['isAuthenticated'] = current_user.is_authenticated
+    if current_user.is_authenticated:
+        response['username'] = current_user.username
+
     return jsonify(response)
 
 
 @io.on('connect')
 def ws_connect():
-    flash('Somebody connected %s' % request.namespace)
-    io.emit('msg', {'test': 'test'})
+    # app.logger.info('Somebody connected %s' % request.namespace)
+    if current_user.is_authenticated:
+        app.logger.info('User %s connected' % current_user.username)
+        io.emit('shlyapa', 'test')
+    else:
+        return None
 
 
 @io.on('disconnect')
 def ws_disconnect():
-    flash('Somebody disconnected %s' % request.namespace)
+    app.logger.info('User %s disconnected' % current_user.username)
 
 
 @io.on_error()
 def error_handler(e):
-    print("Websocket error: %s" % e)
+    app.logger.error("Websocket error: %s" % e)
 
 
 @io.on_error_default
 def default_error_handler(e):
-    print("Unknown websocket error: %s" % e)
+    app.logger.error("Unknown websocket error: %s" % e)
 
 
 if __name__ == '__main__':
     port = int(config.get('app', 'port'))
 
+    app.logger.addHandler(handler)
     print('Running at port: %s' % port)
     io.run(app, '0.0.0.0', port=port)

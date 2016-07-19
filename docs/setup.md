@@ -17,7 +17,7 @@ server {
   server_name localhost;
   access_log /var/log/nginx/example.log;
 
-  location ~ /(game_api/.*|config.json)$ {
+  location ~ /(game_api/.*|config)$ {
     proxy_pass http://127.0.0.1:5000;
     proxy_redirect off;
 

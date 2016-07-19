@@ -1,0 +1,24 @@
+[2016-07-17 14:08:10,255] {app.py:74} INFO - It's admin
+[2016-07-17 14:09:09,630] {app.py:82} INFO - Somebody disconnected
+[2016-07-17 14:34:24,653] {app.py:74} INFO - User admin connected
+[2016-07-17 15:50:44,291] {app.py:74} INFO - User admin connected
+[2016-07-17 15:50:50,987] {app.py:74} INFO - User admin connected
+[2016-07-17 16:30:58,105] {app.py:74} INFO - User admin connected
+[2016-07-17 16:33:39,129] {app.py:82} INFO - User admin disconnected
+[2016-07-17 17:27:06,185] {app.py:74} INFO - User admin connected
+[2016-07-17 17:27:20,047] {app.py:74} INFO - User admin connected
+[2016-07-17 17:29:45,245] {app.py:74} INFO - User admin connected
+[2016-07-17 17:29:45,247] {app.py:82} INFO - User admin disconnected
+[2016-07-17 17:36:58,001] {app.py:74} INFO - User admin connected
+[2016-07-17 17:36:58,003] {app.py:82} INFO - User admin disconnected
+[2016-07-17 17:40:46,333] {app.py:74} INFO - User admin connected
+[2016-07-17 17:42:26,161] {app.py:74} INFO - User admin connected
+[2016-07-17 17:42:47,160] {app.py:74} INFO - User admin connected
+[2016-07-17 17:44:29,041] {app.py:74} INFO - User admin connected
+[2016-07-17 17:45:16,358] {app.py:74} INFO - User admin connected
+[2016-07-17 17:50:29,025] {app.py:74} INFO - User admin connected
+[2016-07-17 17:51:23,446] {app.py:74} INFO - User admin connected
+[2016-07-17 17:51:54,502] {app.py:74} INFO - User admin connected
+[2016-07-17 18:09:24,939] {app.py:74} INFO - User admin connected
+[2016-07-17 18:09:24,941] {app.py:82} INFO - User admin disconnected
+[2016-07-17 18:09:24,942] {app.py:82} INFO - User admin disconnected
