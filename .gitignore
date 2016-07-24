@@ -2,4 +2,4 @@ __pycache__/
 .pyc
 
 etc/config_local.ini
-.log
+energynet.log

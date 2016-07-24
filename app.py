@@ -1,5 +1,5 @@
-from flask import Flask, request, jsonify
-from flask_login import LoginManager, current_user, login_user, login_required
+from flask import jsonify
+from flask_login import LoginManager, current_user, login_required
 from flask_socketio import SocketIO
 from gevent import monkey
 
@@ -7,12 +7,11 @@ from auth.models import User
 
 from helpers.config import config
 from helpers.logger import handler
+from helpers.server import app
+
+from routes import init_routes
 
 monkey.patch_all()
-
-app = Flask(__name__)
-app.config['SECRET_KEY'] = config.get('socketio', 'secret')
-app.debug = config.get('app', 'debug')
 
 game_api = config.get('urls', 'game_api')
 
@@ -21,23 +20,12 @@ login_manager = LoginManager()
 
 login_manager.init_app(app)
 
+init_routes()
+
 
 @login_manager.user_loader
 def load_user(user_id):
     return User.get_by_id(user_id)
-
-
-@app.route('/login', methods=['POST'])
-def login():
-    if request.method == 'POST':
-        data = dict(request.form)
-
-        user = User.get_by_username(data['username'][0])
-
-        login_user(user)
-        return jsonify({
-            'isAuthenticated': True,
-        })
 
 
 @app.route('%s/test_auth' % game_api)
@@ -51,9 +39,11 @@ def get_config():
     host = config.get('app', 'host')
     port = config.get('app', 'port')
     game_api = config.get('urls', 'game_api')
+    auth_api = config.get('urls', 'auth_api')
     return jsonify({
         'serverUrl': '%s:%s' % (host, port),
         'gameApi': game_api,
+        'authApi': auth_api,
     })
 
 
