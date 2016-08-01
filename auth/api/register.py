@@ -1,3 +1,4 @@
+import psycopg2
 from flask import request, jsonify, abort
 from flask_login import current_user
 
@@ -14,7 +15,13 @@ def register():
         name = data['username'][0]
         raw_password = data['password'][0]
 
-        User.create(name, raw_password)
+        try:
+            User.create(name, raw_password)
+        except psycopg2.IntegrityError as error:
+            return jsonify({
+                'success': False,
+                'reason': error.diag.message_primary
+            }), 409
 
         return jsonify({
             'success': True,

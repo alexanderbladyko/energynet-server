@@ -41,3 +41,8 @@ server {
   }
 }
 ```
+
+> To run tests use
+```
+python -m unittest discover
+```
