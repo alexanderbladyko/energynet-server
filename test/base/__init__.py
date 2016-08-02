@@ -3,6 +3,7 @@ from flask_testing import TestCase
 
 import app
 
+from auth.logic import get_password
 from auth.models import User
 from db.utils import connect_to_db
 from helpers.server import app as server
@@ -23,13 +24,15 @@ class BaseTest(TestCase):
         super(BaseTest, cls).tearDownClass()
         cls.db.close()
 
-    def create_user(self, user_name='test_user'):
+    def create_user(self, name='test_user', password='test_password'):
+        salt = 'test_salt'
+        generated_password = get_password(password, salt)
         with self.db.cursor(cursor_factory=DictCursor) as cursor:
             cursor.execute("""
-                insert into public.user(name, password)
-                values(%s, 'test_password')
+                insert into public.user(name, password, salt)
+                values(%s, %s, %s)
                 returning id, name, password, salt, created, updated;
-            """, (user_name, ))
+            """, (name, generated_password, salt))
             user_data = cursor.fetchone()
             self.db.commit()
         if user_data:
