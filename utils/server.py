@@ -1,6 +1,6 @@
 from flask import Flask
 
-from helpers.config import config
+from utils.config import config
 
 
 app = Flask(__name__)

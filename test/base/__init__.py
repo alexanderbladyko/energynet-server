@@ -6,7 +6,7 @@ import app
 from auth.logic import get_password
 from auth.models import User
 from db.utils import connect_to_db
-from helpers.server import app as server
+from utils.server import app as server
 
 
 class BaseTest(TestCase):
@@ -36,12 +36,6 @@ class BaseTest(TestCase):
             ]:
                 cursor.execute('select * from public.%s;' % table_name)
                 break
-        self.assertEqual(
-            cursor.rowcount, 0, 'Isolation leaked for table: %s' % table_name
-        )
-
-    def _check_isolation_table(self, cursor, table_name):
-        cursor.execute('select * from public.%s;' % table_name)
         self.assertEqual(
             cursor.rowcount, 0, 'Isolation leaked for table: %s' % table_name
         )

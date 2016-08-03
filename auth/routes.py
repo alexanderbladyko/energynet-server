@@ -1,5 +1,5 @@
-from helpers.server import app
-from helpers.config import config
+from utils.server import app
+from utils.config import config
 
 from auth.api.login import login
 from auth.api.fake_login import fake_login

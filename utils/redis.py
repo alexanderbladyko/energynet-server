@@ -1,6 +1,6 @@
 from redis import StrictRedis
 
-from helpers.config import config
+from utils.config import config
 
 
 def _init_redis():

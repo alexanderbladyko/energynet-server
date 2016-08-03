@@ -1,7 +1,9 @@
 from auth.routes import AuthRoutes
+from core.routes import CoreRoutes
 
 routes = [
     AuthRoutes(),
+    CoreRoutes(),
 ]
 
 
