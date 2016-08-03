@@ -9,7 +9,6 @@ class RegisterApiTestCase(BaseTest):
 
     def tearDown(self):
         with self.db.cursor() as cursor:
-            cursor = self.db.cursor()
             cursor.execute('delete from public.user *;')
             self.db.commit()
 
@@ -58,17 +57,20 @@ class LoginApiTestCase(BaseTest):
 
     def tearDown(self):
         with self.db.cursor() as cursor:
-            cursor = self.db.cursor()
             cursor.execute('delete from public.user *;')
             self.db.commit()
 
         super(LoginApiTestCase, self).tearDown()
 
     def test_success(self):
-        response = self.client_post(self.URL, data=dict(
-            username=self.username,
-            password=self.password
-        ))
+        with self.app.test_client() as client:
+            response = client.post(self.URL, data=dict(
+                username=self.username,
+                password=self.password
+            ))
+            with client.session_transaction() as sess:
+                self.assertEqual(sess['user_id'], str(self.user.id))
+
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json, dict(isAuthenticated=True))
 
@@ -83,3 +85,45 @@ class LoginApiTestCase(BaseTest):
     def test_get(self):
         response = self.client_get(self.URL)
         self.assertEqual(response.status_code, 405)
+
+
+class LogoutApiTestCase(BaseTest):
+    URL = '/auth/logout'
+
+    def setUp(self):
+        self.username = 'test_user'
+        self.password = 'test_password'
+        self.user = self.create_user(self.username, self.password)
+
+        super(LogoutApiTestCase, self).setUp()
+
+    def tearDown(self):
+        with self.db.cursor() as cursor:
+            cursor.execute('delete from public.user *;')
+            self.db.commit()
+
+        super(LogoutApiTestCase, self).tearDown()
+
+    def test_success_get(self):
+        with self.app.test_client() as client:
+            self.authenticate_client(client, self.user)
+
+            response = client.get(self.URL)
+
+            with client.session_transaction() as sess:
+                self.assertTrue('user_id' not in sess)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json, dict(success=True))
+
+    def test_success_post(self):
+        with self.app.test_client() as client:
+            self.authenticate_client(client, self.user)
+
+            response = client.post(self.URL)
+
+            with client.session_transaction() as sess:
+                self.assertTrue('user_id' not in sess)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json, dict(success=True))

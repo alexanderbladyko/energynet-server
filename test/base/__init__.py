@@ -24,6 +24,28 @@ class BaseTest(TestCase):
         super(BaseTest, cls).tearDownClass()
         cls.db.close()
 
+    def tearDown(self):
+        super(BaseTest, self).tearDown()
+
+        self._check_isolation()
+
+    def _check_isolation(self):
+        with self.db.cursor() as cursor:
+            for table_name in [
+                'user',
+            ]:
+                cursor.execute('select * from public.%s;' % table_name)
+                break
+        self.assertEqual(
+            cursor.rowcount, 0, 'Isolation leaked for table: %s' % table_name
+        )
+
+    def _check_isolation_table(self, cursor, table_name):
+        cursor.execute('select * from public.%s;' % table_name)
+        self.assertEqual(
+            cursor.rowcount, 0, 'Isolation leaked for table: %s' % table_name
+        )
+
     def create_user(self, name='test_user', password='test_password'):
         salt = 'test_salt'
         generated_password = get_password(password, salt)
@@ -49,17 +71,17 @@ class BaseTest(TestCase):
 
     def client_get(self, url, user=None):
         with self.app.test_client() as client:
-            self._authenticate_client(client, user)
+            self.authenticate_client(client, user)
 
             return client.get(url)
 
     def client_post(self, url, data, user=None):
         with self.app.test_client() as client:
-            self._authenticate_client(client, user)
+            self.authenticate_client(client, user)
 
             return client.post(url, data=data)
 
-    def _authenticate_client(self, client, user):
+    def authenticate_client(self, client, user):
         if user:
             with client.session_transaction() as sess:
                 sess['user_id'] = user.id
