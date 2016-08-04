@@ -12,7 +12,7 @@ class AuthRoutes(object):
         auth_api = config.get('urls', 'auth_api')
 
         if config.get('app', 'debug'):
-            app.route('{0}/fake/<int:user_id>/login'.format(auth_api), methods=['GET'])(fake_login)  # noqa
+            app.route('{0}/fake/login/<int:user_id>'.format(auth_api), methods=['GET'])(fake_login)  # noqa
         app.route('{0}/login'.format(auth_api), methods=['POST'])(login)
         app.route('{0}/register'.format(auth_api), methods=['POST'])(register)
         app.route('{0}/logout'.format(auth_api), methods=['GET', 'POST'])(logout)  # noqa

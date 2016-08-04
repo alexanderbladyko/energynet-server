@@ -1,4 +1,6 @@
 from psycopg2.extras import DictCursor
+from jsonschema import validate
+from jsonschema.exceptions import ValidationError
 from flask_testing import TestCase
 
 import app
@@ -80,3 +82,9 @@ class BaseTest(TestCase):
             with client.session_transaction() as sess:
                 sess['user_id'] = user.id
                 sess['_fresh'] = True
+
+    def assertResponseSchema(self, response, schema):
+        try:
+            validate(response, schema)
+        except ValidationError as error:
+            self.fail(error.message)

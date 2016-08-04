@@ -4,9 +4,6 @@ from test.base import BaseTest
 class RegisterApiTestCase(BaseTest):
     URL = '/auth/register'
 
-    def setUp(self):
-        super(RegisterApiTestCase, self).setUp()
-
     def tearDown(self):
         with self.db.cursor() as cursor:
             cursor.execute('delete from public.user *;')

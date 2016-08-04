@@ -1,8 +1,17 @@
 from utils.server import app
+from utils.socket_server import io
 
-from core.api.config import config
+from core.api.config import get_config
+from core.api.socket import (
+    ws_connect, ws_disconnect, error_handler, default_error_handler
+)
 
 
 class CoreRoutes(object):
     def init_routes(self):
-        app.route('/config')(config)
+        app.route('/config')(get_config)
+
+        io.on('connect')(ws_connect)
+        io.on('disconnect')(ws_disconnect)
+        io.on_error()(error_handler)
+        io.on_error_default(default_error_handler)
