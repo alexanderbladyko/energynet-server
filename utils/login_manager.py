@@ -8,8 +8,8 @@ def init_login_manager():
     login_manager = LoginManager()
     login_manager.init_app(app)
 
-    login_manager.user_loader(_load_user)
+    login_manager.user_loader(load_user)
 
 
-def _load_user(user_id):
+def load_user(user_id):
     return User.get_by_id(user_id)

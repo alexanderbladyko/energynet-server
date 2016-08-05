@@ -6,6 +6,7 @@ from utils.socket_server import io
 
 def ws_connect():
     # app.logger.info('Somebody connected %s' % request.namespace)
+    print(current_user.is_authenticated)
     if current_user.is_authenticated:
         app.logger.info('User %s connected' % current_user.name)
         io.emit('shlyapa', 'test')
