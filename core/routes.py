@@ -13,5 +13,5 @@ class CoreRoutes(object):
 
         io.on('connect')(ws_connect)
         io.on('disconnect')(ws_disconnect)
-        io.on_error()(error_handler)
-        io.on_error_default(default_error_handler)
+        # io.on_error()(error_handler)
+        # io.on_error_default(default_error_handler)
