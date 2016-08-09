@@ -1,4 +1,4 @@
-from flask_login import current_user
+from flask_login import current_user, AnonymousUserMixin
 
 from utils.server import app
 from utils.socket_server import io
@@ -14,7 +14,10 @@ def ws_connect():
 
 
 def ws_disconnect():
-    app.logger.info('User %s disconnected' % current_user.name)
+    if current_user is not AnonymousUserMixin:
+        app.logger.info('User %s disconnected' % current_user.name)
+    else:
+        app.logger.info('Some anonym is disconnected')
 
 
 def error_handler(e):

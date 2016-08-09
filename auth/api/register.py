@@ -1,8 +1,8 @@
-import psycopg2
 from flask import request, jsonify, abort
 from flask_login import current_user
 
 from auth.models import User
+from base.exceptions import EnergynetException
 
 
 def register():
@@ -17,10 +17,10 @@ def register():
 
         try:
             User.create(name, raw_password)
-        except psycopg2.IntegrityError as error:
+        except EnergynetException as error:
             return jsonify({
                 'success': False,
-                'reason': error.diag.message_primary
+                'reason': error.message,
             }), 409
 
         return jsonify({

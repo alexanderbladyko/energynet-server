@@ -1,6 +1,5 @@
-import psycopg2
-
 from auth.models import User
+from base.exceptions import EnergynetException
 
 from test.base import BaseTest
 
@@ -10,7 +9,7 @@ class UserModelTestCase(BaseTest):
         super(UserModelTestCase, self).setUp()
 
         self.user_name = 'test'
-        self.user_id = User.create(self.user_name, 'password')
+        self.user = self.create_user(self.user_name)
 
     def tearDown(self):
         with self.db.cursor() as cursor:
@@ -21,13 +20,15 @@ class UserModelTestCase(BaseTest):
         super(UserModelTestCase, self).tearDown()
 
     def test_get_by_id(self):
-        user = User.get_by_id(self.user_id, [User.Fields.ID, User.Fields.NAME])
-        self.assertEqual(user.id, self.user_id)
+        user = User.get_by_id(
+            self.user.id, [User.Fields.ID, User.Fields.NAME], db=self.db
+        )
+        self.assertEqual(user.id, self.user.id)
         self.assertEqual(user.name, self.user_name)
 
     def test_create(self):
         self.assertUserExists(self.user_name)
 
     def test_user_duplicate(self):
-        with self.assertRaises(psycopg2.IntegrityError):
-            User.create(self.user_name, 'password')
+        with self.assertRaises(EnergynetException):
+            User.create(self.user_name, 'password', db=self.db)

@@ -3,7 +3,7 @@
 > Install requirements
 
 ```
-pip install -r etc/requerements.txt
+pip install -r etc/requirements.txt
 ```
 
 > copy config.ini into config_local.ini
@@ -40,6 +40,11 @@ server {
     proxy_set_header Connection "Upgrade";
   }
 }
+```
+
+> To run migrations
+```
+ENERGYNET_CONFIG=etc/config_dev.ini FLASK_APP=app.py flask sync_db
 ```
 
 > To run tests use

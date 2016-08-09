@@ -1,7 +1,9 @@
-import psycopg2.extras
+from psycopg2 import IntegrityError
+from psycopg2.extras import DictCursor
 from flask_login import UserMixin
 
 from auth.logic import generate_salt, get_password
+from base.exceptions import EnergynetException
 from db.utils import get_db
 from db.helpers import select, insert
 
@@ -26,9 +28,9 @@ class User(UserMixin):
         self.created = data.get(User.Fields.CREATED)
 
     @classmethod
-    def get_by_name(cls, name, fields='*'):
-        db = get_db()
-        with db.cursor(cursor_factory=psycopg2.extras.DictCursor) as cursor:
+    def get_by_name(cls, name, fields='*', db=None):
+        db = db or get_db()
+        with db.cursor(cursor_factory=DictCursor) as cursor:
             cursor.execute(
                 select(fields, User.DB_TABLE) + 'WHERE name=%s;', (name,)
             )
@@ -38,9 +40,9 @@ class User(UserMixin):
         return None
 
     @classmethod
-    def get_by_id(cls, id, fields='*'):
-        db = get_db()
-        with db.cursor(cursor_factory=psycopg2.extras.DictCursor) as cursor:
+    def get_by_id(cls, id, fields='*', db=None):
+        db = db or get_db()
+        with db.cursor(cursor_factory=DictCursor) as cursor:
             cursor.execute(
                 select(fields, User.DB_TABLE) + 'WHERE id=%s;', (id,)
             )
@@ -50,20 +52,24 @@ class User(UserMixin):
         return None
 
     @classmethod
-    def create(cls, name, password):
+    def create(cls, name, password, db=None):
         salt = generate_salt()
         password = get_password(password, salt)
 
-        db = get_db()
+        db = db or get_db()
         with db.cursor() as cursor:
-            cursor.execute(
-                insert([
-                    User.Fields.NAME,
-                    User.Fields.PASSWORD,
-                    User.Fields.SALT,
-                ], User.DB_TABLE) + 'VALUES (%s, %s, %s)  RETURNING id;',
-                (name, password, salt)
-            )
-            id = cursor.fetchone()[0]
-            db.commit()
+            try:
+                cursor.execute(
+                    insert([
+                        User.Fields.NAME,
+                        User.Fields.PASSWORD,
+                        User.Fields.SALT,
+                    ], User.DB_TABLE) + 'VALUES (%s, %s, %s)  RETURNING id;',
+                    (name, password, salt)
+                )
+                id = cursor.fetchone()[0]
+                db.commit()
+            except IntegrityError:
+                db.rollback()
+                raise EnergynetException('Could not create user')
         return id

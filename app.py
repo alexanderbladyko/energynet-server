@@ -9,6 +9,7 @@ from utils.socket_server import io
 from utils.login_manager import init_login_manager
 
 from routes import init_routes
+from tasks import init_tasks
 
 monkey.patch_all()
 
@@ -16,6 +17,7 @@ game_api = config.get('urls', 'game_api')
 
 init_login_manager()
 init_routes()
+init_tasks()
 
 
 @app.route('{0}/user_info'.format(game_api))
