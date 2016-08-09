@@ -9,7 +9,7 @@ class UserModelTestCase(BaseTest):
         super(UserModelTestCase, self).setUp()
 
         self.user_name = 'test'
-        self.user = self.create_user(self.user_name)
+        self.user_id = User.create(self.user_name, 'password')
 
     def tearDown(self):
         with self.db.cursor() as cursor:
@@ -20,10 +20,8 @@ class UserModelTestCase(BaseTest):
         super(UserModelTestCase, self).tearDown()
 
     def test_get_by_id(self):
-        user = User.get_by_id(
-            self.user.id, [User.Fields.ID, User.Fields.NAME], db=self.db
-        )
-        self.assertEqual(user.id, self.user.id)
+        user = User.get_by_id(self.user_id, [User.Fields.ID, User.Fields.NAME])
+        self.assertEqual(user.id, self.user_id)
         self.assertEqual(user.name, self.user_name)
 
     def test_create(self):
@@ -31,4 +29,4 @@ class UserModelTestCase(BaseTest):
 
     def test_user_duplicate(self):
         with self.assertRaises(EnergynetException):
-            User.create(self.user_name, 'password', db=self.db)
+            User.create(self.user_name, 'password')

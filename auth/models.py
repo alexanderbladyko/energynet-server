@@ -29,7 +29,7 @@ class User(UserMixin):
 
     @classmethod
     def get_by_name(cls, name, fields='*', db=None):
-        db = db or get_db()
+        db = get_db()
         with db.cursor(cursor_factory=DictCursor) as cursor:
             cursor.execute(
                 select(fields, User.DB_TABLE) + 'WHERE name=%s;', (name,)
@@ -40,8 +40,8 @@ class User(UserMixin):
         return None
 
     @classmethod
-    def get_by_id(cls, id, fields='*', db=None):
-        db = db or get_db()
+    def get_by_id(cls, id, fields='*'):
+        db = get_db()
         with db.cursor(cursor_factory=DictCursor) as cursor:
             cursor.execute(
                 select(fields, User.DB_TABLE) + 'WHERE id=%s;', (id,)
@@ -52,11 +52,11 @@ class User(UserMixin):
         return None
 
     @classmethod
-    def create(cls, name, password, db=None):
+    def create(cls, name, password):
         salt = generate_salt()
         password = get_password(password, salt)
 
-        db = db or get_db()
+        db = get_db()
         with db.cursor() as cursor:
             try:
                 cursor.execute(
