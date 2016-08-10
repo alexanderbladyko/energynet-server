@@ -1,10 +1,11 @@
 from utils.server import app
 from utils.config import config
 
-from auth.api.login import login
+from auth.api.user_info import get_user_info
 from auth.api.fake_login import fake_login
-from auth.api.register import register
+from auth.api.login import login
 from auth.api.logout import logout
+from auth.api.register import register
 
 
 class AuthRoutes(object):
@@ -16,3 +17,4 @@ class AuthRoutes(object):
         app.route('{0}/login'.format(auth_api), methods=['POST'])(login)
         app.route('{0}/register'.format(auth_api), methods=['POST'])(register)
         app.route('{0}/logout'.format(auth_api), methods=['GET', 'POST'])(logout)  # noqa
+        app.route('{0}/user_info'.format(auth_api), methods=['GET', 'POST'])(get_user_info)  # noqa

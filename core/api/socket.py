@@ -14,7 +14,7 @@ def ws_connect():
 
 
 def ws_disconnect():
-    if current_user is not AnonymousUserMixin:
+    if not isinstance(current_user, AnonymousUserMixin):
         app.logger.info('User %s disconnected' % current_user.name)
     else:
         app.logger.info('Some anonym is disconnected')
