@@ -1,40 +1,40 @@
+from base.redis import RedisList
 from utils.redis import redis
-from helpers.redis import get_hashset
 
 
 class Game:
     def __init__(self, data):
         self.data = data
 
-    @classmethod
-    def get_new_id(cls):
-        return redis.incr('game:index')
+    def get_users(self):
+        return GameUsersList(self.data['id'])
 
-    @classmethod
-    def get_all(cls):
-        ids = redis.lrange('games', 0, -1)
-        return [
-            get_hashset(redis, 'game:%s' % id.decode('utf-8')) for id in ids
-        ]
 
-    @classmethod
-    def get_by_id(cls, id):
-        return Game(get_hashset(redis, 'game:%d' % id))
+class GamesList(RedisList):
+    Type = Game
 
-    @classmethod
-    def add(cls, name, players_limit):
-        id = Game.get_new_id()
-        key = 'game:%d' % id
-        data = {
-            'id': id,
-            'name': name,
-            'players_limit': players_limit,
-        }
-        p = redis.pipeline()
-        for (k, v) in data.items():
-            p.hset(key, k, v)
-        p.lpush('games', id)
-        p.execute()
+    def __init__(self):
+        super(GamesList, self).__init__('games')
 
-        game = Game(data)
-        return game
+
+class GameUser:
+    def __init__(self, data):
+        self.data = data
+
+    def save_game_id(self, game_id):
+        redis.set('user:%s:game' % str(self.data['id']), game_id)
+
+    def get_game_id(self):
+        return redis.get('user:%s:game' % str(self.data['id'])).decode('utf-8')
+
+
+class GameUsersList(RedisList):
+    Type = GameUser
+
+    def __init__(self, id):
+        super(GameUsersList, self).__init__('games:%s:users' % str(id))
+
+    def get_user_game_id(self, id):
+        user_game_ids = redis.keys('games:*:users:%s' % str(id))
+        if user_game_ids:
+            return user_game_ids[0].decode('utf-8').split(':')[1]
