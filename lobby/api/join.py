@@ -26,12 +26,6 @@ def join_lobby(data):
     room_key = 'games:%s' % id
     join_room(room_key)
 
-    lobby_info = game.data.copy()
-    lobby_info.update({
-        'users': [user.data for user in users_list.get_all()]
-    })
-
     emit('join_game', {
         'success': True,
     })
-    emit('lobby', lobby_info, room=room_key)
