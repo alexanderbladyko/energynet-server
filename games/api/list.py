@@ -1,6 +1,6 @@
 from flask_socketio import emit
 
-from games.models import GamesList
+# from games.models import GamesList
 from auth.helpers import authenticated_only
 
 

@@ -1,6 +1,6 @@
 from flask_login import current_user
 
-from games.models import GameUser, GamesList
+from games.models import Game, User
 
 
 class UserState:
@@ -10,12 +10,13 @@ class UserState:
         USER_NOT_INVOLVED = 'USER_NOT_INVOLVED'
 
     def get_status(self):
-        game_user = GameUser({
-            'id': current_user.id,
-        })
-        game_id = game_user.get_game_id()
+        user = User.get_by_id(current_user.id, [
+            User.current_game_id, User.current_lobby_id
+        ])
+
+        game_id = user.current_game_id
         if game_id:
-            game = GamesList().get_by_id(game_id)
+            game = Game.get_by_id(game_id)
             if game.data['started'] == 'True':
                 return UserState.USER_STATUSES.USER_IN_GAME
             else:

@@ -1,6 +1,6 @@
 from flask_socketio import emit, join_room
 
-from games.models import Game, GamesList
+# from games.models import Game, GamesList
 
 
 def create_new(data):

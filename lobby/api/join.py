@@ -1,7 +1,7 @@
 from flask_socketio import join_room, emit
 from flask_login import current_user
 
-from games.models import GamesList, GameUser
+# from games.models import GamesList, GameUser
 from auth.helpers import authenticated_only
 
 
@@ -15,12 +15,11 @@ def join_lobby(data):
     if not game:
         return
 
-    users_list = game.get_users()
     game_user = GameUser({
         'id': current_user.id,
         'name': current_user.name,
     })
-    users_list.add(game_user)
+    game.get_users().add(game_user)
     game_user.save_game_id(id)
 
     room_key = 'games:%s' % id
