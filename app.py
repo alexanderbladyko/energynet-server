@@ -15,10 +15,10 @@ init_login_manager()
 init_routes()
 init_tasks()
 
+app.logger.addHandler(handler)
 
 if __name__ == '__main__':
     port = int(config.get('app', 'port'))
 
-    app.logger.addHandler(handler)
     print('Running at port: %s' % port)
     io.run(app, '0.0.0.0', port=port)

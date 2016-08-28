@@ -1,11 +1,15 @@
 from flask_socketio import emit
 
-# from games.models import GamesList
 from auth.helpers import authenticated_only
+from games.models import Lobby, Game
+from utils.server import app
 
 
 @authenticated_only
 def get_list():
-    games_list = GamesList()
-    games = games_list.get_all()
-    emit('games', [game.data for game in games])
+    app.logger.info(
+        'Games list'
+    )
+    lobbies = Lobby.get_all([])
+    games = Game.get_by_ids([l.id for l in lobbies], [Game.data])
+    emit('games', [game.serialize() for game in games])

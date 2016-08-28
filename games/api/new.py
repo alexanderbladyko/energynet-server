@@ -1,30 +1,58 @@
 from flask_socketio import emit, join_room
+from flask_login import current_user
 
-# from games.models import Game, GamesList
+from auth.helpers import authenticated_only
+from games.models import User, Game, Lobby
+from utils.redis import redis
+from utils.server import app
 
 
+@authenticated_only
 def create_new(data):
     name = data['name']
     players_limit = data['playersLimit']
 
-    games_list = GamesList()
-    id = games_list.get_new_id()
-    game = Game({
-        'id': id,
-        'name': name,
-        'playersLimit': players_limit,
-        'started': False,
-    })
-    games_list.add(game)
+    app.logger.info(
+        'New game creating (%s, %s)' % (name, players_limit)
+    )
 
-    key = 'game:%d' % game.data.get('id')
+    user = User.get_by_id(current_user.id)
+    if user.current_lobby_id or user.current_game_id:
+        emit('new', {
+            'success': False,
+            'message': 'User is already in the game'
+        })
+        return
+
+    pipeline = redis.pipeline()
+
+    game = Game()
+    game.data = {
+        'name': name,
+        'players_limit': players_limit,
+    }
+    game.owner_id = current_user.id
+    game.user_ids = [current_user.id]
+    game.save(p=pipeline)
+
+    lobby = Lobby()
+    lobby.id = game.id
+    lobby.save(p=pipeline)
+
+    user.current_lobby_id = lobby.id
+    user.save(p=pipeline)
+
+    pipeline.execute()
+
+    games = Game.get_all()
+
+    key = 'game:%d' % game.id
     join_room(key)
 
-    games = games_list.get_all()
-    emit('new', {
+    emit('new_game', {
         'success': True,
     })
     emit(
-        'games', [game.data for game in games], namespace='/games',
-        broadcast=True
+        'games', [game.serialize() for game in games],
+        namespace='/games', broadcast=True
     )

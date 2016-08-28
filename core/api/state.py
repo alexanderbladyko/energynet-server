@@ -1,23 +1,13 @@
 from flask_socketio import emit
+from flask_login import current_user
 
-from core.logic import UserState
+from games.models import User
 
 
 def get_state(data):
-    user_state = UserState()
-    status = user_state.get_status()
+    user = User.get_by_id(current_user.id)
 
-    if status == UserState.USER_STATUSES.USER_NOT_INVOLVED:
-        emit('state', {
-            'inGame': False
-        })
-    elif status == UserState.USER_STATUSES.USER_IN_LOBBY:
-        emit('state', {
-            'inGame': True,
-            'inLobby': True,
-        })
-    elif status == UserState.USER_STATUSES.USER_IN_GAME:
-        emit('state', {
-            'inGame': True,
-            'inLobby': False,
-        })
+    emit('state', {
+        'inGame': bool(user.current_game_id),
+        'inLobby': bool(user.current_lobby_id),
+    })

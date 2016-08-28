@@ -1,11 +1,16 @@
 from flask_login import current_user, AnonymousUserMixin
+from flask_socketio import emit
 
+from games.models import User
 from utils.server import app
 
 
 def ws_connect():
     if current_user.is_authenticated:
-        app.logger.info('User %s connected' % current_user.name)
+        app.logger.info(
+            'User (%s, %s) connected' % (current_user.id, current_user.name)
+        )
+        User.ensure()
     else:
         return None
 

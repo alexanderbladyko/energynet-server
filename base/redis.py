@@ -6,15 +6,15 @@ class BaseField(object):
     def __init__(self):
         super(BaseField, self).__init__()
 
-    def get_value(self, key, id, name, p):
-        value = p.get(key+':'+str(id)+':'+name)
+    def get_value(self, key, id, p):
+        value = p.get(key)
         return value and value.decode('utf-8')
 
-    def set_value(self, key, id, name, value, p):
-        p.set(key+':'+str(id)+':'+name, value)
+    def set_value(self, key, id, value, p):
+        p.set(key, value)
 
-    def delete(self, key, id, name, p):
-        p.delete(key+':'+str(id)+':'+name)
+    def delete(self, key, id, p):
+        p.delete(key)
 
 
 class IdField(BaseField):
@@ -22,13 +22,13 @@ class IdField(BaseField):
     def __init__(self):
         super(IdField, self).__init__()
 
-    def get_value(self, key, id, name, p):
+    def get_value(self, key, id, p):
         return id
 
-    def set_value(self, key, id, name, value, p):
+    def set_value(self, key, id, value, p):
         pass
 
-    def delete(self, key, id, name):
+    def delete(self, key, id, p):
         pass
 
 
@@ -43,8 +43,8 @@ class DataField(BaseField):
             (k.decode('utf-8'), v.decode('utf-8')) for (k, v) in hashset_items
         )
 
-    def get_value(self, key, id, name, p):
-        data = self.get_hashset(key+':'+str(id)+':'+name, p)
+    def get_value(self, key, id, p):
+        data = self.get_hashset(key, p)
         if not data:
             return None
         result = {}
@@ -53,15 +53,14 @@ class DataField(BaseField):
 
         return result
 
-    def set_value(self, key, id, name, value, p):
+    def set_value(self, key, id, value, p):
         if not value:
             return
         if not isinstance(value, dict):
             return
-        item_key = key+':'+str(id)+':'+name
         for field in self.fields:
             if field in value:
-                p.hset(item_key, field, value[field])
+                p.hset(key, field, value[field])
 
 
 class ObjectField(BaseField):
@@ -70,123 +69,114 @@ class ObjectField(BaseField):
 
 class ObjectListField(BaseField):
     """Object list field"""
-    def get_value(self, key, id, name, p):
-        return p.lrange(key+':'+str(id)+':'+name, 0, -1)
+    def get_value(self, key, id, p):
+        values = p.lrange(key, 0, -1)
+        return [int(v.decode('utf-8')) for v in values]
 
-    def set_value(self, key, id, name, value, p):
-        item_key = key+':'+str(id)+':'+name
-        p.delete(item_key)
-        p.rpush(item_key, value)
+    def set_value(self, key, id, value, p):
+        p.delete(key)
+        p.lpush(key, *value)
 
-    def delete(self, key, id, name, p):
-        p.delete(key+':'+str(id)+':'+name)
+    def delete(self, key, id, p):
+        p.delete(key)
 
 
 class ObjectList(object):
-    def __init__(self):
-        self._fields = self.get_all_fields()
+    def __init__(self, fields=None):
+        self._fields = fields
         for field_name, field in self._fields:
             setattr(self, field_name, None)
 
     @classmethod
-    def get_all_fields(cls):
-        return [
-            (name, value) for name, value in vars(cls).items()
-            if isinstance(value, BaseField)
-        ]
+    def get_key(cls, id, field_name):
+        return cls.key+':'+str(id)+':'+field_name
 
     @classmethod
-    def get_next_id(cls, p=None):
-        p = p or redis
-        index_key = cls.key + ':index'
-        return p.incr(index_key)
+    def get_all_fields(cls, fields=None):
+        if fields:
+            return [
+                (name, value) for name, value in vars(cls).items()
+                if isinstance(value, BaseField) and value in fields
+            ]
+        else:
+            return [
+                (name, value) for name, value in vars(cls).items()
+                if isinstance(value, BaseField)
+            ]
 
     @classmethod
-    def get_all(cls, fields=None, p=None):
-        p = p or redis
-        ids = p.smembers(cls.key)
-
-        fields = fields if fields else cls.get_all_fields()
-
-        for id in ids:
-            instance = cls()
-            setattr(instance, 'id', id)
-            for field_name, field in fields:
-                value = field.get_value(cls.key, id, field_name, p)
-                setattr(instance, field_name, value)
-            yield instance
+    def get_next_id(cls):
+        return redis.incr(cls.key + ':index')
 
     @classmethod
-    def get_by_id(cls, id, fields=None, p=None):
-        p = p or redis
-        if not p.sismember(cls.key, id):
+    def get_all(cls, fields=None):
+        ids = redis.smembers(cls.key)
+
+        all_fields = cls.get_all_fields(fields)
+
+        return [cls._get_by_id(int(id), all_fields) for id in ids]
+
+    @classmethod
+    def get_by_ids(cls, ids, fields=None):
+        all_fields = cls.get_all_fields(fields)
+
+        return [cls._get_by_id(int(id), all_fields) for id in ids]
+
+    @classmethod
+    def get_by_id(cls, id, fields=None):
+        if not cls.contains(id):
             return None
-        fields = fields if fields else cls.get_all_fields()
-        instance = cls()
+        all_fields = cls.get_all_fields(fields)
+        return cls._get_by_id(int(id), all_fields)
+
+    @classmethod
+    def contains(cls, id):
+        return redis.sismember(cls.key, id)
+
+    @classmethod
+    def _get_by_id(cls, id, fields):
+        instance = cls(fields)
         setattr(instance, 'id', id)
         for field_name, field in fields:
-            value = field.get_value(cls.key, id, field_name, p)
-            setattr(instance, field_name, value)
+            value = field.get_value(cls.get_key(id, field_name), id, redis)
+            if value:
+                setattr(instance, field_name, value)
         return instance
 
-    def save(self, pipeline=None):
-        p = pipeline or redis.pipeline()
-        fields = self.get_all_fields()
+    def save(self, p=None):
+        pipeline = p or redis.pipeline()
 
         if not self.id or isinstance(self.id, IdField):
-            self.id = self.get_next_id(p)
+            self.id = self.get_next_id()
 
-        p.sadd(self.key, self.id)
+        pipeline.sadd(self.key, self.id)
 
-        for name, field in fields:
+        for name, field in self._fields:
             value = getattr(self, name)
             if not isinstance(value, BaseField):
-                field.set_value(self.key, self.id, name, value, p)
+                key = self.get_key(self.id, name)
+                field.set_value(key, self.id, value, pipeline)
 
-        if not pipeline:
-            p.execute()
+        if not p:
+            pipeline.execute()
 
-    def delete(self, pipeline=None):
-        p = pipeline or redis.pipeline()
+    def delete(self, p=None):
+        pipeline = p or redis.pipeline()
+
+        pipeline.srem(self.key, self.id)
+
+        for name, field in self._fields:
+            field.delete(self.get_key(self.id, name), self.id, pipeline)
+
+        if not p:
+            pipeline.execute()
+
+    def serialize(self):
         fields = self.get_all_fields()
 
-        p.srem(self.key, self.id)
-
+        data = {}
         for name, field in fields:
-            field.delete(self.key, self.id, name, p)
-
-        if not pipeline:
-            p.execute()
-
-
-# class RedisList(object):
-#     def __init__(self, key):
-#         self.key = key
-#
-#     def get_new_id(self):
-#         index_key = self.key + ':index'
-#         return redis.incr(index_key)
-#
-#     def add(self, instance):
-#         id = instance.data['id']
-#         item_key = self.key + ':' + str(id)
-#         p = redis.pipeline()
-#         for (k, v) in instance.data.items():
-#             p.hset(item_key, k, v)
-#         p.lpush(self.key, id)
-#         p.execute()
-#
-#     def remove(self, id):
-#         item_key = self.key + ':' + str(id)
-#         p = redis.pipeline()
-#         p.delete(item_key)
-#         p.lrem(self.key, str(id), 1)
-#         p.execute()
-#
-#     def get_all(self):
-#         ids = redis.lrange(self.key, 0, -1)
-#         return [self.get_by_id(id.decode('utf-8')) for id in ids]
-#
-#     def get_by_id(self, id):
-#         item_key = self.key + ':' + str(id)
-#         return self.Type(self.get_hashset(item_key))
+            value = getattr(self, name)
+            if value and not isinstance(value, BaseField):
+                data[name] = value
+        return data

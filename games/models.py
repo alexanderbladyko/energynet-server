@@ -1,29 +1,34 @@
+from flask_login import current_user
+
 from base.redis import (
     ObjectList, IdField, DataField, ObjectField, ObjectListField
 )
 from utils.redis import redis
 
 
+class Game(ObjectList):
+    key = 'game'
+
+    id = IdField()
+    data = DataField([
+        'name', 'players_limit'
+    ])
+    owner_id = ObjectField()
+    user_ids = ObjectListField()
+
+    def add_user(self, user_id, p):
+        p.rpush(Game.get_key(self.id, 'user_ids'), user_id)
+        self.user_ids.append(int(user_id))
+
+    def remove_user(self, user_id, p):
+        p.lrem(Game.get_key(self.id, 'user_ids'), 1, user_id)
+        self.user_ids.remove(int(user_id))
+
+
 class Lobby(ObjectList):
     key = 'lobby'
 
     id = IdField()
-    data = DataField([
-        'name', 'players_limit'
-    ])
-    owner_id = ObjectField()
-    user_ids = ObjectListField()
-
-
-class Game(ObjectList):
-    key = 'lobby'
-
-    id = IdField()
-    data = DataField([
-        'name', 'players_limit'
-    ])
-    owner_id = ObjectField()
-    user_ids = ObjectListField()
 
 
 class User(ObjectList):
@@ -39,42 +44,17 @@ class User(ObjectList):
         'color', 'money'
     ])
 
-# class Game:
-#     def __init__(self, data):
-#         self.data = data
-#
-#     def get_users(self):
-#         return GameUsersList(self.data['id'])
-#
-#
-# class GamesList(RedisList):
-#     Type = Game
-#
-#     def __init__(self):
-#         super(GamesList, self).__init__('games')
-#
-#
-# class GameUser:
-#     def __init__(self, data):
-#         self.data = data
-#
-#     def save_game_id(self, game_id):
-#         redis.set('user:%s:game' % str(self.data['id']), game_id)
-#
-#     def get_game_id(self):
-#         return redis.get('user:%s:game' % str(self.data['id'])).decode('utf-8')
-#
-#     def remove_game_id(self):
-#         return redis.delete('user:%s:game' % str(self.data['id']))
-#
-#
-# class GameUsersList(RedisList):
-#     Type = GameUser
-#
-#     def __init__(self, id):
-#         super(GameUsersList, self).__init__('games:%s:users' % str(id))
-#
-#     def get_user_game_id(self, id):
-#         user_game_ids = redis.keys('games:*:users:%s' % str(id))
-#         if user_game_ids:
-#             return user_game_ids[0].decode('utf-8').split(':')[1]
+    @classmethod
+    def ensure(cls, pipeline=None):
+        if not redis.sismember(cls.key, current_user.id):
+            p = pipeline or redis.pipeline()
+
+            user = User()
+            user.id = current_user.id
+            user.data = {
+                'name': current_user.name,
+            }
+            user.save(p)
+
+            if not pipeline:
+                p.execute()
