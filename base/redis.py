@@ -11,7 +11,10 @@ class BaseField(object):
         return value and value.decode('utf-8')
 
     def set_value(self, key, id, value, p):
-        p.set(key, value)
+        if value:
+            p.set(key, value)
+        else:
+            p.delete(key)
 
     def delete(self, key, id, p):
         p.delete(key)

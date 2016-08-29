@@ -26,9 +26,10 @@ def leave_lobby(data):
     game.remove_user(user.id, pipeline)
     game.save(p=pipeline)
 
-    import pdb; pdb.set_trace()
     user.current_lobby_id = None
     user.save(p=pipeline)
+
+    pipeline.execute()
 
     room_key = 'games:%s' % id
     leave_room(room_key)
