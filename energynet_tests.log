@@ -1,0 +1,9 @@
+[2016-08-30 22:14:16,865] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (376, test_user) connected
+[2016-08-30 22:24:54,490] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (390, test_user) connected
+[2016-08-30 22:26:28,516] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (404, test_user) connected
+[2016-08-30 22:26:37,292] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (418, test_user) connected
+[2016-08-30 22:27:21,215] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (432, test_user) connected
+[2016-08-30 22:41:10,038] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (446, test_user) connected
+[2016-08-30 22:42:47,271] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (460, test_user) connected
+[2016-08-30 22:43:01,281] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (474, test_user) connected
+[2016-08-31 22:01:04,784] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (644, test_user) connected

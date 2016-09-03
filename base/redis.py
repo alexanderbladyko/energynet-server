@@ -67,7 +67,8 @@ class DataField(BaseField):
 
 
 class ObjectField(BaseField):
-    pass
+    def get_value(self, key, id, p):
+        return int(super(ObjectField, self).get_value(key, id, p))
 
 
 class ObjectListField(BaseField):
@@ -78,7 +79,8 @@ class ObjectListField(BaseField):
 
     def set_value(self, key, id, value, p):
         p.delete(key)
-        p.lpush(key, *value)
+        if value:
+            p.lpush(key, *value)
 
     def delete(self, key, id, p):
         p.delete(key)
@@ -86,7 +88,7 @@ class ObjectListField(BaseField):
 
 class ObjectList(object):
     def __init__(self, fields=None):
-        self._fields = fields
+        self._fields = self.get_all_fields(fields)
         for field_name, field in self._fields:
             setattr(self, field_name, None)
 
@@ -147,7 +149,7 @@ class ObjectList(object):
         return instance
 
     def save(self, p=None):
-        pipeline = p or redis.pipeline()
+        pipeline = p if p is not None else redis.pipeline()
 
         if not self.id or isinstance(self.id, IdField):
             self.id = self.get_next_id()
@@ -160,11 +162,11 @@ class ObjectList(object):
                 key = self.get_key(self.id, name)
                 field.set_value(key, self.id, value, pipeline)
 
-        if not p:
+        if p is None:
             pipeline.execute()
 
     def delete(self, p=None):
-        pipeline = p or redis.pipeline()
+        pipeline = p if p is not None else redis.pipeline()
 
         pipeline.srem(self.key, self.id)
 

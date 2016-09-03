@@ -9,6 +9,7 @@ from auth.logic import get_password
 from auth.models import User
 from db.utils import connect_to_db
 from utils.server import app as server
+from utils.redis import redis
 
 
 class BaseTest(TestCase):
@@ -32,15 +33,18 @@ class BaseTest(TestCase):
         self._check_isolation()
 
     def _check_isolation(self):
+        tables = [
+            User
+        ]
         with self.db.cursor() as cursor:
-            for table_name in [
-                'user',
-            ]:
-                cursor.execute('select * from public.%s;' % table_name)
+            for table in tables:
+                cursor.execute('select * from public.%s;' % table.DB_TABLE)
                 break
         self.assertEqual(
-            cursor.rowcount, 0, 'Isolation leaked for table: %s' % table_name
+            cursor.rowcount, 0, 'Isolation leaked for: %s' % table.DB_TABLE
         )
+
+        self.assertFalse(redis.keys())
 
     def create_user(self, name='test_user', password='test_password'):
         salt = 'test_salt'
