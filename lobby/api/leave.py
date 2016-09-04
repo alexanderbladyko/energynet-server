@@ -23,6 +23,7 @@ def leave_lobby(data):
 
     pipeline = redis.pipeline()
 
+    import pdb; pdb.set_trace()
     game.remove_user(user.id, pipeline)
     game.save(p=pipeline)
 

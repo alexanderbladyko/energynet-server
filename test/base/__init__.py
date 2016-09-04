@@ -22,6 +22,8 @@ class BaseTest(TestCase):
         super(BaseTest, cls).setUpClass()
         cls.db = connect_to_db()
 
+        cls._reset_indexes()
+
     @classmethod
     def tearDownClass(cls):
         super(BaseTest, cls).tearDownClass()
@@ -31,6 +33,16 @@ class BaseTest(TestCase):
         super(BaseTest, self).tearDown()
 
         self._check_isolation()
+
+    @classmethod
+    def _reset_indexes(cls):
+        sequences = [
+            'user_id_seq',
+        ]
+        with cls.db.cursor() as cursor:
+            for sequence in sequences:
+                cursor.execute('ALTER SEQUENCE %s RESTART WITH 1;' % sequence)
+            cls.db.commit()
 
     def _check_isolation(self):
         tables = [

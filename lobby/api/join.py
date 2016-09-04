@@ -3,11 +3,16 @@ from flask_login import current_user
 
 from auth.helpers import authenticated_only
 from games.models import User, Game, Lobby
-from utils.redis import redis
+from utils.redis import redis_session
+from utils.server import app
 
 
 @authenticated_only
 def join_lobby(data):
+    import pdb; pdb.set_trace()
+    app.logger.info(
+        'Join lobby'
+    )
     id = data['id']
 
     user = User.get_by_id(current_user.id)
@@ -30,15 +35,12 @@ def join_lobby(data):
 
     game = Game.get_by_id(id, [Game.user_ids])
 
-    pipeline = redis.pipeline()
+    with redis_session() as pipeline:
+        game.add_user(id, pipeline)
+        game.save(p=pipeline)
 
-    game.add_user(id, pipeline)
-    game.save(p=pipeline)
-
-    user.current_lobby_id = id
-    user.save(p=pipeline)
-
-    pipeline.execute()
+        user.current_lobby_id = id
+        user.save(p=pipeline)
 
     room_key = 'games:%s' % id
     join_room(room_key)

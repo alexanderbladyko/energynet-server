@@ -18,6 +18,8 @@ class Game(ObjectList):
 
     def add_user(self, user_id, p):
         p.rpush(Game.get_key(self.id, 'user_ids'), user_id)
+        if not self.user_ids:
+            self.user_ids = []
         self.user_ids.append(int(user_id))
 
     def remove_user(self, user_id, p):

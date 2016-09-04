@@ -10,6 +10,7 @@ def ws_connect():
         app.logger.info(
             'User (%s, %s) connected' % (current_user.id, current_user.name)
         )
+        emit('handshake', 'test')
         User.ensure()
     else:
         return None
