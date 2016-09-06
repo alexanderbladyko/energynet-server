@@ -5,7 +5,7 @@ from utils.server import app
 from utils.socket_server import io
 from utils.redis import redis
 
-from games.models import Game, User, Lobby
+from core.models import Game, User, Lobby
 
 
 class JoinTestCase(BaseTest):
@@ -15,6 +15,7 @@ class JoinTestCase(BaseTest):
         self.user = self.create_user(self.username, self.password)
 
         self.game = Game()
+        self.game.id = self.user.id + 1
         self.game.save()
 
         self.lobby = Lobby()
@@ -37,7 +38,7 @@ class JoinTestCase(BaseTest):
         super(JoinTestCase, self).tearDown()
 
     @patch('flask_login._get_user')
-    def test_connect(self, load_user_mock):
+    def test_join(self, load_user_mock):
         load_user_mock.return_value = self.user
         self.client = io.test_client(app)
         self.client.get_received()
@@ -48,4 +49,6 @@ class JoinTestCase(BaseTest):
 
         self.client.disconnect()
         self.assertEqual(len(received), 1)
-        self.assertListEqual(received[0]['args'], ['test'])
+        self.assertListEqual(received[0]['args'], [{'success': True}])
+        self.assertEqual(bytes(str(self.lobby.id), 'utf-8'), redis.get('user:%s:current_lobby_id' % self.user.id))
+        self.assertListEqual([bytes(str(self.user.id), 'utf-8')], redis.lrange('game:%s:user_ids' % self.game.id, 0, -1))

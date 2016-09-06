@@ -2,8 +2,8 @@ from flask_socketio import leave_room, emit
 from flask_login import current_user
 
 from auth.helpers import authenticated_only
-from games.models import User, Game
-from utils.redis import redis
+from core.models import User, Game
+from utils.redis import redis_session
 from utils.server import app
 
 
@@ -21,16 +21,12 @@ def leave_lobby(data):
 
     game = Game.get_by_id(user.current_lobby_id, [Game.user_ids])
 
-    pipeline = redis.pipeline()
+    with redis_session() as pipeline:
+        game.remove_user(user.id)
+        game.save(p=pipeline)
 
-    import pdb; pdb.set_trace()
-    game.remove_user(user.id, pipeline)
-    game.save(p=pipeline)
-
-    user.current_lobby_id = None
-    user.save(p=pipeline)
-
-    pipeline.execute()
+        user.current_lobby_id = None
+        user.save(p=pipeline)
 
     room_key = 'games:%s' % id
     leave_room(room_key)

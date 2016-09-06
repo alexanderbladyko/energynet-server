@@ -16,14 +16,12 @@ class Game(ObjectList):
     owner_id = ObjectField()
     user_ids = ObjectListField()
 
-    def add_user(self, user_id, p):
-        p.rpush(Game.get_key(self.id, 'user_ids'), user_id)
+    def add_user(self, user_id):
         if not self.user_ids:
             self.user_ids = []
         self.user_ids.append(int(user_id))
 
-    def remove_user(self, user_id, p):
-        p.lrem(Game.get_key(self.id, 'user_ids'), 1, user_id)
+    def remove_user(self, user_id):
         self.user_ids.remove(int(user_id))
 
 

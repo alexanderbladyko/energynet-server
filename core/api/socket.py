@@ -1,7 +1,7 @@
 from flask_login import current_user, AnonymousUserMixin
 from flask_socketio import emit
 
-from games.models import User
+from core.models import User
 from utils.server import app
 
 

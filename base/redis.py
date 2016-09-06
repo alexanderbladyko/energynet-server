@@ -83,7 +83,7 @@ class ObjectListField(BaseField):
 
     def set_value(self, key, id, value, p):
         p.delete(key)
-        if value is not None:
+        if value:
             p.lpush(key, *value)
 
     def delete(self, key, id, p):

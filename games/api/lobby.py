@@ -1,7 +1,7 @@
 from flask_socketio import emit, join_room
 from flask_login import current_user
 
-from games.models import Game, User
+from core.models import Game, User
 
 
 def get_lobby(data):

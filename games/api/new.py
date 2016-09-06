@@ -2,7 +2,7 @@ from flask_socketio import emit, join_room
 from flask_login import current_user
 
 from auth.helpers import authenticated_only
-from games.models import User, Game, Lobby
+from core.models import User, Game, Lobby
 from utils.redis import redis
 from utils.server import app
 

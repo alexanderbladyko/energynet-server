@@ -1,7 +1,7 @@
 from flask_socketio import emit
 from flask_login import current_user
 
-from games.models import User
+from core.models import User
 
 
 def get_state(data):

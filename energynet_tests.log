@@ -59,3 +59,232 @@
 [2016-09-05 00:29:46,888] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
 [2016-09-05 00:29:49,067] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
 [2016-09-05 00:29:49,071] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-05 23:26:07,131] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-05 23:26:07,143] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-05 23:26:07,190] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-05 23:28:40,595] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-05 23:28:40,600] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-05 23:43:49,835] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-05 23:43:49,837] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-05 23:43:49,878] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-05 23:43:51,510] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-05 23:43:51,515] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-05 23:45:31,079] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-05 23:45:31,082] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-05 23:45:31,085] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-05 23:53:00,123] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-05 23:53:00,125] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-05 23:53:00,128] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-05 23:53:22,026] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-05 23:53:22,028] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-05 23:53:22,031] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-05 23:54:17,155] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-05 23:54:17,158] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-05 23:54:17,161] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-05 23:54:32,831] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-05 23:54:32,834] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-05 23:54:32,838] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-05 23:58:06,151] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-05 23:58:06,154] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-05 23:58:06,158] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-05 23:59:28,596] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-05 23:59:28,598] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-05 23:59:28,602] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-05 23:59:48,806] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-05 23:59:48,809] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-05 23:59:48,813] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:01:20,446] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:01:20,450] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:01:20,487] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:01:20,491] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 00:01:20,497] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:04:18,159] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:04:18,162] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:04:18,201] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:04:18,204] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 00:04:18,211] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:06:00,667] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:06:00,670] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:06:00,709] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:06:00,713] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 00:06:00,720] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:06:17,136] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:06:17,140] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:06:17,178] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:06:17,181] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 00:06:17,188] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:08:14,753] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:08:14,756] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:08:14,795] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:08:14,798] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 00:08:14,807] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:09:19,025] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:09:19,027] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:09:19,059] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:09:19,062] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 00:09:19,066] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:09:27,112] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:09:27,114] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 00:09:27,117] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:10:01,207] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:10:01,210] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 00:10:01,214] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:11:57,262] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:11:57,264] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 00:11:57,267] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:32:09,565] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:32:09,571] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 00:32:09,577] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:32:09,628] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:32:09,631] {/home/alex/projects/energynet-server/lobby/api/leave.py:12} INFO - Leaving lobby
+[2016-09-06 00:32:09,633] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:34:42,009] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:34:42,012] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 00:34:42,015] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:34:42,066] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:34:42,069] {/home/alex/projects/energynet-server/lobby/api/leave.py:12} INFO - Leaving lobby
+[2016-09-06 00:34:42,071] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:35:40,113] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:35:40,116] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 00:35:40,121] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:35:40,162] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:35:40,165] {/home/alex/projects/energynet-server/lobby/api/leave.py:12} INFO - Leaving lobby
+[2016-09-06 00:35:40,168] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:37:09,480] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:37:09,482] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 00:37:09,486] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:37:09,535] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:37:09,537] {/home/alex/projects/energynet-server/lobby/api/leave.py:12} INFO - Leaving lobby
+[2016-09-06 00:37:09,539] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:38:22,693] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:38:22,696] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 00:38:22,699] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:38:22,743] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:38:22,745] {/home/alex/projects/energynet-server/lobby/api/leave.py:12} INFO - Leaving lobby
+[2016-09-06 00:38:22,746] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:38:31,959] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:38:31,961] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 00:38:31,964] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:38:32,000] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:38:32,002] {/home/alex/projects/energynet-server/lobby/api/leave.py:12} INFO - Leaving lobby
+[2016-09-06 00:38:32,003] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:38:50,362] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:38:50,364] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 00:38:50,367] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:38:50,410] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:38:50,412] {/home/alex/projects/energynet-server/lobby/api/leave.py:12} INFO - Leaving lobby
+[2016-09-06 00:38:50,414] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:39:33,583] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:39:33,586] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 00:39:33,592] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:39:33,639] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:39:33,643] {/home/alex/projects/energynet-server/lobby/api/leave.py:12} INFO - Leaving lobby
+[2016-09-06 00:39:33,645] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:39:44,358] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:39:44,361] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 00:39:44,366] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:39:44,397] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:39:44,400] {/home/alex/projects/energynet-server/lobby/api/leave.py:12} INFO - Leaving lobby
+[2016-09-06 00:39:44,401] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:40:03,319] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:40:03,321] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 00:40:03,325] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:40:12,729] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:40:12,732] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 00:40:12,736] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:40:12,784] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:40:12,787] {/home/alex/projects/energynet-server/lobby/api/leave.py:12} INFO - Leaving lobby
+[2016-09-06 00:40:12,789] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:42:17,212] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:42:17,214] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 00:42:17,218] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:42:17,260] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:42:17,261] {/home/alex/projects/energynet-server/lobby/api/leave.py:12} INFO - Leaving lobby
+[2016-09-06 00:42:17,262] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:44:12,413] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:44:12,416] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 00:44:12,420] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:51:54,617] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:51:54,620] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 00:51:54,624] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 00:51:54,665] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 00:51:54,672] {/home/alex/projects/energynet-server/lobby/api/leave.py:12} INFO - Leaving lobby
+[2016-09-06 00:51:54,674] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 22:58:38,882] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 22:58:38,934] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 22:58:38,939] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 22:58:39,090] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 22:58:39,094] {/home/alex/projects/energynet-server/lobby/api/leave.py:12} INFO - Leaving lobby
+[2016-09-06 22:58:39,096] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 22:59:12,161] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 22:59:12,163] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 22:59:12,166] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 23:01:43,282] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 23:01:43,284] {/home/alex/projects/energynet-server/lobby/api/leave.py:12} INFO - Leaving lobby
+[2016-09-06 23:01:43,286] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 23:02:08,959] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 23:02:08,960] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 23:02:08,963] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 23:02:54,321] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 23:02:54,324] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 23:02:54,328] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 23:03:04,855] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 23:03:04,857] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 23:03:04,861] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 23:05:54,937] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 23:05:54,939] {/home/alex/projects/energynet-server/lobby/api/leave.py:12} INFO - Leaving lobby
+[2016-09-06 23:05:54,941] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 23:13:32,296] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 23:13:32,298] {/home/alex/projects/energynet-server/lobby/api/leave.py:12} INFO - Leaving lobby
+[2016-09-06 23:15:25,512] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 23:15:37,098] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 23:15:37,100] {/home/alex/projects/energynet-server/lobby/api/leave.py:12} INFO - Leaving lobby
+[2016-09-06 23:18:10,336] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 23:18:23,219] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 23:18:24,581] {/home/alex/projects/energynet-server/lobby/api/leave.py:12} INFO - Leaving lobby
+[2016-09-06 23:18:45,622] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 23:20:06,870] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 23:20:11,001] {/home/alex/projects/energynet-server/lobby/api/leave.py:12} INFO - Leaving lobby
+[2016-09-06 23:21:18,429] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 23:21:44,963] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 23:21:44,965] {/home/alex/projects/energynet-server/lobby/api/leave.py:12} INFO - Leaving lobby
+[2016-09-06 23:21:49,169] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 23:23:39,943] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 23:23:49,527] {/home/alex/projects/energynet-server/lobby/api/leave.py:12} INFO - Leaving lobby
+[2016-09-06 23:23:50,303] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 23:24:19,245] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 23:24:24,732] {/home/alex/projects/energynet-server/lobby/api/leave.py:12} INFO - Leaving lobby
+[2016-09-06 23:24:30,364] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 23:26:57,376] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 23:26:57,378] {/home/alex/projects/energynet-server/lobby/api/leave.py:12} INFO - Leaving lobby
+[2016-09-06 23:37:28,989] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 23:37:28,992] {/home/alex/projects/energynet-server/lobby/api/leave.py:12} INFO - Leaving lobby
+[2016-09-06 23:37:32,833] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 23:37:32,835] {/home/alex/projects/energynet-server/lobby/api/leave.py:12} INFO - Leaving lobby
+[2016-09-06 23:40:28,337] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 23:40:28,342] {/home/alex/projects/energynet-server/lobby/api/leave.py:12} INFO - Leaving lobby
+[2016-09-06 23:40:28,345] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 23:40:37,410] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 23:40:37,413] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 23:40:37,450] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 23:40:37,452] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 23:40:37,457] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 23:40:37,494] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 23:40:37,498] {/home/alex/projects/energynet-server/lobby/api/leave.py:12} INFO - Leaving lobby
+[2016-09-06 23:40:37,501] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 23:41:22,529] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 23:41:22,531] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 23:41:22,571] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 23:41:22,574] {/home/alex/projects/energynet-server/lobby/api/join.py:13} INFO - Join lobby
+[2016-09-06 23:41:22,580] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-06 23:41:22,613] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-06 23:41:22,616] {/home/alex/projects/energynet-server/lobby/api/leave.py:12} INFO - Leaving lobby
+[2016-09-06 23:41:22,618] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-07 00:04:40,956] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-07 00:04:40,958] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-07 00:04:40,990] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-07 00:04:40,993] {/home/alex/projects/energynet-server/games/api/join.py:13} INFO - Join lobby
+[2016-09-07 00:04:40,998] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected
+[2016-09-07 00:04:41,039] {/home/alex/projects/energynet-server/core/api/socket.py:11} INFO - User (1, test_user) connected
+[2016-09-07 00:04:41,043] {/home/alex/projects/energynet-server/games/api/leave.py:12} INFO - Leaving lobby
+[2016-09-07 00:04:41,046] {/home/alex/projects/energynet-server/core/api/socket.py:21} INFO - User test_user disconnected

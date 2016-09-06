@@ -1,7 +1,7 @@
 from flask_socketio import emit
 
 from auth.helpers import authenticated_only
-from games.models import Lobby, Game
+from core.models import Lobby, Game
 from utils.server import app
 
 
