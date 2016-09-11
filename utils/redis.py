@@ -5,7 +5,7 @@ from utils.config import config
 
 
 def _init_redis():
-    host = config.get('app', 'host')
+    host = config.get('redis', 'host')
     port = config.get('redis', 'port')
     db = config.get('redis', 'db')
 

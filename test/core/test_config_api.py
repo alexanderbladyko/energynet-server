@@ -4,9 +4,8 @@ from test.base import BaseTest
 CONFIG_SCHEMA = {
     "type": "object",
     "additionalProperties": False,
-    "required": ["serverUrl", "gameApi", "authApi"],
+    "required": ["gameApi", "authApi"],
     "properties": {
-        "serverUrl": {"type": "string"},
         "gameApi": {"type": "string"},
         "authApi": {"type": "string"},
     }

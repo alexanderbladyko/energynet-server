@@ -1,7 +1,7 @@
 from flask_login import current_user, AnonymousUserMixin
 from flask_socketio import emit
 
-from core.models import User
+from core.logic import ensure_user
 from utils.server import app
 
 
@@ -11,7 +11,7 @@ def ws_connect():
             'User (%s, %s) connected' % (current_user.id, current_user.name)
         )
         emit('handshake', 'test')
-        User.ensure()
+        ensure_user(current_user)
     else:
         return None
 

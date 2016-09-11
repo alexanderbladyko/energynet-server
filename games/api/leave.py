@@ -3,6 +3,7 @@ from flask_login import current_user
 
 from auth.helpers import authenticated_only
 from core.models import User, Game
+from games.logic import notify_lobby_users
 from utils.redis import redis_session
 from utils.server import app
 
@@ -19,7 +20,7 @@ def leave_lobby(data):
         })
         return
 
-    game = Game.get_by_id(user.current_lobby_id, [Game.user_ids])
+    game = Game.get_by_id(user.current_lobby_id, [Game.user_ids, Game.data])
 
     with redis_session() as pipeline:
         game.remove_user(user.id)
@@ -34,3 +35,4 @@ def leave_lobby(data):
     emit('leave_game', {
         'success': True,
     })
+    notify_lobby_users(game=game)

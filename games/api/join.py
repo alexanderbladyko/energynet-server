@@ -3,6 +3,7 @@ from flask_login import current_user
 
 from auth.helpers import authenticated_only
 from core.models import User, Game, Lobby
+from games.logic import notify_lobby_users
 from utils.redis import redis_session
 from utils.server import app
 
@@ -17,7 +18,7 @@ def join_lobby(data):
     user = User.get_by_id(current_user.id)
 
     if user.current_lobby_id or user.current_game_id:
-        emit('new', {
+        emit('join_game', {
             'success': False,
             'message': 'User is already in the game'
         })
@@ -26,13 +27,13 @@ def join_lobby(data):
     lobby_exists = Lobby.contains(id)
 
     if not lobby_exists:
-        emit('new', {
+        emit('join_game', {
             'success': False,
             'message': 'No such game'
         })
         return
 
-    game = Game.get_by_id(id, [Game.user_ids])
+    game = Game.get_by_id(id, [Game.user_ids, Game.data])
 
     with redis_session() as pipeline:
         game.add_user(user.id)
@@ -47,3 +48,4 @@ def join_lobby(data):
     emit('join_game', {
         'success': True,
     })
+    notify_lobby_users(game=game)

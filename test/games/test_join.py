@@ -10,12 +10,11 @@ from core.models import Game, User, Lobby
 
 class JoinTestCase(BaseTest):
     def setUp(self):
-        self.username = 'test_user'
-        self.password = 'test_password'
-        self.user = self.create_user(self.username, self.password)
+        self.user = self.create_user(name='user')
 
         self.game = Game()
         self.game.id = self.user.id + 1
+        self.game.data = {'name': 'game_1'}
         self.game.save()
 
         self.lobby = Lobby()
@@ -50,5 +49,33 @@ class JoinTestCase(BaseTest):
         self.client.disconnect()
         self.assertEqual(len(received), 1)
         self.assertListEqual(received[0]['args'], [{'success': True}])
-        self.assertEqual(bytes(str(self.lobby.id), 'utf-8'), redis.get('user:%s:current_lobby_id' % self.user.id))
-        self.assertListEqual([bytes(str(self.user.id), 'utf-8')], redis.lrange('game:%s:user_ids' % self.game.id, 0, -1))
+        self.assertRedisInt(self.lobby.id, 'user:%d:current_lobby_id' % self.user.id)
+        self.assertRedisListInt([self.user.id], 'game:%s:user_ids' % self.game.id)
+
+    @patch('flask_login._get_user')
+    def test_join_second_user(self, load_user_mock):
+        self.game.user_ids = [self.user.id]
+        self.game.save()
+
+        user_1 = User()
+        user_1.id = self.user.id
+        user_1.current_lobby_id = self.lobby.id
+        user_1.save()
+
+        self.user_2 = self.create_user(name='user_2')
+        load_user_mock.return_value = self.user_2
+        self.client = io.test_client(app)
+        self.client.get_received()
+
+        self.client.emit('join', {'id': self.game.id})
+
+        received = self.client.get_received()
+
+        self.client.disconnect()
+        self.assertEqual(len(received), 1)
+        self.assertListEqual(received[0]['args'], [{'success': True}])
+        self.assertRedisInt(self.lobby.id, 'user:%d:current_lobby_id' % self.user.id)
+        self.assertRedisInt(self.lobby.id, 'user:%d:current_lobby_id' % self.user_2.id)
+        self.assertRedisListInt([self.user.id, self.user_2.id], 'game:%s:user_ids' % self.game.id)
+
+        User.get_by_id(self.user_2.id).delete()

@@ -16,7 +16,7 @@ init_routes()
 app.logger.addHandler(handler)
 
 if __name__ == '__main__':
-    port = int(config.get('app', 'port'))
+    port = int(config.get('socketio', 'port'))
 
     print('Running at port: %s' % port)
     io.run(app, '0.0.0.0', port=port)

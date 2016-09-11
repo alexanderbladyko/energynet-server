@@ -104,3 +104,23 @@ class BaseTest(TestCase):
             validate(response, schema)
         except ValidationError as error:
             self.fail(error.message)
+
+    def assertRedisList(self, values, key):
+        self._assertList(
+            values, [v.decode('utf-8') for v in redis.lrange(key, 0, -1)]
+        )
+
+    def assertRedisListInt(self, values, key):
+        self._assertList(
+            values, [int(v.decode('utf-8')) for v in redis.lrange(key, 0, -1)]
+        )
+
+    def _assertList(self, list_1, list_2):
+        self.assertEqual(len(list_1), len(list_2))
+        self.assertListEqual(sorted(list_1), sorted(list_2))
+
+    def assertRedisInt(self, value, key):
+        self.assertEqual(value, int(redis.get(key).decode('utf-8')))
+
+    def assertRedisValue(self, value, key):
+        self.assertEqual(value, redis.get(key).decode('utf-8'))
