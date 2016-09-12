@@ -40,8 +40,9 @@ class LeaveTestCase(BaseTest):
 
         super(LeaveTestCase, self).tearDown()
 
+    @patch('core.logic.leave_room')
     @patch('flask_login._get_user')
-    def test_leave(self, load_user_mock):
+    def test_leave(self, load_user_mock, leave_room_mock):
         load_user_mock.return_value = self.user
         self.client = io.test_client(app)
         redis.set('user:%s:current_lobby_id' % self.user.id, self.lobby.id)
@@ -55,9 +56,11 @@ class LeaveTestCase(BaseTest):
         self.assertEqual(len(received), 1)
         self.assertListEqual(received[0]['args'], [{'success': True}])
         self.assertRedisListInt([], 'game:%s:user_ids' % self.game.id)
+        leave_room_mock.assert_called_once_with('games:%s' % self.game.id)
 
+    @patch('core.logic.leave_room')
     @patch('flask_login._get_user')
-    def test_leave_two_users(self, load_user_mock):
+    def test_leave_two_users(self, load_user_mock, leave_room_mock):
         user = self.create_user(name='user_2')
         user_2 = ensure_user(user)
 
@@ -78,5 +81,6 @@ class LeaveTestCase(BaseTest):
         self.assertEqual(len(received), 1)
         self.assertListEqual(received[0]['args'], [{'success': True}])
         self.assertRedisListInt([self.user.id], 'game:%s:user_ids' % self.game.id)
+        leave_room_mock.assert_called_once_with('games:%s' % self.game.id)
 
         user_2.delete()

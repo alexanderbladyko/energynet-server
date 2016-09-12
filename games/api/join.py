@@ -1,7 +1,8 @@
-from flask_socketio import join_room, emit
+from flask_socketio import emit
 from flask_login import current_user
 
 from auth.helpers import authenticated_only
+from core.logic import join_game
 from core.models import User, Game, Lobby
 from games.logic import notify_lobby_users
 from utils.redis import redis_session
@@ -42,8 +43,7 @@ def join_lobby(data):
         user.current_lobby_id = id
         user.save(p=pipeline)
 
-    room_key = 'games:%s' % id
-    join_room(room_key)
+    join_game(id)
 
     emit('join_game', {
         'success': True,

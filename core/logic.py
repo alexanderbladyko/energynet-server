@@ -1,3 +1,5 @@
+from flask_socketio import join_room, leave_room
+
 from core.models import User
 from utils.redis import redis
 
@@ -19,3 +21,11 @@ def ensure_user(db_user, p=None):
         return user
     else:
         return User.get_by_id(db_user.id)
+
+
+def join_game(game_id):
+    join_room('games:%s' % game_id)
+
+
+def leave_game(game_id):
+    leave_room('games:%s' % game_id)

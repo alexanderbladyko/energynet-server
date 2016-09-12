@@ -1,6 +1,6 @@
-from flask_socketio import join_room
 from flask_login import current_user
 
+from core.logic import join_game
 from core.models import User
 from games.logic import notify_lobby_users
 
@@ -11,7 +11,6 @@ def send_lobby_info(data):
     if not user.current_lobby_id:
         return
 
-    room_key = 'games:%s' % id
-    join_room(room_key)
+    join_game(user.current_lobby_id)
 
     notify_lobby_users(user.current_lobby_id)

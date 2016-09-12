@@ -1,7 +1,8 @@
-from flask_socketio import leave_room, emit
+from flask_socketio import emit
 from flask_login import current_user
 
 from auth.helpers import authenticated_only
+from core.logic import leave_game
 from core.models import User, Game
 from games.logic import notify_lobby_users
 from utils.redis import redis_session
@@ -29,8 +30,7 @@ def leave_lobby(data):
         user.current_lobby_id = None
         user.save(p=pipeline)
 
-    room_key = 'games:%s' % id
-    leave_room(room_key)
+    leave_game(game.id)
 
     emit('leave_game', {
         'success': True,
