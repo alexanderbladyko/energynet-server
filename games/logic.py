@@ -16,5 +16,5 @@ def notify_lobby_users(game_id=None, game=None):
         'users': [user.serialize() for user in users]
     })
 
-    room_key = 'games:%s' % id
+    room_key = 'games:%s' % game.id
     emit('lobby', lobby_info, room=room_key)

@@ -4,3 +4,4 @@ __pycache__/
 etc/config_local.ini
 etc/config_tests.ini
 energynet.log
+energynet_tests.log
