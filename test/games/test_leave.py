@@ -1,8 +1,9 @@
 from unittest.mock import patch
 from test.base import BaseTest
 
+from auth.models import User as DbUser
 from core.logic import ensure_user
-from core.models import Game, User, Lobby
+from core.models import Game, Lobby
 from utils.server import app
 from utils.socket_server import io
 from utils.redis import redis
@@ -29,7 +30,7 @@ class LeaveTestCase(BaseTest):
 
     def tearDown(self):
         with self.db.cursor() as cursor:
-            cursor.execute('delete from public.user *;')
+            cursor.execute("delete from {0};".format(DbUser.DB_TABLE))
             self.db.commit()
 
         self.user_1.delete()

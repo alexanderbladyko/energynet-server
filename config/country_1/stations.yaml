@@ -1,0 +1,21 @@
+stations:
+  - cost: 3
+    capacity: 2
+    efficiency: 1
+    resources: [oil]
+  - cost: 4
+    capacity: 2
+    efficiency: 1
+    resources: [coil]
+  - cost: 5
+    capacity: 2
+    efficiency: 1
+    resources: [coil, oil]
+  - cost: 6
+    capacity: 1
+    efficiency: 1
+    resources: [waste]
+  - cost: 14
+    capacity: 2
+    efficiency: 2
+    resources: [waste]

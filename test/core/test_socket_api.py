@@ -1,6 +1,7 @@
 from unittest.mock import patch
 from test.base import BaseTest
 
+from auth.models import User as DbUser
 from utils.server import app
 from utils.socket_server import io
 from utils.redis import redis
@@ -16,7 +17,7 @@ class SocketApiTestCase(BaseTest):
 
     def tearDown(self):
         with self.db.cursor() as cursor:
-            cursor.execute('delete from public.user *;')
+            cursor.execute("delete from {0};".format(DbUser.DB_TABLE))
             self.db.commit()
 
         super(SocketApiTestCase, self).tearDown()

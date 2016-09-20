@@ -1,6 +1,6 @@
 from flask_script import Manager
 
-# from db.tasks import DbTasks
+from db.tasks import DbTasks
 from test.tasks import TestsTasks
 
 from utils.server import app
@@ -10,7 +10,7 @@ manager = Manager(app)
 
 
 tasks = [
-    # DbTasks(),
+    DbTasks(),
     TestsTasks(),
 ]
 

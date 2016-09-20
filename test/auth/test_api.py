@@ -1,12 +1,14 @@
 from test.base import BaseTest
 
+from auth.models import User as DbUser
+
 
 class RegisterApiTestCase(BaseTest):
     URL = '/auth/register'
 
     def tearDown(self):
         with self.db.cursor() as cursor:
-            cursor.execute('delete from public.user *;')
+            cursor.execute("delete from {0};".format(DbUser.DB_TABLE))
             self.db.commit()
 
         super(RegisterApiTestCase, self).tearDown()
@@ -54,7 +56,7 @@ class LoginApiTestCase(BaseTest):
 
     def tearDown(self):
         with self.db.cursor() as cursor:
-            cursor.execute('delete from public.user *;')
+            cursor.execute("delete from {0};".format(DbUser.DB_TABLE))
             self.db.commit()
 
         super(LoginApiTestCase, self).tearDown()
@@ -96,7 +98,7 @@ class LogoutApiTestCase(BaseTest):
 
     def tearDown(self):
         with self.db.cursor() as cursor:
-            cursor.execute('delete from public.user *;')
+            cursor.execute("delete from {0};".format(DbUser.DB_TABLE))
             self.db.commit()
 
         super(LogoutApiTestCase, self).tearDown()

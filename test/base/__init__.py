@@ -37,7 +37,7 @@ class BaseTest(TestCase):
     @classmethod
     def _reset_indexes(cls):
         sequences = [
-            'user_id_seq',
+            User.SEQUENCE_NAME,
         ]
         with cls.db.cursor() as cursor:
             for sequence in sequences:
@@ -50,11 +50,13 @@ class BaseTest(TestCase):
         ]
         with self.db.cursor() as cursor:
             for table in tables:
-                cursor.execute('select * from public.%s;' % table.DB_TABLE)
-                break
-        self.assertEqual(
-            cursor.rowcount, 0, 'Isolation leaked for: %s' % table.DB_TABLE
-        )
+                cursor.execute(
+                    "select count(*) from {0};".format(table.DB_TABLE)
+                )
+                count = cursor.fetchone()[0]
+                if count != 0:
+                    self.fail('Isolation leaked for: %s' % table.DB_TABLE)
+                    break
 
         self.assertFalse(redis.keys())
 
@@ -63,10 +65,10 @@ class BaseTest(TestCase):
         generated_password = get_password(password, salt)
         with self.db.cursor(cursor_factory=DictCursor) as cursor:
             cursor.execute("""
-                insert into public.user(name, password, salt)
-                values(%s, %s, %s)
+                insert into public.{0}(name, password, salt)
+                values('{1}', '{2}', '{3}')
                 returning id, name, password, salt, created, updated;
-            """, (name, generated_password, salt))
+            """.format(User.DB_TABLE, name, generated_password, salt))
             user_data = cursor.fetchone()
             self.db.commit()
         if user_data:
@@ -75,8 +77,9 @@ class BaseTest(TestCase):
     def assertUserExists(self, user_name):
         with self.db.cursor() as cursor:
             cursor.execute(
-                'select count(*) from public.user where name=%s;',
-                (user_name, )
+                "select count(*) from public.{0} where name='{1}';".format(
+                    User.DB_TABLE, user_name
+                )
             )
             user_count, = cursor.fetchone()
         self.assertEqual(user_count, 1)

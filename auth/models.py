@@ -9,7 +9,9 @@ from db.helpers import select, insert
 
 
 class User(UserMixin):
-    DB_TABLE = 'user'
+    DB_TABLE = 'accounts'
+
+    SEQUENCE_NAME = 'accounts_id_seq'
 
     class Fields:
         ID = 'id'

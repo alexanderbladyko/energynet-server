@@ -7,50 +7,50 @@ from yoyo import step
 __depends__ = {}
 
 step("""
-    CREATE SEQUENCE public.user_id_seq
+    CREATE SEQUENCE public.accounts_id_seq
         INCREMENT 1
         MINVALUE 1
         MAXVALUE 9223372036854775807
         START 1
         CACHE 1;
 """, """
-    DROP SEQUENCE public.user_id_seq;
+    DROP SEQUENCE public.accounts_id_seq;
 """)
 
 step("""
-    CREATE TABLE public."user"
+    CREATE TABLE public."accounts"
     (
-        id integer NOT NULL DEFAULT nextval('user_id_seq'::regclass),
+        id integer NOT NULL DEFAULT nextval('accounts_id_seq'::regclass),
         name character varying(30) NOT NULL,
         password character varying(64) NOT NULL,
         salt character varying(16) NOT NULL,
         created time with time zone NOT NULL DEFAULT now(),
         updated time with time zone NOT NULL DEFAULT now(),
-        CONSTRAINT user_pkey PRIMARY KEY (id),
-        CONSTRAINT user_id_key UNIQUE (id)
+        CONSTRAINT accounts_pkey PRIMARY KEY (id),
+        CONSTRAINT accounts_id_key UNIQUE (id)
     )
     WITH (
         OIDS=FALSE
     );
 """, """
-    DROP TABLE public."user";
+    DROP TABLE public."accounts";
 """)
 
 step("""
-    CREATE INDEX user_id_idx
-        ON public."user"
+    CREATE INDEX accounts_id_idx
+        ON public."accounts"
         USING btree
         (id);
 """, """
-    DROP INDEX public.user_id_idx;
+    DROP INDEX public.accounts_id_idx;
 """)
 
 
 step("""
-    CREATE UNIQUE INDEX user_name_idx
-    ON public."user"
+    CREATE UNIQUE INDEX accounts_name_idx
+    ON public."accounts"
     USING btree
     (name COLLATE pg_catalog."default");
 """, """
-    DROP INDEX public.user_name_idx;
+    DROP INDEX public.accounts_name_idx;
 """)

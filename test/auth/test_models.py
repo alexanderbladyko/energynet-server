@@ -14,7 +14,7 @@ class UserModelTestCase(BaseTest):
     def tearDown(self):
         with self.db.cursor() as cursor:
             cursor = self.db.cursor()
-            cursor.execute('delete from public.user *;')
+            cursor.execute('delete from {0};'.format(User.DB_TABLE))
             self.db.commit()
 
         super(UserModelTestCase, self).tearDown()
