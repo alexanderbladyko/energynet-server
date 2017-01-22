@@ -16,6 +16,7 @@ class ConfigTasks(object):
         manager.add_command('config.delete', Delete())
         manager.add_command('config.normalize', Normalize())
         manager.add_command('config.geo.split', Split())
+        manager.add_command('config.build', Build())
 
 
 class Load(Command):
@@ -268,3 +269,85 @@ class Split(Command):
                     f for f in features if f['geometry']['type'] == 'Polygon'
                 ],
             }))
+
+
+class Build(Command):
+    option_list = (
+        Option('--name', '-n', dest='name'),
+        Option('--path', '-p', dest='path'),
+        Option('--geo', '-g', dest='geo'),
+        Option('--output', '-o', dest='output'),
+    )
+
+    def run(self, name, path, geo, output, db=None):
+        current_dir = os.getcwd()
+        folder = ''
+        if name:
+            folder = os.path.join(current_dir, 'config/data/{0}'.format(name))
+        if path:
+            folder = os.path.join(current_dir, path)
+
+        map_data = load(open(folder+'/map.yaml', 'r'))
+
+        with open(geo) as data_file:
+            data = json.loads(data_file.read())
+
+        result = {
+            'type': 'FeatureCollection',
+            'features': [],
+        }
+
+        for feature in data['features']:
+            type = feature['properties']['type']
+            if type == 'CITY':
+                id = feature['properties']['id']
+                city_data = next(
+                    city for city in map_data['cities'] if city['name'] == id
+                )
+                result['features'].append(self._create_feature(
+                    feature['geometry'], {
+                        'type': type,
+                        'id': id,
+                        'area': city_data['area'],
+                        'slots': city_data['slots'],
+                    }
+                ))
+            elif type == 'AREA':
+                id = feature['properties']['id']
+                area_data = next(
+                    area for area in map_data['areas'] if area['name'] == id
+                )
+                result['features'].append(self._create_feature(
+                    feature['geometry'], {
+                        'type': type,
+                        'id': id,
+                        'color': area_data['color'],
+                    }
+                ))
+            elif type == 'JUNCTION':
+                to_city = feature['properties']['to']
+                from_city = feature['properties']['from']
+                junction_data = next(
+                    junction for junction in map_data['junctions']
+                    if to_city in junction['between']
+                    and from_city in junction['between']
+                )
+                result['features'].append(self._create_feature(
+                    feature['geometry'], {
+                        'type': type,
+                        'id': id,
+                        'between': junction_data['between'],
+                    }
+                ))
+
+        with open(output, 'w+') as output_file:
+            output_file.write(json.dumps(result, indent=4))
+
+        app.logger.info('Finished building')
+
+    def _create_feature(self, geometry, props):
+        return {
+            'type': 'Feature',
+            'geometry': geometry,
+            'properties': props,
+        }
