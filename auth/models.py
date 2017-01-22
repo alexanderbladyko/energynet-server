@@ -34,7 +34,9 @@ class User(UserMixin):
         db = get_db()
         with db.cursor(cursor_factory=DictCursor) as cursor:
             cursor.execute(
-                select(fields, User.DB_TABLE) + 'WHERE name=%s;', (name,)
+                select(fields, User.DB_TABLE) +
+                'WHERE ' + User.Fields.NAME + '=%s;',
+                (name,)
             )
             user_data = cursor.fetchone()
         if user_data:

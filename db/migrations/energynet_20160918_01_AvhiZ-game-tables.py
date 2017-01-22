@@ -107,7 +107,12 @@ step("""
         id integer NOT NULL DEFAULT nextval('stations_id_seq'::regclass),
         cost integer,
         capacity integer,
-        resources text[]
+        resources text[],
+        field_name text NOT NULL,
+        CONSTRAINT stations_id_pkey PRIMARY KEY (id),
+        CONSTRAINT stations_field_name FOREIGN KEY (field_name)
+            REFERENCES public.fields (name) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION
     )
 """, """
     DROP TABLE public.stations;

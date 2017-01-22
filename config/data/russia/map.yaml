@@ -1,0 +1,321 @@
+areas:
+  - name: area1
+    color: '#393939'
+  - name: area2
+    color: '#393939'
+  - name: area3
+    color: '#393939'
+  - name: area4
+    color: '#393939'
+  - name: area5
+    color: '#393939'
+  - name: area6
+    color: '#393939'
+
+cities:
+  - name: murmansk
+    slots: [10, 15, 20]
+    area: area1
+  - name: peterburg
+    slots: [10, 15, 20]
+    area: area2
+  - name: kaliningrad
+    slots: [10, 15, 20]
+    area: area2
+  - name: moscow
+    slots: [10, 15, 20]
+    area: area2
+  - name: voronezh
+    slots: [10, 15, 20]
+    area: area3
+  - name: tula
+    slots: [10, 15, 20]
+    area: area2
+  - name: ryazan
+    slots: [10, 15, 20]
+    area: area1
+  - name: arkhangelsk
+    slots: [10, 15, 20]
+    area: area2
+  - name: novgorod
+    slots: [10, 15, 20]
+    area: area2
+  - name: samara
+    slots: [10, 15, 20]
+    area: area4
+  - name: saratov
+    slots: [10, 15, 20]
+    area: area3
+  - name: astrakhan
+    slots: [10, 15, 20]
+    area: area3
+  - name: mahachkala
+    slots: [10, 15, 20]
+    area: area3
+  - name: krasnodar
+    slots: [10, 15, 20]
+    area: area3
+  - name: volgograd
+    slots: [10, 15, 20]
+    area: area3
+  - name: ufa
+    slots: [10, 15, 20]
+    area: area4
+  - name: chelyabinsk
+    slots: [10, 15, 20]
+    area: area4
+  - name: omsk
+    slots: [10, 15, 20]
+    area: area5
+  - name: barnaul
+    slots: [10, 15, 20]
+    area: area5
+  - name: novosibirsk
+    slots: [10, 15, 20]
+    area: area5
+  - name: kemerovo
+    slots: [10, 15, 20]
+    area: area6
+  - name: krasnoyarsk
+    slots: [10, 15, 20]
+    area: area6
+  - name: tomsk
+    slots: [10, 15, 20]
+    area: area5
+  - name: surgut
+    slots: [10, 15, 20]
+    area: area5
+  - name: bratsk
+    slots: [10, 15, 20]
+    area: area6
+  - name: chita
+    slots: [10, 15, 20]
+    area: area6
+  - name: ulan_ude
+    slots: [10, 15, 20]
+    area: area6
+  - name: irkutsk
+    slots: [10, 15, 20]
+    area: area6
+  - name: norilsk
+    slots: [10, 15, 20]
+    area: area5
+  - name: kazan
+    slots: [10, 15, 20]
+    area: area1
+  - name: nizhnekamsk
+    slots: [10, 15, 20]
+    area: area1
+  - name: perm
+    slots: [10, 15, 20]
+    area: area4
+  - name: yaroslavl
+    slots: [10, 15, 20]
+    area: area2
+  - name: kirov
+    slots: [10, 15, 20]
+    area: area1
+  - name: syktyvkar
+    slots: [10, 15, 20]
+    area: area1
+  - name: tyumen
+    slots: [10, 15, 20]
+    area: area5
+  - name: ekaterinburg
+    slots: [10, 15, 20]
+    area: area4
+  - name: ulyanovsk
+    slots: [10, 15, 20]
+    area: area1
+  - name: rostov
+    slots: [10, 15, 20]
+    area: area3
+  - name: novokuznetsk
+    slots: [10, 15, 20]
+    area: area6
+  - name: cheboksary
+    slots: [10, 15, 20]
+    area: area1
+  - name: orenburg
+    slots: [10, 15, 20]
+    area: area4
+
+junctions:
+  - between: [moscow, tula]
+    cost: 3
+  - between: [ryazan, moscow]
+    cost: 3
+  - between: [peterburg, arkhangelsk]
+    cost: 14
+  - between: [murmansk, arkhangelsk]
+    cost: 15
+  - between: [murmansk, peterburg]
+    cost: 19
+  - between: [kaliningrad, peterburg]
+    cost: 15
+  - between: [moscow, peterburg]
+    cost: 10
+  - between: [kaliningrad, tula]
+    cost: 20
+  - between: [tula, ryazan]
+    cost: 0
+  - between: [tula, voronezh]
+    cost: 5
+  - between: [voronezh, ryazan]
+    cost: 5
+  - between: [voronezh, rostov]
+    cost: 9
+  - between: [krasnodar, rostov]
+    cost: 4
+  - between: [krasnodar, mahachkala]
+    cost: 14
+  - between: [astrakhan, mahachkala]
+    cost: 8
+  - between: [krasnodar, volgograd]
+    cost: 9
+  - between: [volgograd, mahachkala]
+    cost: 11
+  - between: [volgograd, astrakhan]
+    cost: 6
+  - between: [rostov, volgograd]
+    cost: 7
+  - between: [saratov, volgograd]
+    cost: 6
+  - between: [voronezh, volgograd]
+    cost: 8
+  - between: [ulyanovsk, voronezh]
+    cost: 11
+  - between: [ulyanovsk, saratov]
+    cost: 6
+  - between: [saratov, voronezh]
+    cost: 8
+  - between: [samara, saratov]
+    cost: 5
+  - between: [nizhnekamsk, orenburg]
+    cost: 7
+  - between: [ufa, chelyabinsk]
+    cost: 8
+  - between: [omsk, chelyabinsk]
+    cost: 13
+  - between: [omsk, barnaul]
+    cost: 11
+  - between: [barnaul, novokuznetsk]
+    cost: 6
+  - between: [novokuznetsk, irkutsk]
+    cost: 21
+  - between: [irkutsk, ulan_ude]
+    cost: 6
+  - between: [ulan_ude, chita]
+    cost: 6
+  - between: [bratsk, ulan_ude]
+    cost: 14
+  - between: [norilsk, bratsk]
+    cost: 29
+  - between: [tomsk, norilsk]
+    cost: 24
+  - between: [tomsk, kemerovo]
+    cost: 3
+  - between: [kemerovo, krasnoyarsk]
+    cost: 7
+  - between: [krasnoyarsk, bratsk]
+    cost: 10
+  - between: [tomsk, bratsk]
+    cost: 17
+  - between: [novosibiirsk, kemerovo]
+    cost: 4
+  - between: [novosibirsk, tomsk]
+    cost: 4
+  - between: [novosibirsk, barnaul]
+    cost: 4
+  - between: [kemerovo, novokuznetsk]
+    cost: 3
+  - between: [novosibirsk, novokuznetsk]
+    cost: 5
+  - between: [novokuznetsk, krasnoyarsk]
+    cost: 7
+  - between: [krasnoyarsk, irkutsk]
+    cost: 17
+  - between: [omsk, novosibirsk]
+    cost: 10
+  - between: [omsk, tomsk]
+    cost: 12
+  - between: [surgut, tomsk]
+    cost: 15
+  - between: [surgut, norilsk]
+    cost: 19
+  - between: [surgut, tyumen]
+    cost: 10
+  - between: [tyumen, tomsk]
+    cost: 19
+  - between: [tyumen, omsk]
+    cost: 9
+  - between: [ekaterinburg, tyumen]
+    cost: 5
+  - between: [chelyabinsk, ekaterinburg]
+    cost: 3
+  - between: [tyumen, chelyabinsk]
+    cost: 5
+  - between: [syktyvkar, surgut]
+    cost: 21
+  - between: [syktyvkar, tyumen]
+    cost: 17
+  - between: [syktyvkar, perm]
+    cost: 8
+  - between: [ekaterinburg, perm]
+    cost: 5
+  - between: [ekaterinburg, ufa]
+    cost: 6
+  - between: [nizhnekamsk, ekaterinburg]
+    cost: 8
+  - between: [kirov, perm]
+    cost: 6
+  - between: [kirov, syktyvkar]
+    cost: 6
+  - between: [kazan, cheboksary]
+    cost: 2
+  - between: [nizhnekamsk, kazan]
+    cost: 3
+  - between: [kirov, cheboksary]
+    cost: 5
+  - between: [perm, kazan]
+    cost: 8
+  - between: [nizhnekamsk, perm]
+    cost: 6
+  - between: [cheboksary, ulyanovsk]
+    cost: 4
+  - between: [cheboksary, novgorod]
+    cost: 3
+  - between: [ulyanovsk, ryazan]
+    cost: 3
+  - between: [moscow, novgorod]
+    cost: 7
+  - between: [moscow, yaroslavl]
+    cost: 3
+  - between: [novgorod, yaroslavl]
+    cost: 4
+  - between: [syktyvkar, arkhangelsk]
+    cost: 10
+  - between: [yaroslavl, arkhangelsk]
+    cost: 12
+  - between: [syktyvkar, novgorod]
+    cost: 11
+  - between: [peterburg, yaroslavl]
+    cost: 9
+  - between: [samara, ulyanovsk]
+    cost: 3
+  - between: [kazan, samara]
+    cost: 4
+  - between: [tula, peterburg]
+    cost: 13
+  - between: [ulyanovsk, kazan]
+    cost: 3
+  - between: [samara, orenburg]
+    cost: 6
+  - between: [ufa, orenburg]
+    cost: 6
+  - between: [nizhnekamsk, ufa]
+    cost: 4
+  - between: [samara, nizhnekamsk]
+    cost: 5
+  - between: [bratsk, irkutsk]
+    cost: 10

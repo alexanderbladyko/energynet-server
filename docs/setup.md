@@ -44,7 +44,7 @@ server {
 
 > To run migrations
 ```
-ENERGYNET_CONFIG=etc/config_dev.ini FLASK_APP=app.py flask sync_db
+ENERGYNET_CONFIG=etc/config_local.ini FLASK_APP=app.py python manage.py sync_db
 ```
 
 > To run tests use
