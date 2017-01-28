@@ -1,0 +1,200 @@
+{
+    "areasCount": [
+        3,
+        3,
+        4,
+        5,
+        5
+    ],
+    "refill": [
+        {
+            "uranium": [
+                0,
+                1,
+                1,
+                1,
+                2,
+                2
+            ],
+            "oil": [
+                0,
+                3,
+                3,
+                5,
+                5,
+                7
+            ],
+            "coal": [
+                0,
+                2,
+                2,
+                3,
+                4,
+                5
+            ],
+            "waste": [
+                0,
+                2,
+                2,
+                3,
+                4,
+                4
+            ]
+        },
+        {
+            "uranium": [
+                0,
+                1,
+                1,
+                1,
+                2,
+                2
+            ],
+            "oil": [
+                0,
+                4,
+                4,
+                6,
+                7,
+                9
+            ],
+            "coal": [
+                0,
+                2,
+                3,
+                4,
+                5,
+                6
+            ],
+            "waste": [
+                0,
+                2,
+                2,
+                3,
+                3,
+                5
+            ]
+        },
+        {
+            "uranium": [
+                0,
+                1,
+                1,
+                2,
+                2,
+                3
+            ],
+            "oil": [
+                0,
+                3,
+                3,
+                4,
+                5,
+                6
+            ],
+            "coal": [
+                0,
+                4,
+                4,
+                5,
+                6,
+                7
+            ],
+            "waste": [
+                0,
+                3,
+                3,
+                4,
+                5,
+                6
+            ]
+        }
+    ],
+    "stations": [
+        {
+            "cost": 3,
+            "resources": [
+                "oil"
+            ],
+            "efficiency": 1,
+            "capacity": 2
+        },
+        {
+            "cost": 4,
+            "resources": [
+                "coil"
+            ],
+            "efficiency": 1,
+            "capacity": 2
+        },
+        {
+            "cost": 5,
+            "resources": [
+                "coil",
+                "oil"
+            ],
+            "efficiency": 1,
+            "capacity": 2
+        },
+        {
+            "cost": 6,
+            "resources": [
+                "waste"
+            ],
+            "efficiency": 1,
+            "capacity": 1
+        },
+        {
+            "cost": 14,
+            "resources": [
+                "waste"
+            ],
+            "efficiency": 2,
+            "capacity": 2
+        }
+    ],
+    "endGameCitiesCount": [
+        21,
+        17,
+        17,
+        15,
+        14
+    ],
+    "secondPhaseCitiesCount": [
+        10,
+        7,
+        7,
+        7,
+        6
+    ],
+    "userStationsCount": [
+        4,
+        3,
+        3,
+        3,
+        3
+    ],
+    "payment": [
+        10,
+        22,
+        33,
+        44,
+        54,
+        64,
+        73,
+        82,
+        90,
+        98,
+        105,
+        112,
+        118,
+        124,
+        129,
+        134,
+        138,
+        142,
+        145,
+        148,
+        150
+    ]
+}

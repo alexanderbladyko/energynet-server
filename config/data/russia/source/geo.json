@@ -1,5 +1,6 @@
 {
     "type": "FeatureCollection",
+    "bbox": [[45, 25], [75, 179]],
     "features": [
         {
             "type": "Feature",

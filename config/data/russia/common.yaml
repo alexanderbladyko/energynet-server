@@ -2,20 +2,15 @@ payment: [
     10, 22, 33, 44, 54, 64, 73, 82, 90, 98, 105,
     112, 118, 124, 129, 134, 138, 142, 145, 148, 150
 ]
-areas_count: [
+areasCount: [
     3, 3, 4, 5, 5
 ]
-remove_stations_count: [
-    8, 8, 4, 0, 0
-]
-user_stations_count: [
+userStationsCount: [
     4, 3, 3, 3, 3
 ]
-second_phase_cities_count: [
+secondPhaseCitiesCount: [
     10, 7, 7, 7, 6
 ]
-end_game_cities_count: [
+endGameCitiesCount: [
     21, 17, 17, 15, 14
 ]
-open_auction_stations_count: 6
-action_auction_stations_count: 3

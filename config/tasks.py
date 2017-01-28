@@ -17,6 +17,7 @@ class ConfigTasks(object):
         manager.add_command('config.normalize', Normalize())
         manager.add_command('config.geo.split', Split())
         manager.add_command('config.build', Build())
+        manager.add_command('config.generate.map_data', GenerateMapData())
 
 
 class Load(Command):
@@ -180,6 +181,7 @@ class Normalize(Command):
 
         data = {
             'type': 'FeatureCollection',
+            'bbox': data['bbox'],
             'features': [],
         }
 
@@ -294,6 +296,7 @@ class Build(Command):
 
         result = {
             'type': 'FeatureCollection',
+            'bbox': data['bbox'],
             'features': [],
         }
 
@@ -329,8 +332,8 @@ class Build(Command):
                 from_city = feature['properties']['from']
                 junction_data = next(
                     junction for junction in map_data['junctions']
-                    if to_city in junction['between']
-                    and from_city in junction['between']
+                    if to_city in junction['between'] and
+                    from_city in junction['between']
                 )
                 result['features'].append(self._create_feature(
                     feature['geometry'], {
@@ -351,3 +354,33 @@ class Build(Command):
             'geometry': geometry,
             'properties': props,
         }
+
+
+class GenerateMapData(Command):
+    option_list = (
+        Option('--name', '-n', dest='name'),
+        Option('--path', '-p', dest='path'),
+        Option('--output', '-o', dest='output'),
+    )
+
+    def run(self, name, path, output, db=None):
+        current_dir = os.getcwd()
+        folder = ''
+        if name:
+            folder = os.path.join(current_dir, 'config/data/{0}'.format(name))
+        if path:
+            folder = os.path.join(current_dir, path)
+
+        common_data = load(open(folder+'/common.yaml', 'r'))
+        # map_data = load(open(folder+'/map.yaml', 'r'))
+        stations_data = load(open(folder+'/stations.yaml', 'r'))
+        steps_data = load(open(folder+'/steps.yaml', 'r'))
+
+        result = {}
+
+        result.update(common_data)
+        result.update(stations_data)
+        result.update(steps_data)
+
+        with open(output, 'w+') as output_file:
+            output_file.write(json.dumps(result, indent=4))
