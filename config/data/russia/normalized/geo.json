@@ -1,8 +1,6 @@
 {
-    "type": "FeatureCollection",
     "features": [
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -102,19 +100,19 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "fill": "#555555",
+                "color": "#e281c7",
                 "id": "area2",
+                "fill": "#555555",
+                "fill-opacity": 0.5,
                 "type": "AREA",
                 "stroke": "#555555",
-                "fill-opacity": 0.5,
-                "stroke-width": 2,
-                "color": "#e281c7"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -202,18 +200,18 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "fill": "#555555",
                 "id": "area3",
+                "fill": "#555555",
+                "fill-opacity": 0.5,
                 "type": "AREA",
                 "stroke": "#555555",
-                "fill-opacity": 0.5,
                 "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -365,19 +363,19 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "fill": "#555555",
+                "color": "#14a022",
                 "id": "area1",
+                "fill": "#555555",
+                "fill-opacity": 0.5,
                 "type": "AREA",
                 "stroke": "#555555",
-                "fill-opacity": 0.5,
-                "stroke-width": 2,
-                "color": "#14a022"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -445,18 +443,18 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "fill": "#555555",
                 "id": "area4",
+                "fill": "#555555",
+                "fill-opacity": 0.5,
                 "type": "AREA",
                 "stroke": "#555555",
-                "fill-opacity": 0.5,
                 "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -540,18 +538,18 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "fill": "#555555",
                 "id": "area5",
+                "fill": "#555555",
+                "fill-opacity": 0.5,
                 "type": "AREA",
                 "stroke": "#555555",
-                "fill-opacity": 0.5,
                 "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -663,18 +661,18 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "fill": "#555555",
                 "id": "area6",
+                "fill": "#555555",
+                "fill-opacity": 0.5,
                 "type": "AREA",
                 "stroke": "#555555",
-                "fill-opacity": 0.5,
                 "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -688,17 +686,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "tula",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "moscow",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -712,17 +710,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "moscow",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "ryazan",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -736,17 +734,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "arkhangelsk",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "peterburg",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -760,17 +758,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "arkhangelsk",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "murmansk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -784,18 +782,18 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "peterburg",
                 "cost": 19,
-                "type": "JUNCTION",
                 "from": "murmansk",
-                "stroke": "#555555"
+                "type": "JUNCTION",
+                "stroke": "#555555",
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -809,18 +807,18 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "peterburg",
                 "cost": 15,
-                "type": "JUNCTION",
                 "from": "kaliningrad",
-                "stroke": "#555555"
+                "type": "JUNCTION",
+                "stroke": "#555555",
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -834,17 +832,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "peterburg",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "moscow",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -858,18 +856,18 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "tula",
                 "cost": 20,
-                "type": "JUNCTION",
                 "from": "kaliningrad",
-                "stroke": "#555555"
+                "type": "JUNCTION",
+                "stroke": "#555555",
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -883,17 +881,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "ryazan",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "tula",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -907,17 +905,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "voronezh",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "tula",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -931,17 +929,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "ryazan",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "voronezh",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -955,17 +953,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "rostov",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "voronezh",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -979,17 +977,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "rostov",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "krasnodar",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1003,17 +1001,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "mahachkala",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "krasnodar",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1027,17 +1025,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "mahachkala",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "astrakhan",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1051,17 +1049,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "volgograd",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "krasnodar",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1075,17 +1073,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "mahachkala",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "volgograd",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1099,17 +1097,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "astrakhan",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "volgograd",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1123,17 +1121,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "volgograd",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "rostov",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1147,17 +1145,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "volgograd",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "saratov",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1171,17 +1169,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "volgograd",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "voronezh",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1195,17 +1193,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "voronezh",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "ulyanovsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1219,17 +1217,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "saratov",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "ulyanovsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1243,17 +1241,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "voronezh",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "saratov",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1267,17 +1265,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "saratov",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "samara",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1291,17 +1289,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "orenburg",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "nizhnekamsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1315,17 +1313,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "chelyabinsk",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "ufa",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1339,17 +1337,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "chelyabinsk",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "omsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1363,17 +1361,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "barnaul",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "omsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1387,17 +1385,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "novokuznetsk",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "barnaul",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1411,17 +1409,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "irkutsk",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "novokuznetsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1435,17 +1433,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "ulan_ude",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "irkutsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1459,17 +1457,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "chita",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "ulan_ude",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1483,17 +1481,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "ulan_ude",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "bratsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1507,17 +1505,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "bratsk",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "norilsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1531,17 +1529,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "norilsk",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "tomsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1555,17 +1553,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "kemerovo",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "tomsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1579,17 +1577,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "krasnoyarsk",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "kemerovo",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1603,17 +1601,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "bratsk",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "krasnoyarsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1627,17 +1625,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "bratsk",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "tomsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1651,17 +1649,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "kemerovo",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "novosibiirsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1675,17 +1673,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "tomsk",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "novosibirsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1699,17 +1697,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "barnaul",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "novosibirsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1723,17 +1721,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "novokuznetsk",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "kemerovo",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1747,17 +1745,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "novokuznetsk",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "novosibirsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1771,17 +1769,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "krasnoyarsk",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "novokuznetsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1795,17 +1793,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "irkutsk",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "krasnoyarsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1819,17 +1817,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "novosibirsk",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "omsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1843,17 +1841,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "tomsk",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "omsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1867,17 +1865,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "tomsk",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "surgut",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1891,17 +1889,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "norilsk",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "surgut",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1915,17 +1913,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "tyumen",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "surgut",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1939,17 +1937,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "tomsk",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "tyumen",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1963,17 +1961,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "omsk",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "tyumen",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -1987,17 +1985,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "tyumen",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "ekaterinburg",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2011,17 +2009,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "ekaterinburg",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "chelyabinsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2035,17 +2033,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "chelyabinsk",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "tyumen",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2059,17 +2057,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "surgut",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "syktyvkar",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2083,17 +2081,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "tyumen",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "syktyvkar",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2107,17 +2105,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "perm",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "syktyvkar",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2131,17 +2129,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "perm",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "ekaterinburg",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2155,17 +2153,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "ufa",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "ekaterinburg",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2179,17 +2177,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "ekaterinburg",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "nizhnekamsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2203,17 +2201,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "perm",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "kirov",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2227,17 +2225,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "syktyvkar",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "kirov",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2251,17 +2249,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "cheboksary",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "kazan",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2275,17 +2273,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "kazan",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "nizhnekamsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2299,17 +2297,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "cheboksary",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "kirov",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2323,17 +2321,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "kazan",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "perm",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2347,17 +2345,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "perm",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "nizhnekamsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2371,17 +2369,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "ulyanovsk",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "cheboksary",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2395,17 +2393,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "novgorod",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "cheboksary",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2419,17 +2417,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "ryazan",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "ulyanovsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2443,17 +2441,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "novgorod",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "moscow",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2467,17 +2465,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "yaroslavl",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "moscow",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2491,17 +2489,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "yaroslavl",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "novgorod",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2515,17 +2513,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "arkhangelsk",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "syktyvkar",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2539,17 +2537,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "arkhangelsk",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "yaroslavl",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2563,17 +2561,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "yaroslavl",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "arkhangelsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2587,17 +2585,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "novgorod",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "syktyvkar",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2611,17 +2609,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "syktyvkar",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "novgorod",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2635,17 +2633,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "yaroslavl",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "peterburg",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2659,17 +2657,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "ulyanovsk",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "samara",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2683,17 +2681,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "samara",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "kazan",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2707,18 +2705,18 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "peterburg",
                 "cost": 13,
-                "type": "JUNCTION",
                 "from": "tula",
-                "stroke": "#555555"
+                "type": "JUNCTION",
+                "stroke": "#555555",
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2732,17 +2730,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "kazan",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "ulyanovsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2756,17 +2754,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "orenburg",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "samara",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2780,17 +2778,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "orenburg",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "ufa",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2804,17 +2802,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "ufa",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "nizhnekamsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2828,17 +2826,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "nizhnekamsk",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "samara",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "LineString",
                 "coordinates": [
@@ -2852,17 +2850,17 @@
                     ]
                 ]
             },
+            "type": "Feature",
             "properties": {
                 "stroke-opacity": 1,
-                "stroke-width": 2,
                 "to": "irkutsk",
+                "stroke": "#555555",
                 "type": "JUNCTION",
                 "from": "bratsk",
-                "stroke": "#555555"
+                "stroke-width": 2
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -2870,16 +2868,16 @@
                     68.95839084822076
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "murmansk",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -2887,16 +2885,16 @@
                     59.866883195210214
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "peterburg",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -2904,16 +2902,16 @@
                     54.6992335284814
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "kaliningrad",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -2921,16 +2919,16 @@
                     55.70235509327093
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "moscow",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -2938,16 +2936,16 @@
                     51.631657349449995
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "voronezh",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -2955,16 +2953,16 @@
                     54.18172660239092
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "tula",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -2972,16 +2970,16 @@
                     54.610254981579146
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "ryazan",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -2989,16 +2987,16 @@
                     64.56731900988225
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "arkhangelsk",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3006,16 +3004,16 @@
                     56.292156685076456
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "novgorod",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3023,16 +3021,16 @@
                     53.17311920264064
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "samara",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3040,16 +3038,16 @@
                     51.67255514839676
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "saratov",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3057,16 +3055,16 @@
                     46.33175800051563
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "astrakhan",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3074,16 +3072,16 @@
                     42.97250158602597
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "mahachkala",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3091,16 +3089,16 @@
                     45.10454630976873
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "krasnodar",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3108,16 +3106,16 @@
                     48.719961222646276
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "volgograd",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3125,16 +3123,16 @@
                     54.7246201949245
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "ufa",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3142,16 +3140,16 @@
                     55.20395325785898
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "chelyabinsk",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3159,16 +3157,16 @@
                     54.97761367069626
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "omsk",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3176,16 +3174,16 @@
                     53.27835301753182
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "barnaul",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3193,16 +3191,16 @@
                     55.05320258537112
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "novosibirsk",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3210,16 +3208,16 @@
                     55.25407706707272
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "kemerovo",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3227,16 +3225,16 @@
                     56.04749958329888
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "krasnoyarsk",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3244,16 +3242,16 @@
                     56.68037378950136
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "tomsk",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3261,16 +3259,16 @@
                     61.249102090241536
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "surgut",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3278,16 +3276,16 @@
                     56.17002298293205
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "bratsk",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3295,16 +3293,16 @@
                     52.079506003796965
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "chita",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3312,16 +3310,16 @@
                     51.781435604431195
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "ulan_ude",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3329,16 +3327,16 @@
                     52.268157373768176
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "irkutsk",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3346,16 +3344,16 @@
                     69.3493386397765
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "norilsk",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3363,16 +3361,16 @@
                     55.75184939173528
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "kazan",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3380,16 +3378,16 @@
                     55.702355093270924
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "nizhnekamsk",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3397,16 +3395,16 @@
                     58.00809779306888
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "perm",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3414,16 +3412,16 @@
                     57.58655886615978
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "yaroslavl",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3431,16 +3429,16 @@
                     58.642652516575964
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "kirov",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3448,16 +3446,16 @@
                     61.6794500443896
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "syktyvkar",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3465,16 +3463,16 @@
                     57.124314084296195
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "tyumen",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3482,16 +3480,16 @@
                     56.80087831233044
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "ekaterinburg",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3499,16 +3497,16 @@
                     54.31652324025829
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "ulyanovsk",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3516,16 +3514,16 @@
                     47.2307596483469
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "rostov",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3533,16 +3531,16 @@
                     53.748710796898976
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "novokuznetsk",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3550,16 +3548,16 @@
                     56.15778819063682
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "cheboksary",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         },
         {
-            "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -3567,23 +3565,29 @@
                     51.77463825786984
                 ]
             },
+            "type": "Feature",
             "properties": {
-                "type": "CITY",
                 "id": "orenburg",
+                "type": "CITY",
                 "marker-size": "medium",
-                "marker-symbol": "",
-                "marker-color": "#7e7e7e"
+                "marker-color": "#7e7e7e",
+                "marker-symbol": ""
             }
         }
     ],
     "bbox": [
         [
-            45,
-            25
+            20,
+            45
         ],
         [
-            75,
-            179
+            179,
+            75
         ]
-    ]
+    ],
+    "type": "FeatureCollection",
+    "properties": {
+        "maxZoom": 9,
+        "minZoom": 2
+    }
 }

@@ -181,7 +181,8 @@ class Normalize(Command):
 
         data = {
             'type': 'FeatureCollection',
-            'bbox': data['bbox'],
+            'bbox': data.get('bbox', []),
+            'properties': data.get('properties', {}),
             'features': [],
         }
 
@@ -296,7 +297,8 @@ class Build(Command):
 
         result = {
             'type': 'FeatureCollection',
-            'bbox': data['bbox'],
+            'bbox': data.get('bbox', []),
+            'properties': data.get('properties', {}),
             'features': [],
         }
 

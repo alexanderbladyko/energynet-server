@@ -1,6 +1,13 @@
 {
     "type": "FeatureCollection",
-    "bbox": [[45, 25], [75, 179]],
+    "bbox": [
+        [20, 45],
+        [179, 75]
+    ],
+    "properties": {
+        "maxZoom": 9,
+        "minZoom": 2
+    },
     "features": [
         {
             "type": "Feature",
