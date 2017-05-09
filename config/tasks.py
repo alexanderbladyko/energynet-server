@@ -6,11 +6,10 @@ from psycopg2.extras import DictCursor
 from yaml import load
 
 from db.utils import get_db
-from utils.config import config
 from utils.server import app
 
 
-class ConfigTasks(object):
+class ConfigTasks:
     def init_tasks(self, manager):
         manager.add_command('config.load', Load())
         manager.add_command('config.delete', Delete())
@@ -172,9 +171,13 @@ class Normalize(Command):
             geo = feature['geometry']['coordinates']
             props = feature['properties']
             if type == 'Point':
-                new_features['points'].append((type, self._find(geo), props))
+                new_features['points'].append(
+                    (type, self._find(geo), props)
+                )
             elif type == 'LineString':
-                new_features['lines'].append((type, self._find_line_points(geo), props))
+                new_features['lines'].append(
+                    (type, self._find_line_points(geo), props)
+                )
             elif type == 'Polygon':
                 polygons = [self._find_line_points(line) for line in geo]
                 new_features['polygons'].append((type, polygons, props))
@@ -195,19 +198,25 @@ class Normalize(Command):
                 geometry.append(
                     [self.points[point][0] for point in line]
                 )
-            data['features'].append(self._create_feature(type, geometry, props))
+            data['features'].append(
+                self._create_feature(type, geometry, props)
+            )
 
         print('Lines')
         for type, feature, props in new_features['lines']:
             print([props['from'], props['to']])
             geometry = [self.points[point][0] for point in feature]
-            data['features'].append(self._create_feature(type, geometry, props))
+            data['features'].append(
+                self._create_feature(type, geometry, props)
+            )
 
         print('Points')
         for type, feature, props in new_features['points']:
             print(props['id'])
             geometry = self.points[feature][0]
-            data['features'].append(self._create_feature(type, geometry, props))
+            data['features'].append(
+                self._create_feature(type, geometry, props)
+            )
 
         with open(output, 'w+') as output_file:
             output_file.write(json.dumps(data, indent=4))
@@ -228,8 +237,8 @@ class Normalize(Command):
     def _find(self, point):
         for idx, (p, points_list) in enumerate(self.points):
             if (
-                math.fabs(p[0] - point[0]) +
-                math.fabs(p[1] - point[1]) < self.tolerance
+                math.fabs(float(p[0]) - float(point[0])) +
+                math.fabs(float(p[1]) - float(point[1])) < self.tolerance
             ):
                 points_list.append(p)
                 return idx
@@ -322,6 +331,7 @@ class Build(Command):
                 area_data = next(
                     area for area in map_data['areas'] if area['name'] == id
                 )
+                print(id, area_data)
                 result['features'].append(self._create_feature(
                     feature['geometry'], {
                         'type': type,
@@ -340,7 +350,7 @@ class Build(Command):
                 result['features'].append(self._create_feature(
                     feature['geometry'], {
                         'type': type,
-                        'id': id,
+                        'id': '{}_{}'.format(to_city, from_city),
                         'between': junction_data['between'],
                     }
                 ))
@@ -374,7 +384,7 @@ class GenerateMapData(Command):
             folder = os.path.join(current_dir, path)
 
         common_data = load(open(folder+'/common.yaml', 'r'))
-        # map_data = load(open(folder+'/map.yaml', 'r'))
+        map_data = load(open(folder+'/map.yaml', 'r'))
         stations_data = load(open(folder+'/stations.yaml', 'r'))
         steps_data = load(open(folder+'/steps.yaml', 'r'))
 
@@ -383,6 +393,7 @@ class GenerateMapData(Command):
         result.update(common_data)
         result.update(stations_data)
         result.update(steps_data)
+        result.update(map_data)
 
         with open(output, 'w+') as output_file:
             output_file.write(json.dumps(result, indent=4))

@@ -1,0 +1,2 @@
+class RedisTransactionException(Exception):
+    pass

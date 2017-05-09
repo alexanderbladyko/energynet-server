@@ -5,7 +5,9 @@ from auth.helpers import authenticated_only
 from core.logic import join_game
 from core.models import User, Game, Lobby
 from games.logic import notify_lobby_users
-from utils.redis import redis_session
+from utils.redis import (
+    redis_retry_transaction, redis, RedisTransactionException
+)
 from utils.server import app
 
 
@@ -16,7 +18,7 @@ def join_lobby(data):
     )
     id = data['id']
 
-    user = User.get_by_id(current_user.id)
+    user = User.get_by_id(redis, current_user.id)
 
     if user.current_lobby_id or user.current_game_id:
         emit('join_game', {
@@ -25,27 +27,41 @@ def join_lobby(data):
         })
         return
 
-    lobby_exists = Lobby.contains(id)
-
-    if not lobby_exists:
+    if not redis.sismember(Lobby.key, id):
         emit('join_game', {
             'success': False,
             'message': 'No such game'
         })
         return
 
-    game = Game.get_by_id(id, [Game.user_ids, Game.data])
-
-    with redis_session() as pipeline:
-        game.add_user(user.id)
-        game.save(p=pipeline)
-
-        user.current_lobby_id = id
-        user.save(p=pipeline)
+    pipe = redis.pipeline()
+    try:
+        add_user_to_game(pipe, id, user.id)
+    except RedisTransactionException:
+        emit('join_game', {
+            'success': False,
+            'message': 'Failed to add user to game'
+        })
+        return
+    except:
+        emit('join_game', {
+            'success': False,
+            'message': 'Unknown exception'
+        })
+        return
 
     join_game(id)
 
     emit('join_game', {
         'success': True,
     })
-    notify_lobby_users(game=game)
+    # notify_lobby_users(game=game)
+
+
+@redis_retry_transaction()
+def add_user_to_game(pipe, game_id, user_id):
+    pipe.watch(Game.user_ids.key(game_id))
+    pipe.watch(User.current_lobby_id.key(user_id))
+
+    pipe.set(User.current_lobby_id.key(user_id), game_id)
+    pipe.sadd(Game.user_ids.key(game_id), user_id)

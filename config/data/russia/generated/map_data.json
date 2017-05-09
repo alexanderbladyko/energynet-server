@@ -1,172 +1,10 @@
 {
-    "areasCount": [
-        3,
-        3,
-        4,
-        5,
-        5
-    ],
-    "refill": [
-        {
-            "uranium": [
-                0,
-                1,
-                1,
-                1,
-                2,
-                2
-            ],
-            "oil": [
-                0,
-                3,
-                3,
-                5,
-                5,
-                7
-            ],
-            "coal": [
-                0,
-                2,
-                2,
-                3,
-                4,
-                5
-            ],
-            "waste": [
-                0,
-                2,
-                2,
-                3,
-                4,
-                4
-            ]
-        },
-        {
-            "uranium": [
-                0,
-                1,
-                1,
-                1,
-                2,
-                2
-            ],
-            "oil": [
-                0,
-                4,
-                4,
-                6,
-                7,
-                9
-            ],
-            "coal": [
-                0,
-                2,
-                3,
-                4,
-                5,
-                6
-            ],
-            "waste": [
-                0,
-                2,
-                2,
-                3,
-                3,
-                5
-            ]
-        },
-        {
-            "uranium": [
-                0,
-                1,
-                1,
-                2,
-                2,
-                3
-            ],
-            "oil": [
-                0,
-                3,
-                3,
-                4,
-                5,
-                6
-            ],
-            "coal": [
-                0,
-                4,
-                4,
-                5,
-                6,
-                7
-            ],
-            "waste": [
-                0,
-                3,
-                3,
-                4,
-                5,
-                6
-            ]
-        }
-    ],
-    "stations": [
-        {
-            "cost": 3,
-            "resources": [
-                "oil"
-            ],
-            "efficiency": 1,
-            "capacity": 2
-        },
-        {
-            "cost": 4,
-            "resources": [
-                "coil"
-            ],
-            "efficiency": 1,
-            "capacity": 2
-        },
-        {
-            "cost": 5,
-            "resources": [
-                "coil",
-                "oil"
-            ],
-            "efficiency": 1,
-            "capacity": 2
-        },
-        {
-            "cost": 6,
-            "resources": [
-                "waste"
-            ],
-            "efficiency": 1,
-            "capacity": 1
-        },
-        {
-            "cost": 14,
-            "resources": [
-                "waste"
-            ],
-            "efficiency": 2,
-            "capacity": 2
-        }
-    ],
-    "endGameCitiesCount": [
-        21,
-        17,
-        17,
-        15,
-        14
-    ],
-    "secondPhaseCitiesCount": [
-        10,
-        7,
-        7,
-        7,
-        6
-    ],
+    "resourceGroup": {
+        "uranium": 1,
+        "coal": 3,
+        "oil": 3,
+        "waste": 3
+    },
     "userStationsCount": [
         4,
         3,
@@ -196,5 +34,1495 @@
         145,
         148,
         150
+    ],
+    "cities": [
+        {
+            "name": "murmansk",
+            "area": "area1",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "peterburg",
+            "area": "area2",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "kaliningrad",
+            "area": "area2",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "moscow",
+            "area": "area2",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "voronezh",
+            "area": "area3",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "tula",
+            "area": "area2",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "ryazan",
+            "area": "area1",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "arkhangelsk",
+            "area": "area2",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "novgorod",
+            "area": "area2",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "samara",
+            "area": "area4",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "saratov",
+            "area": "area3",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "astrakhan",
+            "area": "area3",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "mahachkala",
+            "area": "area3",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "krasnodar",
+            "area": "area3",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "volgograd",
+            "area": "area3",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "ufa",
+            "area": "area4",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "chelyabinsk",
+            "area": "area4",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "omsk",
+            "area": "area5",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "barnaul",
+            "area": "area5",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "novosibirsk",
+            "area": "area5",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "kemerovo",
+            "area": "area6",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "krasnoyarsk",
+            "area": "area6",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "tomsk",
+            "area": "area5",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "surgut",
+            "area": "area5",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "bratsk",
+            "area": "area6",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "chita",
+            "area": "area6",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "ulan_ude",
+            "area": "area6",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "irkutsk",
+            "area": "area6",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "norilsk",
+            "area": "area5",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "kazan",
+            "area": "area1",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "nizhnekamsk",
+            "area": "area1",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "perm",
+            "area": "area4",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "yaroslavl",
+            "area": "area2",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "kirov",
+            "area": "area1",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "syktyvkar",
+            "area": "area1",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "tyumen",
+            "area": "area5",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "ekaterinburg",
+            "area": "area4",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "ulyanovsk",
+            "area": "area1",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "rostov",
+            "area": "area3",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "novokuznetsk",
+            "area": "area6",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "cheboksary",
+            "area": "area1",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        },
+        {
+            "name": "orenburg",
+            "area": "area4",
+            "slots": [
+                10,
+                15,
+                20
+            ]
+        }
+    ],
+    "endGameCitiesCount": [
+        21,
+        17,
+        17,
+        15,
+        14
+    ],
+    "resourceLimits": {
+        "uranium": 12,
+        "coal": 24,
+        "oil": 24,
+        "waste": 24
+    },
+    "refill": [
+        {
+            "uranium": [
+                0,
+                1,
+                1,
+                1,
+                2,
+                2
+            ],
+            "coal": [
+                0,
+                2,
+                2,
+                3,
+                4,
+                5
+            ],
+            "oil": [
+                0,
+                3,
+                3,
+                5,
+                5,
+                7
+            ],
+            "waste": [
+                0,
+                2,
+                2,
+                3,
+                4,
+                4
+            ]
+        },
+        {
+            "uranium": [
+                0,
+                1,
+                1,
+                1,
+                2,
+                2
+            ],
+            "coal": [
+                0,
+                2,
+                3,
+                4,
+                5,
+                6
+            ],
+            "oil": [
+                0,
+                4,
+                4,
+                6,
+                7,
+                9
+            ],
+            "waste": [
+                0,
+                2,
+                2,
+                3,
+                3,
+                5
+            ]
+        },
+        {
+            "uranium": [
+                0,
+                1,
+                1,
+                2,
+                2,
+                3
+            ],
+            "coal": [
+                0,
+                4,
+                4,
+                5,
+                6,
+                7
+            ],
+            "oil": [
+                0,
+                3,
+                3,
+                4,
+                5,
+                6
+            ],
+            "waste": [
+                0,
+                3,
+                3,
+                4,
+                5,
+                6
+            ]
+        }
+    ],
+    "secondPhaseCitiesCount": [
+        10,
+        7,
+        7,
+        7,
+        6
+    ],
+    "areasCount": [
+        3,
+        3,
+        4,
+        5,
+        5
+    ],
+    "stations": [
+        {
+            "cost": 3,
+            "efficiency": 1,
+            "resources": [
+                "oil"
+            ],
+            "capacity": 2
+        },
+        {
+            "cost": 4,
+            "efficiency": 1,
+            "resources": [
+                "coal"
+            ],
+            "capacity": 2
+        },
+        {
+            "cost": 5,
+            "efficiency": 1,
+            "resources": [
+                "coal",
+                "oil"
+            ],
+            "capacity": 2
+        },
+        {
+            "cost": 7,
+            "efficiency": 2,
+            "resources": [
+                "oil"
+            ],
+            "capacity": 3
+        },
+        {
+            "cost": 8,
+            "efficiency": 2,
+            "resources": [
+                "coal"
+            ],
+            "capacity": 3
+        },
+        {
+            "cost": 9,
+            "efficiency": 1,
+            "resources": [
+                "oil"
+            ],
+            "capacity": 1
+        },
+        {
+            "cost": 10,
+            "efficiency": 2,
+            "resources": [
+                "coal"
+            ],
+            "capacity": 2
+        },
+        {
+            "cost": 11,
+            "efficiency": 2,
+            "resources": [
+                "uranium"
+            ],
+            "capacity": 1
+        },
+        {
+            "cost": 12,
+            "efficiency": 2,
+            "resources": [
+                "coal",
+                "oil"
+            ],
+            "capacity": 2
+        },
+        {
+            "cost": 13,
+            "efficiency": 1,
+            "resources": [],
+            "capacity": 0
+        },
+        {
+            "cost": 15,
+            "efficiency": 3,
+            "resources": [
+                "coal"
+            ],
+            "capacity": 2
+        },
+        {
+            "cost": 16,
+            "efficiency": 3,
+            "resources": [
+                "oil"
+            ],
+            "capacity": 2
+        },
+        {
+            "cost": 17,
+            "efficiency": 2,
+            "resources": [
+                "uranium"
+            ],
+            "capacity": 1
+        },
+        {
+            "cost": 18,
+            "efficiency": 2,
+            "resources": [],
+            "capacity": 0
+        },
+        {
+            "cost": 19,
+            "efficiency": 3,
+            "resources": [
+                "waste"
+            ],
+            "capacity": 2
+        },
+        {
+            "cost": 20,
+            "efficiency": 5,
+            "resources": [
+                "coal"
+            ],
+            "capacity": 3
+        },
+        {
+            "cost": 21,
+            "efficiency": 4,
+            "resources": [
+                "coal",
+                "oil"
+            ],
+            "capacity": 2
+        },
+        {
+            "cost": 22,
+            "efficiency": 2,
+            "resources": [],
+            "capacity": 0
+        },
+        {
+            "cost": 23,
+            "efficiency": 3,
+            "resources": [
+                "uranium"
+            ],
+            "capacity": 1
+        },
+        {
+            "cost": 24,
+            "efficiency": 4,
+            "resources": [
+                "waste"
+            ],
+            "capacity": 2
+        },
+        {
+            "cost": 25,
+            "efficiency": 5,
+            "resources": [
+                "coal"
+            ],
+            "capacity": 2
+        },
+        {
+            "cost": 26,
+            "efficiency": 5,
+            "resources": [
+                "oil"
+            ],
+            "capacity": 2
+        },
+        {
+            "cost": 27,
+            "efficiency": 3,
+            "resources": [],
+            "capacity": 0
+        },
+        {
+            "cost": 28,
+            "efficiency": 4,
+            "resources": [
+                "uranium"
+            ],
+            "capacity": 1
+        },
+        {
+            "cost": 29,
+            "efficiency": 4,
+            "resources": [
+                "coal",
+                "oil"
+            ],
+            "capacity": 1
+        },
+        {
+            "cost": 30,
+            "efficiency": 6,
+            "resources": [
+                "waste"
+            ],
+            "capacity": 3
+        },
+        {
+            "cost": 31,
+            "efficiency": 6,
+            "resources": [
+                "coal"
+            ],
+            "capacity": 3
+        },
+        {
+            "cost": 32,
+            "efficiency": 6,
+            "resources": [
+                "oil"
+            ],
+            "capacity": 3
+        },
+        {
+            "cost": 33,
+            "efficiency": 4,
+            "resources": [],
+            "capacity": 0
+        },
+        {
+            "cost": 33.5,
+            "efficiency": 6,
+            "resources": [
+                "coal",
+                "oil",
+                "waste",
+                "uranium"
+            ],
+            "capacity": 3
+        },
+        {
+            "cost": 34,
+            "efficiency": 5,
+            "resources": [
+                "uranium"
+            ],
+            "capacity": 1
+        },
+        {
+            "cost": 35,
+            "efficiency": 5,
+            "resources": [
+                "oil"
+            ],
+            "capacity": 1
+        },
+        {
+            "cost": 36,
+            "efficiency": 7,
+            "resources": [
+                "coal"
+            ],
+            "capacity": 3
+        },
+        {
+            "cost": 37,
+            "efficiency": 4,
+            "resources": [],
+            "capacity": 0
+        },
+        {
+            "cost": 38,
+            "efficiency": 7,
+            "resources": [
+                "waste"
+            ],
+            "capacity": 3
+        },
+        {
+            "cost": 39,
+            "efficiency": 6,
+            "resources": [
+                "uranium"
+            ],
+            "capacity": 1
+        },
+        {
+            "cost": 40,
+            "efficiency": 6,
+            "resources": [
+                "oil"
+            ],
+            "capacity": 2
+        },
+        {
+            "cost": 42,
+            "efficiency": 6,
+            "resources": [
+                "coal"
+            ],
+            "capacity": 2
+        },
+        {
+            "cost": 44,
+            "efficiency": 5,
+            "resources": [],
+            "capacity": 0
+        },
+        {
+            "cost": 46,
+            "efficiency": 7,
+            "resources": [
+                "coal",
+                "oil"
+            ],
+            "capacity": 3
+        },
+        {
+            "cost": 50,
+            "efficiency": 6,
+            "resources": [],
+            "capacity": 0
+        },
+        {
+            "cost": -1,
+            "efficiency": 0,
+            "resources": [],
+            "capacity": 0
+        }
+    ],
+    "junctions": [
+        {
+            "between": [
+                "moscow",
+                "tula"
+            ],
+            "cost": 3
+        },
+        {
+            "between": [
+                "ryazan",
+                "moscow"
+            ],
+            "cost": 3
+        },
+        {
+            "between": [
+                "peterburg",
+                "arkhangelsk"
+            ],
+            "cost": 14
+        },
+        {
+            "between": [
+                "murmansk",
+                "arkhangelsk"
+            ],
+            "cost": 15
+        },
+        {
+            "between": [
+                "murmansk",
+                "peterburg"
+            ],
+            "cost": 19
+        },
+        {
+            "between": [
+                "kaliningrad",
+                "peterburg"
+            ],
+            "cost": 15
+        },
+        {
+            "between": [
+                "moscow",
+                "peterburg"
+            ],
+            "cost": 10
+        },
+        {
+            "between": [
+                "kaliningrad",
+                "tula"
+            ],
+            "cost": 20
+        },
+        {
+            "between": [
+                "tula",
+                "ryazan"
+            ],
+            "cost": 0
+        },
+        {
+            "between": [
+                "tula",
+                "voronezh"
+            ],
+            "cost": 5
+        },
+        {
+            "between": [
+                "voronezh",
+                "ryazan"
+            ],
+            "cost": 5
+        },
+        {
+            "between": [
+                "voronezh",
+                "rostov"
+            ],
+            "cost": 9
+        },
+        {
+            "between": [
+                "krasnodar",
+                "rostov"
+            ],
+            "cost": 4
+        },
+        {
+            "between": [
+                "krasnodar",
+                "mahachkala"
+            ],
+            "cost": 14
+        },
+        {
+            "between": [
+                "astrakhan",
+                "mahachkala"
+            ],
+            "cost": 8
+        },
+        {
+            "between": [
+                "krasnodar",
+                "volgograd"
+            ],
+            "cost": 9
+        },
+        {
+            "between": [
+                "volgograd",
+                "mahachkala"
+            ],
+            "cost": 11
+        },
+        {
+            "between": [
+                "volgograd",
+                "astrakhan"
+            ],
+            "cost": 6
+        },
+        {
+            "between": [
+                "rostov",
+                "volgograd"
+            ],
+            "cost": 7
+        },
+        {
+            "between": [
+                "saratov",
+                "volgograd"
+            ],
+            "cost": 6
+        },
+        {
+            "between": [
+                "voronezh",
+                "volgograd"
+            ],
+            "cost": 8
+        },
+        {
+            "between": [
+                "ulyanovsk",
+                "voronezh"
+            ],
+            "cost": 11
+        },
+        {
+            "between": [
+                "ulyanovsk",
+                "saratov"
+            ],
+            "cost": 6
+        },
+        {
+            "between": [
+                "saratov",
+                "voronezh"
+            ],
+            "cost": 8
+        },
+        {
+            "between": [
+                "samara",
+                "saratov"
+            ],
+            "cost": 5
+        },
+        {
+            "between": [
+                "nizhnekamsk",
+                "orenburg"
+            ],
+            "cost": 7
+        },
+        {
+            "between": [
+                "ufa",
+                "chelyabinsk"
+            ],
+            "cost": 8
+        },
+        {
+            "between": [
+                "omsk",
+                "chelyabinsk"
+            ],
+            "cost": 13
+        },
+        {
+            "between": [
+                "omsk",
+                "barnaul"
+            ],
+            "cost": 11
+        },
+        {
+            "between": [
+                "barnaul",
+                "novokuznetsk"
+            ],
+            "cost": 6
+        },
+        {
+            "between": [
+                "novokuznetsk",
+                "irkutsk"
+            ],
+            "cost": 21
+        },
+        {
+            "between": [
+                "irkutsk",
+                "ulan_ude"
+            ],
+            "cost": 6
+        },
+        {
+            "between": [
+                "ulan_ude",
+                "chita"
+            ],
+            "cost": 6
+        },
+        {
+            "between": [
+                "bratsk",
+                "ulan_ude"
+            ],
+            "cost": 14
+        },
+        {
+            "between": [
+                "norilsk",
+                "bratsk"
+            ],
+            "cost": 29
+        },
+        {
+            "between": [
+                "tomsk",
+                "norilsk"
+            ],
+            "cost": 24
+        },
+        {
+            "between": [
+                "tomsk",
+                "kemerovo"
+            ],
+            "cost": 3
+        },
+        {
+            "between": [
+                "kemerovo",
+                "krasnoyarsk"
+            ],
+            "cost": 7
+        },
+        {
+            "between": [
+                "krasnoyarsk",
+                "bratsk"
+            ],
+            "cost": 10
+        },
+        {
+            "between": [
+                "tomsk",
+                "bratsk"
+            ],
+            "cost": 17
+        },
+        {
+            "between": [
+                "novosibiirsk",
+                "kemerovo"
+            ],
+            "cost": 4
+        },
+        {
+            "between": [
+                "novosibirsk",
+                "tomsk"
+            ],
+            "cost": 4
+        },
+        {
+            "between": [
+                "novosibirsk",
+                "barnaul"
+            ],
+            "cost": 4
+        },
+        {
+            "between": [
+                "kemerovo",
+                "novokuznetsk"
+            ],
+            "cost": 3
+        },
+        {
+            "between": [
+                "novosibirsk",
+                "novokuznetsk"
+            ],
+            "cost": 5
+        },
+        {
+            "between": [
+                "novokuznetsk",
+                "krasnoyarsk"
+            ],
+            "cost": 7
+        },
+        {
+            "between": [
+                "krasnoyarsk",
+                "irkutsk"
+            ],
+            "cost": 17
+        },
+        {
+            "between": [
+                "omsk",
+                "novosibirsk"
+            ],
+            "cost": 10
+        },
+        {
+            "between": [
+                "omsk",
+                "tomsk"
+            ],
+            "cost": 12
+        },
+        {
+            "between": [
+                "surgut",
+                "tomsk"
+            ],
+            "cost": 15
+        },
+        {
+            "between": [
+                "surgut",
+                "norilsk"
+            ],
+            "cost": 19
+        },
+        {
+            "between": [
+                "surgut",
+                "tyumen"
+            ],
+            "cost": 10
+        },
+        {
+            "between": [
+                "tyumen",
+                "tomsk"
+            ],
+            "cost": 19
+        },
+        {
+            "between": [
+                "tyumen",
+                "omsk"
+            ],
+            "cost": 9
+        },
+        {
+            "between": [
+                "ekaterinburg",
+                "tyumen"
+            ],
+            "cost": 5
+        },
+        {
+            "between": [
+                "chelyabinsk",
+                "ekaterinburg"
+            ],
+            "cost": 3
+        },
+        {
+            "between": [
+                "tyumen",
+                "chelyabinsk"
+            ],
+            "cost": 5
+        },
+        {
+            "between": [
+                "syktyvkar",
+                "surgut"
+            ],
+            "cost": 21
+        },
+        {
+            "between": [
+                "syktyvkar",
+                "tyumen"
+            ],
+            "cost": 17
+        },
+        {
+            "between": [
+                "syktyvkar",
+                "perm"
+            ],
+            "cost": 8
+        },
+        {
+            "between": [
+                "ekaterinburg",
+                "perm"
+            ],
+            "cost": 5
+        },
+        {
+            "between": [
+                "ekaterinburg",
+                "ufa"
+            ],
+            "cost": 6
+        },
+        {
+            "between": [
+                "nizhnekamsk",
+                "ekaterinburg"
+            ],
+            "cost": 8
+        },
+        {
+            "between": [
+                "kirov",
+                "perm"
+            ],
+            "cost": 6
+        },
+        {
+            "between": [
+                "kirov",
+                "syktyvkar"
+            ],
+            "cost": 6
+        },
+        {
+            "between": [
+                "kazan",
+                "cheboksary"
+            ],
+            "cost": 2
+        },
+        {
+            "between": [
+                "nizhnekamsk",
+                "kazan"
+            ],
+            "cost": 3
+        },
+        {
+            "between": [
+                "kirov",
+                "cheboksary"
+            ],
+            "cost": 5
+        },
+        {
+            "between": [
+                "perm",
+                "kazan"
+            ],
+            "cost": 8
+        },
+        {
+            "between": [
+                "nizhnekamsk",
+                "perm"
+            ],
+            "cost": 6
+        },
+        {
+            "between": [
+                "cheboksary",
+                "ulyanovsk"
+            ],
+            "cost": 4
+        },
+        {
+            "between": [
+                "cheboksary",
+                "novgorod"
+            ],
+            "cost": 3
+        },
+        {
+            "between": [
+                "ulyanovsk",
+                "ryazan"
+            ],
+            "cost": 3
+        },
+        {
+            "between": [
+                "moscow",
+                "novgorod"
+            ],
+            "cost": 7
+        },
+        {
+            "between": [
+                "moscow",
+                "yaroslavl"
+            ],
+            "cost": 3
+        },
+        {
+            "between": [
+                "novgorod",
+                "yaroslavl"
+            ],
+            "cost": 4
+        },
+        {
+            "between": [
+                "syktyvkar",
+                "arkhangelsk"
+            ],
+            "cost": 10
+        },
+        {
+            "between": [
+                "yaroslavl",
+                "arkhangelsk"
+            ],
+            "cost": 12
+        },
+        {
+            "between": [
+                "syktyvkar",
+                "novgorod"
+            ],
+            "cost": 11
+        },
+        {
+            "between": [
+                "peterburg",
+                "yaroslavl"
+            ],
+            "cost": 9
+        },
+        {
+            "between": [
+                "samara",
+                "ulyanovsk"
+            ],
+            "cost": 3
+        },
+        {
+            "between": [
+                "kazan",
+                "samara"
+            ],
+            "cost": 4
+        },
+        {
+            "between": [
+                "tula",
+                "peterburg"
+            ],
+            "cost": 13
+        },
+        {
+            "between": [
+                "ulyanovsk",
+                "kazan"
+            ],
+            "cost": 3
+        },
+        {
+            "between": [
+                "samara",
+                "orenburg"
+            ],
+            "cost": 6
+        },
+        {
+            "between": [
+                "ufa",
+                "orenburg"
+            ],
+            "cost": 6
+        },
+        {
+            "between": [
+                "nizhnekamsk",
+                "ufa"
+            ],
+            "cost": 4
+        },
+        {
+            "between": [
+                "samara",
+                "nizhnekamsk"
+            ],
+            "cost": 5
+        },
+        {
+            "between": [
+                "bratsk",
+                "irkutsk"
+            ],
+            "cost": 10
+        }
+    ],
+    "areas": [
+        {
+            "name": "area1",
+            "color": "#393939"
+        },
+        {
+            "name": "area2",
+            "color": "#393939"
+        },
+        {
+            "name": "area3",
+            "color": "#393939"
+        },
+        {
+            "name": "area4",
+            "color": "#393939"
+        },
+        {
+            "name": "area5",
+            "color": "#393939"
+        },
+        {
+            "name": "area6",
+            "color": "#393939"
+        }
     ]
 }

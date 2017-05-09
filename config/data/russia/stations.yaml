@@ -6,16 +6,164 @@ stations:
   - cost: 4
     capacity: 2
     efficiency: 1
-    resources: [coil]
+    resources: [coal]
   - cost: 5
     capacity: 2
     efficiency: 1
-    resources: [coil, oil]
-  - cost: 6
+    resources: [coal, oil]
+  - cost: 7
+    capacity: 3
+    efficiency: 2
+    resources: [oil]
+  - cost: 8
+    capacity: 3
+    efficiency: 2
+    resources: [coal]
+  - cost: 9
     capacity: 1
     efficiency: 1
-    resources: [waste]
-  - cost: 14
+    resources: [oil]
+  - cost: 10
     capacity: 2
     efficiency: 2
+    resources: [coal]
+  - cost: 11
+    capacity: 1
+    efficiency: 2
+    resources: [uranium]
+  - cost: 12
+    capacity: 2
+    efficiency: 2
+    resources: [coal, oil]
+  - cost: 13
+    capacity: 0
+    efficiency: 1
+    resources: []
+  - cost: 15
+    capacity: 2
+    efficiency: 3
+    resources: [coal]
+  - cost: 16
+    capacity: 2
+    efficiency: 3
+    resources: [oil]
+  - cost: 17
+    capacity: 1
+    efficiency: 2
+    resources: [uranium]
+  - cost: 18
+    capacity: 0
+    efficiency: 2
+    resources: []
+  - cost: 19
+    capacity: 2
+    efficiency: 3
     resources: [waste]
+  - cost: 20
+    capacity: 3
+    efficiency: 5
+    resources: [coal]
+  - cost: 21
+    capacity: 2
+    efficiency: 4
+    resources: [coal, oil]
+  - cost: 22
+    capacity: 0
+    efficiency: 2
+    resources: []
+  - cost: 23
+    capacity: 1
+    efficiency: 3
+    resources: [uranium]
+  - cost: 24
+    capacity: 2
+    efficiency: 4
+    resources: [waste]
+  - cost: 25
+    capacity: 2
+    efficiency: 5
+    resources: [coal]
+  - cost: 26
+    capacity: 2
+    efficiency: 5
+    resources: [oil]
+  - cost: 27
+    capacity: 0
+    efficiency: 3
+    resources: []
+  - cost: 28
+    capacity: 1
+    efficiency: 4
+    resources: [uranium]
+  - cost: 29
+    capacity: 1
+    efficiency: 4
+    resources: [coal, oil]
+  - cost: 30
+    capacity: 3
+    efficiency: 6
+    resources: [waste]
+  - cost: 31
+    capacity: 3
+    efficiency: 6
+    resources: [coal]
+  - cost: 32
+    capacity: 3
+    efficiency: 6
+    resources: [oil]
+  - cost: 33
+    capacity: 0
+    efficiency: 4
+    resources: []
+  - cost: 33.5
+    capacity: 3
+    efficiency: 6
+    resources: [coal, oil, waste, uranium]
+  - cost: 34
+    capacity: 1
+    efficiency: 5
+    resources: [uranium]
+  - cost: 35
+    capacity: 1
+    efficiency: 5
+    resources: [oil]
+  - cost: 36
+    capacity: 3
+    efficiency: 7
+    resources: [coal]
+  - cost: 37
+    capacity: 0
+    efficiency: 4
+    resources: []
+  - cost: 38
+    capacity: 3
+    efficiency: 7
+    resources: [waste]
+  - cost: 39
+    capacity: 1
+    efficiency: 6
+    resources: [uranium]
+  - cost: 40
+    capacity: 2
+    efficiency: 6
+    resources: [oil]
+  - cost: 42
+    capacity: 2
+    efficiency: 6
+    resources: [coal]
+  - cost: 44
+    capacity: 0
+    efficiency: 5
+    resources: []
+  - cost: 46
+    capacity: 3
+    efficiency: 7
+    resources: [coal, oil]
+  - cost: 50
+    capacity: 0
+    efficiency: 6
+    resources: []
+  - cost: -1  # Third step
+    capacity: 0
+    efficiency: 0
+    resources: []

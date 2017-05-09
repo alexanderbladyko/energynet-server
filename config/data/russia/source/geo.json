@@ -1,13 +1,10 @@
 {
-    "type": "FeatureCollection",
     "bbox": [
-        [20, 45],
-        [179, 75]
+        15,
+        30,
+        120,
+        80
     ],
-    "properties": {
-        "maxZoom": 9,
-        "minZoom": 2
-    },
     "features": [
         {
             "type": "Feature",
@@ -112,7 +109,7 @@
             },
             "properties": {
                 "id": "area2",
-                "fill": "#555555",
+                "fill": "#c9619d",
                 "stroke": "#555555",
                 "stroke-opacity": 1,
                 "type": "AREA",
@@ -212,7 +209,7 @@
             },
             "properties": {
                 "id": "area3",
-                "fill": "#555555",
+                "fill": "#e2dc3e",
                 "stroke": "#555555",
                 "stroke-opacity": 1,
                 "type": "AREA",
@@ -375,7 +372,7 @@
             },
             "properties": {
                 "id": "area1",
-                "fill": "#555555",
+                "fill": "#70d06f",
                 "stroke": "#555555",
                 "stroke-opacity": 1,
                 "type": "AREA",
@@ -455,7 +452,7 @@
             },
             "properties": {
                 "id": "area4",
-                "fill": "#555555",
+                "fill": "#f11616",
                 "stroke": "#555555",
                 "stroke-opacity": 1,
                 "type": "AREA",
@@ -550,7 +547,7 @@
             },
             "properties": {
                 "id": "area5",
-                "fill": "#555555",
+                "fill": "#5e74b0",
                 "stroke": "#555555",
                 "stroke-opacity": 1,
                 "type": "AREA",
@@ -673,7 +670,7 @@
             },
             "properties": {
                 "id": "area6",
-                "fill": "#555555",
+                "fill": "#ec6c18",
                 "stroke": "#555555",
                 "stroke-opacity": 1,
                 "type": "AREA",
@@ -2542,30 +2539,6 @@
                         64.56731900988225
                     ],
                     [
-                        39.93255615234375,
-                        57.58655886615978
-                    ]
-                ]
-            },
-            "properties": {
-                "to": "arkhangelsk",
-                "stroke": "#555555",
-                "stroke-opacity": 1,
-                "type": "JUNCTION",
-                "from": "yaroslavl",
-                "stroke-width": 2
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "LineString",
-                "coordinates": [
-                    [
-                        40.63568115234375,
-                        64.56731900988225
-                    ],
-                    [
                         43.9178466796875,
                         56.292156685076456
                     ]
@@ -3583,5 +3556,10 @@
                 "id": "orenburg"
             }
         }
-    ]
+    ],
+    "properties": {
+        "maxZoom": 8,
+        "minZoom": 4.5
+    },
+    "type": "FeatureCollection"
 }

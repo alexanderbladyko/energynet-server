@@ -22,6 +22,8 @@ class BaseTest(TestCase):
         super(BaseTest, cls).setUpClass()
         cls.db = connect_to_db()
 
+        redis.flushdb()
+
         cls._reset_indexes()
 
     @classmethod
@@ -123,7 +125,10 @@ class BaseTest(TestCase):
         self.assertListEqual(sorted(list_1), sorted(list_2))
 
     def assertRedisInt(self, value, key):
-        self.assertEqual(value, int(redis.get(key).decode('utf-8')))
+        expected = redis.get(key)
+        self.assertEqual(
+            value, int(expected.decode('utf-8')) if expected else None
+        )
 
     def assertRedisValue(self, value, key):
         self.assertEqual(value, redis.get(key).decode('utf-8'))

@@ -9,19 +9,15 @@ from utils.redis import redis
 
 from core.models import Game, User, Lobby
 
+from test import factories
+
 
 class JoinTestCase(BaseTest):
     def setUp(self):
         self.user = self.create_user(name='user')
 
-        self.game = Game()
-        self.game.id = self.user.id + 1
-        self.game.data = {'name': 'game_1'}
-        self.game.save()
-
-        self.lobby = Lobby()
-        self.lobby.id = self.game.id
-        self.lobby.save()
+        self.game = factories.GameFactory.create()
+        self.lobby = factories.LobbyFactory.create(self.game.id)
 
         super(JoinTestCase, self).setUp()
 
@@ -30,11 +26,13 @@ class JoinTestCase(BaseTest):
             cursor.execute("delete from {0};".format(DbUser.DB_TABLE))
             self.db.commit()
 
-        self.lobby.delete()
-        self.game.delete()
-        User.get_by_id(self.user.id).delete()
-        redis.delete('game:index')
-        redis.delete('user:index')
+        self.game.remove(redis)
+        User.delete(redis, self.user.id)
+        redis.delete(Lobby.key)
+
+        redis.delete(Game.key)
+        redis.delete(Game.index())
+        redis.delete(User.index())
 
         super(JoinTestCase, self).tearDown()
 
@@ -52,20 +50,20 @@ class JoinTestCase(BaseTest):
         self.client.disconnect()
         self.assertEqual(len(received), 1)
         self.assertListEqual(received[0]['args'], [{'success': True}])
-        self.assertRedisInt(self.lobby.id, 'user:%d:current_lobby_id' % self.user.id)
-        self.assertRedisListInt([self.user.id], 'game:%s:user_ids' % self.game.id)
+        self.assertRedisInt(
+            self.lobby.id, User.current_lobby_id.key(self.user.id)
+        )
+        self.assertEqual(
+            Game.user_ids.read(redis, self.game.id), {self.user.id}
+        )
         join_room_mock.assert_called_once_with('games:%s' % self.game.id)
 
     @patch('core.logic.join_room')
     @patch('flask_login._get_user')
     def test_join_second_user(self, load_user_mock, join_room_mock):
-        self.game.user_ids = [self.user.id]
-        self.game.save()
+        Game.user_ids.write(redis, [self.user.id], id=self.game.id)
 
-        user_1 = User()
-        user_1.id = self.user.id
-        user_1.current_lobby_id = self.lobby.id
-        user_1.save()
+        User.current_lobby_id.write(redis, self.lobby.id, id=self.user.id)
 
         self.user_2 = self.create_user(name='user_2')
         load_user_mock.return_value = self.user_2
@@ -79,9 +77,16 @@ class JoinTestCase(BaseTest):
         self.client.disconnect()
         self.assertEqual(len(received), 1)
         self.assertListEqual(received[0]['args'], [{'success': True}])
-        self.assertRedisInt(self.lobby.id, 'user:%d:current_lobby_id' % self.user.id)
-        self.assertRedisInt(self.lobby.id, 'user:%d:current_lobby_id' % self.user_2.id)
-        self.assertRedisListInt([self.user.id, self.user_2.id], 'game:%s:user_ids' % self.game.id)
+        self.assertRedisInt(
+            self.lobby.id, User.current_lobby_id.key(self.user.id)
+        )
+        self.assertRedisInt(
+            self.lobby.id, User.current_lobby_id.key(self.user_2.id)
+        )
+        self.assertEqual(
+            Game.user_ids.read(redis, self.game.id),
+            {self.user.id, self.user_2.id}
+        )
         join_room_mock.assert_called_once_with('games:%s' % self.game.id)
 
-        User.get_by_id(self.user_2.id).delete()
+        User.delete(redis, self.user_2.id)
