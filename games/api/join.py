@@ -16,7 +16,7 @@ def join_lobby(data):
     app.logger.info(
         'Join lobby'
     )
-    id = data['id']
+    game_id = data['id']
 
     user = User.get_by_id(redis, current_user.id)
 
@@ -27,7 +27,7 @@ def join_lobby(data):
         })
         return
 
-    if not redis.sismember(Lobby.key, id):
+    if not redis.sismember(Lobby.key, game_id):
         emit('join_game', {
             'success': False,
             'message': 'No such game'
@@ -36,7 +36,7 @@ def join_lobby(data):
 
     pipe = redis.pipeline()
     try:
-        add_user_to_game(pipe, id, user.id)
+        add_user_to_game(pipe, game_id, user.id)
     except RedisTransactionException:
         emit('join_game', {
             'success': False,
@@ -50,12 +50,12 @@ def join_lobby(data):
         })
         return
 
-    join_game(id)
+    join_game(game_id)
 
     emit('join_game', {
         'success': True,
     })
-    # notify_lobby_users(game=game)
+    notify_lobby_users(game_id=game_id)
 
 
 @redis_retry_transaction()

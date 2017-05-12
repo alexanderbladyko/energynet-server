@@ -134,6 +134,16 @@ class BaseModel(metaclass=FieldNameResolverMetaClass):
         for _, field in self.get_all_fields():
             field.delete(pipe, self.id)
 
+    def serialize(self, fields=None):
+        obj = {
+            'id': self.id,
+        }
+        for name, _ in self.get_all_fields(fields):
+            obj.update({
+                name: getattr(self, name, None)
+            })
+        return obj
+
 
 class TestClass(BaseModel):
     key = 'test'

@@ -11,14 +11,6 @@ class Game(BaseModel):
     owner_id = KeyField(Integer)
     user_ids = SetField(Integer)
 
-    def add_user(self, user_id):
-        if not self.user_ids:
-            self.user_ids = []
-        self.user_ids.append(int(user_id))
-
-    def remove_user(self, user_id):
-        self.user_ids.remove(int(user_id))
-
 
 class Lobby(BaseModel):
     key = 'lobby'

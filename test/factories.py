@@ -8,9 +8,11 @@ class BaseFactory:
         instance = cls.model()
         instance.id = redis.incr(cls.model.index())
 
-        for name, _ in cls.model.get_all_fields():
+        for name, field in cls.model.get_all_fields():
             value = kwargs.get(name) or getattr(cls, name, None)
             setattr(instance, name, value)
+            if value:
+                field.write(redis, value, instance.id)
 
         redis.sadd(cls.model.key, instance.id)
 

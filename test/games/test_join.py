@@ -16,7 +16,7 @@ class JoinTestCase(BaseTest):
     def setUp(self):
         self.user = self.create_user(name='user')
 
-        self.game = factories.GameFactory.create()
+        self.game = factories.GameFactory.create(data={'name': 'game1'})
         self.lobby = factories.LobbyFactory.create(self.game.id)
 
         super(JoinTestCase, self).setUp()
@@ -28,17 +28,19 @@ class JoinTestCase(BaseTest):
 
         self.game.remove(redis)
         User.delete(redis, self.user.id)
-        redis.delete(Lobby.key)
 
+        redis.delete(Lobby.key)
         redis.delete(Game.key)
+
         redis.delete(Game.index())
         redis.delete(User.index())
 
         super(JoinTestCase, self).tearDown()
 
+    @patch('games.logic.emit')
     @patch('core.logic.join_room')
     @patch('flask_login._get_user')
-    def test_join(self, load_user_mock, join_room_mock):
+    def test_join(self, load_user_mock, join_room_mock, emit_mock):
         load_user_mock.return_value = self.user
         self.client = io.test_client(app)
         self.client.get_received()
@@ -58,9 +60,22 @@ class JoinTestCase(BaseTest):
         )
         join_room_mock.assert_called_once_with('games:%s' % self.game.id)
 
+        emit_mock.assert_called_once_with(
+            'lobby', {
+                'name': 'game1',
+                'users': [{
+                    'game_data': {'color': None, 'money': None},
+                    'data': {'avatar': None, 'name': 'user'},
+                    'id': 1
+                }],
+                'players_limit': None
+            }, room='games:%s' % self.game.id
+        )
+
+    @patch('games.logic.emit')
     @patch('core.logic.join_room')
     @patch('flask_login._get_user')
-    def test_join_second_user(self, load_user_mock, join_room_mock):
+    def test_join_second_user(self, load_user_mock, join_room_mock, emit_mock):
         Game.user_ids.write(redis, [self.user.id], id=self.game.id)
 
         User.current_lobby_id.write(redis, self.lobby.id, id=self.user.id)
@@ -90,3 +105,19 @@ class JoinTestCase(BaseTest):
         join_room_mock.assert_called_once_with('games:%s' % self.game.id)
 
         User.delete(redis, self.user_2.id)
+
+        emit_mock.assert_called_once_with(
+            'lobby', {
+                'name': 'game1',
+                'users': [{
+                    'game_data': {'color': None, 'money': None},
+                    'data': {'avatar': None, 'name': None},
+                    'id': 2
+                }, {
+                    'game_data': {'color': None, 'money': None},
+                    'data': {'avatar': None, 'name': 'user_2'},
+                    'id': 3
+                }],
+                'players_limit': None
+            }, room='games:%s' % self.game.id
+        )
