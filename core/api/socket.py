@@ -10,7 +10,7 @@ def ws_connect():
         app.logger.info(
             'User (%s, %s) connected' % (current_user.id, current_user.name)
         )
-        emit('handshake', 'test')
+        emit('handshake', 'connected')
         ensure_user(current_user)
     else:
         return None
@@ -20,7 +20,7 @@ def ws_disconnect():
     if not isinstance(current_user, AnonymousUserMixin):
         app.logger.info('User %s disconnected' % current_user.name)
     else:
-        app.logger.info('Some anonym is disconnected')
+        app.logger.info('Some anonymous is disconnected')
 
 
 def error_handler(e):

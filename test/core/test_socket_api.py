@@ -10,8 +10,7 @@ from utils.redis import redis
 class SocketApiTestCase(BaseTest):
     def setUp(self):
         self.username = 'test_user'
-        self.password = 'test_password'
-        self.user = self.create_user(self.username, self.password)
+        self.user = self.create_user(self.username)
 
         super(SocketApiTestCase, self).setUp()
 
@@ -30,7 +29,7 @@ class SocketApiTestCase(BaseTest):
         received = client.get_received()
 
         self.assertEqual(len(received), 1)
-        self.assertListEqual(received[0]['args'], ['test'])
+        self.assertListEqual(received[0]['args'], ['connected'])
         client.disconnect()
 
         redis.delete('user')

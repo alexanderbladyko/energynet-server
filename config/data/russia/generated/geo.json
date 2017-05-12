@@ -1,21 +1,7 @@
 {
-    "bbox": [
-        [
-            20,
-            45
-        ],
-        [
-            179,
-            75
-        ]
-    ],
-    "properties": {
-        "maxZoom": 9,
-        "minZoom": 2
-    },
-    "type": "FeatureCollection",
     "features": [
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -116,13 +102,13 @@
                 "type": "Polygon"
             },
             "properties": {
-                "id": "area2",
-                "color": "#393939",
-                "type": "AREA"
-            },
-            "type": "Feature"
+                "type": "AREA",
+                "color": "#c9619d",
+                "id": "area2"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -211,13 +197,13 @@
                 "type": "Polygon"
             },
             "properties": {
-                "id": "area3",
-                "color": "#393939",
-                "type": "AREA"
-            },
-            "type": "Feature"
+                "type": "AREA",
+                "color": "#e2dc3e",
+                "id": "area3"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -370,13 +356,13 @@
                 "type": "Polygon"
             },
             "properties": {
-                "id": "area1",
-                "color": "#393939",
-                "type": "AREA"
-            },
-            "type": "Feature"
+                "type": "AREA",
+                "color": "#70d06f",
+                "id": "area1"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -445,13 +431,13 @@
                 "type": "Polygon"
             },
             "properties": {
-                "id": "area4",
-                "color": "#393939",
-                "type": "AREA"
-            },
-            "type": "Feature"
+                "type": "AREA",
+                "color": "#f11616",
+                "id": "area4"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -536,13 +522,13 @@
                 "type": "Polygon"
             },
             "properties": {
-                "id": "area5",
-                "color": "#393939",
-                "type": "AREA"
-            },
-            "type": "Feature"
+                "type": "AREA",
+                "color": "#5e74b0",
+                "id": "area5"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -655,13 +641,13 @@
                 "type": "Polygon"
             },
             "properties": {
-                "id": "area6",
-                "color": "#393939",
-                "type": "AREA"
-            },
-            "type": "Feature"
+                "type": "AREA",
+                "color": "#ec6c18",
+                "id": "area6"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -676,16 +662,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "moscow",
                     "tula"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "tula_moscow"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -700,16 +686,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "ryazan",
                     "moscow"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "moscow_ryazan"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -724,16 +710,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "peterburg",
                     "arkhangelsk"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "arkhangelsk_peterburg"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -748,16 +734,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "murmansk",
                     "arkhangelsk"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "arkhangelsk_murmansk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -772,16 +758,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "murmansk",
                     "peterburg"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "peterburg_murmansk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -796,16 +782,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "kaliningrad",
                     "peterburg"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "peterburg_kaliningrad"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -820,16 +806,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "moscow",
                     "peterburg"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "peterburg_moscow"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -844,16 +830,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "kaliningrad",
                     "tula"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "tula_kaliningrad"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -868,16 +854,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "tula",
                     "ryazan"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "ryazan_tula"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -892,16 +878,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "tula",
                     "voronezh"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "voronezh_tula"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -916,16 +902,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "voronezh",
                     "ryazan"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "ryazan_voronezh"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -940,16 +926,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "voronezh",
                     "rostov"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "rostov_voronezh"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -964,16 +950,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "krasnodar",
                     "rostov"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "rostov_krasnodar"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -988,16 +974,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "krasnodar",
                     "mahachkala"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "mahachkala_krasnodar"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1012,16 +998,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "astrakhan",
                     "mahachkala"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "mahachkala_astrakhan"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1036,16 +1022,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "krasnodar",
                     "volgograd"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "volgograd_krasnodar"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1060,16 +1046,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "volgograd",
                     "mahachkala"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "mahachkala_volgograd"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1084,16 +1070,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "volgograd",
                     "astrakhan"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "astrakhan_volgograd"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1108,16 +1094,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "rostov",
                     "volgograd"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "volgograd_rostov"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1132,16 +1118,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "saratov",
                     "volgograd"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "volgograd_saratov"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1156,16 +1142,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "voronezh",
                     "volgograd"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "volgograd_voronezh"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1180,16 +1166,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "ulyanovsk",
                     "voronezh"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "voronezh_ulyanovsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1204,16 +1190,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "ulyanovsk",
                     "saratov"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "saratov_ulyanovsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1228,16 +1214,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "saratov",
                     "voronezh"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "voronezh_saratov"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1252,16 +1238,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "samara",
                     "saratov"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "saratov_samara"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1276,16 +1262,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "nizhnekamsk",
                     "orenburg"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "orenburg_nizhnekamsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1300,16 +1286,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "ufa",
                     "chelyabinsk"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "chelyabinsk_ufa"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1324,16 +1310,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "omsk",
                     "chelyabinsk"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "chelyabinsk_omsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1348,16 +1334,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "omsk",
                     "barnaul"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "barnaul_omsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1372,16 +1358,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "barnaul",
                     "novokuznetsk"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "novokuznetsk_barnaul"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1396,16 +1382,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "novokuznetsk",
                     "irkutsk"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "irkutsk_novokuznetsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1420,16 +1406,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "irkutsk",
                     "ulan_ude"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "ulan_ude_irkutsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1444,16 +1430,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "ulan_ude",
                     "chita"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "chita_ulan_ude"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1468,16 +1454,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "bratsk",
                     "ulan_ude"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "ulan_ude_bratsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1492,16 +1478,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "norilsk",
                     "bratsk"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "bratsk_norilsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1516,16 +1502,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "tomsk",
                     "norilsk"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "norilsk_tomsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1540,16 +1526,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "tomsk",
                     "kemerovo"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "kemerovo_tomsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1564,16 +1550,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "kemerovo",
                     "krasnoyarsk"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "krasnoyarsk_kemerovo"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1588,16 +1574,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "krasnoyarsk",
                     "bratsk"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "bratsk_krasnoyarsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1612,16 +1598,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "tomsk",
                     "bratsk"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "bratsk_tomsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1636,16 +1622,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "novosibiirsk",
                     "kemerovo"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "kemerovo_novosibiirsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1660,16 +1646,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "novosibirsk",
                     "tomsk"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "tomsk_novosibirsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1684,16 +1670,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "novosibirsk",
                     "barnaul"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "barnaul_novosibirsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1708,16 +1694,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "kemerovo",
                     "novokuznetsk"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "novokuznetsk_kemerovo"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1732,16 +1718,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "novosibirsk",
                     "novokuznetsk"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "novokuznetsk_novosibirsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1756,16 +1742,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "novokuznetsk",
                     "krasnoyarsk"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "krasnoyarsk_novokuznetsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1780,16 +1766,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "krasnoyarsk",
                     "irkutsk"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "irkutsk_krasnoyarsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1804,16 +1790,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "omsk",
                     "novosibirsk"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "novosibirsk_omsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1828,16 +1814,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "omsk",
                     "tomsk"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "tomsk_omsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1852,16 +1838,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "surgut",
                     "tomsk"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "tomsk_surgut"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1876,16 +1862,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "surgut",
                     "norilsk"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "norilsk_surgut"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1900,16 +1886,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "surgut",
                     "tyumen"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "tyumen_surgut"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1924,16 +1910,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "tyumen",
                     "tomsk"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "tomsk_tyumen"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1948,16 +1934,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "tyumen",
                     "omsk"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "omsk_tyumen"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1972,16 +1958,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "ekaterinburg",
                     "tyumen"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "tyumen_ekaterinburg"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -1996,16 +1982,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "chelyabinsk",
                     "ekaterinburg"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "ekaterinburg_chelyabinsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2020,16 +2006,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "tyumen",
                     "chelyabinsk"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "chelyabinsk_tyumen"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2044,16 +2030,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "syktyvkar",
                     "surgut"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "surgut_syktyvkar"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2068,16 +2054,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "syktyvkar",
                     "tyumen"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "tyumen_syktyvkar"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2092,16 +2078,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "syktyvkar",
                     "perm"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "perm_syktyvkar"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2116,16 +2102,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "ekaterinburg",
                     "perm"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "perm_ekaterinburg"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2140,16 +2126,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "ekaterinburg",
                     "ufa"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "ufa_ekaterinburg"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2164,16 +2150,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "nizhnekamsk",
                     "ekaterinburg"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "ekaterinburg_nizhnekamsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2188,16 +2174,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "kirov",
                     "perm"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "perm_kirov"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2212,16 +2198,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "kirov",
                     "syktyvkar"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "syktyvkar_kirov"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2236,16 +2222,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "kazan",
                     "cheboksary"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "cheboksary_kazan"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2260,16 +2246,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "nizhnekamsk",
                     "kazan"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "kazan_nizhnekamsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2284,16 +2270,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "kirov",
                     "cheboksary"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "cheboksary_kirov"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2308,16 +2294,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "perm",
                     "kazan"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "kazan_perm"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2332,16 +2318,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "nizhnekamsk",
                     "perm"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "perm_nizhnekamsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2356,16 +2342,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "cheboksary",
                     "ulyanovsk"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "ulyanovsk_cheboksary"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2380,16 +2366,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "cheboksary",
                     "novgorod"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "novgorod_cheboksary"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2404,16 +2390,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "ulyanovsk",
                     "ryazan"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "ryazan_ulyanovsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2428,16 +2414,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "moscow",
                     "novgorod"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "novgorod_moscow"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2452,16 +2438,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "moscow",
                     "yaroslavl"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "yaroslavl_moscow"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2476,16 +2462,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "novgorod",
                     "yaroslavl"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "yaroslavl_novgorod"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2500,40 +2486,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "syktyvkar",
                     "arkhangelsk"
-                ]
-            },
-            "type": "Feature"
-        },
-        {
-            "geometry": {
-                "coordinates": [
-                    [
-                        40.63568115234375,
-                        64.56731900988225
-                    ],
-                    [
-                        39.93255615234375,
-                        57.58655886615978
-                    ]
                 ],
-                "type": "LineString"
-            },
-            "properties": {
-                "id": "area6",
-                "type": "JUNCTION",
-                "between": [
-                    "yaroslavl",
-                    "arkhangelsk"
-                ]
-            },
-            "type": "Feature"
+                "id": "arkhangelsk_syktyvkar"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2548,16 +2510,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "yaroslavl",
                     "arkhangelsk"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "yaroslavl_arkhangelsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2572,16 +2534,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "syktyvkar",
                     "novgorod"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "novgorod_syktyvkar"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2596,16 +2558,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "syktyvkar",
                     "novgorod"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "syktyvkar_novgorod"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2620,16 +2582,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "peterburg",
                     "yaroslavl"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "yaroslavl_peterburg"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2644,16 +2606,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "samara",
                     "ulyanovsk"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "ulyanovsk_samara"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2668,16 +2630,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "kazan",
                     "samara"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "samara_kazan"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2692,16 +2654,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "tula",
                     "peterburg"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "peterburg_tula"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2716,16 +2678,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "ulyanovsk",
                     "kazan"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "kazan_ulyanovsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2740,16 +2702,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "samara",
                     "orenburg"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "orenburg_samara"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2764,16 +2726,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "ufa",
                     "orenburg"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "orenburg_ufa"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2788,16 +2750,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "nizhnekamsk",
                     "ufa"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "ufa_nizhnekamsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2812,16 +2774,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "samara",
                     "nizhnekamsk"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "nizhnekamsk_samara"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     [
@@ -2836,16 +2798,16 @@
                 "type": "LineString"
             },
             "properties": {
-                "id": "area6",
                 "type": "JUNCTION",
                 "between": [
                     "bratsk",
                     "irkutsk"
-                ]
-            },
-            "type": "Feature"
+                ],
+                "id": "irkutsk_bratsk"
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     33.0908203125,
@@ -2854,18 +2816,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area1",
+                "type": "CITY",
+                "id": "murmansk",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area1",
-                "id": "murmansk",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     30.2783203125,
@@ -2874,18 +2836,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area2",
+                "type": "CITY",
+                "id": "peterburg",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area2",
-                "id": "peterburg",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     20.5279541015625,
@@ -2894,18 +2856,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area2",
+                "type": "CITY",
+                "id": "kaliningrad",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area2",
-                "id": "kaliningrad",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     37.59521484375,
@@ -2914,18 +2876,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area2",
+                "type": "CITY",
+                "id": "moscow",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area2",
-                "id": "moscow",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     39.22119140625,
@@ -2934,18 +2896,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area3",
+                "type": "CITY",
+                "id": "voronezh",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area3",
-                "id": "voronezh",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     37.63916015625,
@@ -2954,18 +2916,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area2",
+                "type": "CITY",
+                "id": "tula",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area2",
-                "id": "tula",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     39.715576171875,
@@ -2974,18 +2936,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area1",
+                "type": "CITY",
+                "id": "ryazan",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area1",
-                "id": "ryazan",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     40.63568115234375,
@@ -2994,18 +2956,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area2",
+                "type": "CITY",
+                "id": "arkhangelsk",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area2",
-                "id": "arkhangelsk",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     43.9178466796875,
@@ -3014,18 +2976,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area2",
+                "type": "CITY",
+                "id": "novgorod",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area2",
-                "id": "novgorod",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     50.2899169921875,
@@ -3034,18 +2996,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area4",
+                "type": "CITY",
+                "id": "samara",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area4",
-                "id": "samara",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     45.9832763671875,
@@ -3054,18 +3016,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area3",
+                "type": "CITY",
+                "id": "saratov",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area3",
-                "id": "saratov",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     48.06243896484375,
@@ -3074,18 +3036,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area3",
+                "type": "CITY",
+                "id": "astrakhan",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area3",
-                "id": "astrakhan",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     47.51312255859375,
@@ -3094,18 +3056,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area3",
+                "type": "CITY",
+                "id": "mahachkala",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area3",
-                "id": "mahachkala",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     38.98773193359375,
@@ -3114,18 +3076,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area3",
+                "type": "CITY",
+                "id": "krasnodar",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area3",
-                "id": "krasnodar",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     44.50286865234375,
@@ -3134,18 +3096,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area3",
+                "type": "CITY",
+                "id": "volgograd",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area3",
-                "id": "volgograd",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     56.0906982421875,
@@ -3154,18 +3116,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area4",
+                "type": "CITY",
+                "id": "ufa",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area4",
-                "id": "ufa",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     61.4080810546875,
@@ -3174,18 +3136,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area4",
+                "type": "CITY",
+                "id": "chelyabinsk",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area4",
-                "id": "chelyabinsk",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     73.4490966796875,
@@ -3194,18 +3156,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area5",
+                "type": "CITY",
+                "id": "omsk",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area5",
-                "id": "omsk",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     83.9080810546875,
@@ -3214,18 +3176,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area5",
+                "type": "CITY",
+                "id": "barnaul",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area5",
-                "id": "barnaul",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     82.5897216796875,
@@ -3234,18 +3196,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area5",
+                "type": "CITY",
+                "id": "novosibirsk",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area5",
-                "id": "novosibirsk",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     86.0614013671875,
@@ -3254,18 +3216,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area6",
+                "type": "CITY",
+                "id": "kemerovo",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area6",
-                "id": "kemerovo",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     92.9168701171875,
@@ -3274,18 +3236,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area6",
+                "type": "CITY",
+                "id": "krasnoyarsk",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area6",
-                "id": "krasnoyarsk",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     84.9188232421875,
@@ -3294,18 +3256,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area5",
+                "type": "CITY",
+                "id": "tomsk",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area5",
-                "id": "tomsk",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     73.4051513671875,
@@ -3314,18 +3276,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area5",
+                "type": "CITY",
+                "id": "surgut",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area5",
-                "id": "surgut",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     101.6180419921875,
@@ -3334,18 +3296,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area6",
+                "type": "CITY",
+                "id": "bratsk",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area6",
-                "id": "bratsk",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     113.3953857421875,
@@ -3354,18 +3316,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area6",
+                "type": "CITY",
+                "id": "chita",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area6",
-                "id": "chita",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     107.7264404296875,
@@ -3374,18 +3336,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area6",
+                "type": "CITY",
+                "id": "ulan_ude",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area6",
-                "id": "ulan_ude",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     104.3426513671875,
@@ -3394,18 +3356,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area6",
+                "type": "CITY",
+                "id": "irkutsk",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area6",
-                "id": "irkutsk",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     88.2586669921875,
@@ -3414,18 +3376,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area5",
+                "type": "CITY",
+                "id": "norilsk",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area5",
-                "id": "norilsk",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     49.0155029296875,
@@ -3434,18 +3396,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area1",
+                "type": "CITY",
+                "id": "kazan",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area1",
-                "id": "kazan",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     52.3553466796875,
@@ -3454,18 +3416,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area1",
+                "type": "CITY",
+                "id": "nizhnekamsk",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area1",
-                "id": "nizhnekamsk",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     56.3543701171875,
@@ -3474,18 +3436,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area4",
+                "type": "CITY",
+                "id": "perm",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area4",
-                "id": "perm",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     39.93255615234375,
@@ -3494,18 +3456,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area2",
+                "type": "CITY",
+                "id": "yaroslavl",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area2",
-                "id": "yaroslavl",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     49.66644287109375,
@@ -3514,18 +3476,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area1",
+                "type": "CITY",
+                "id": "kirov",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area1",
-                "id": "kirov",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     50.76507568359375,
@@ -3534,18 +3496,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area1",
+                "type": "CITY",
+                "id": "syktyvkar",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area1",
-                "id": "syktyvkar",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     65.48675537109375,
@@ -3554,18 +3516,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area5",
+                "type": "CITY",
+                "id": "tyumen",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area5",
-                "id": "tyumen",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     60.5731201171875,
@@ -3574,18 +3536,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area4",
+                "type": "CITY",
+                "id": "ekaterinburg",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area4",
-                "id": "ekaterinburg",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     48.43597412109375,
@@ -3594,18 +3556,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area1",
+                "type": "CITY",
+                "id": "ulyanovsk",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area1",
-                "id": "ulyanovsk",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     39.71763610839844,
@@ -3614,18 +3576,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area3",
+                "type": "CITY",
+                "id": "rostov",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area3",
-                "id": "rostov",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     87.08587646484375,
@@ -3634,18 +3596,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area6",
+                "type": "CITY",
+                "id": "novokuznetsk",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area6",
-                "id": "novokuznetsk",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     47.27142333984375,
@@ -3654,18 +3616,18 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area1",
+                "type": "CITY",
+                "id": "cheboksary",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area1",
-                "id": "cheboksary",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         },
         {
+            "type": "Feature",
             "geometry": {
                 "coordinates": [
                     55.08270263671875,
@@ -3674,16 +3636,26 @@
                 "type": "Point"
             },
             "properties": {
+                "area": "area4",
+                "type": "CITY",
+                "id": "orenburg",
                 "slots": [
                     10,
                     15,
                     20
-                ],
-                "area": "area4",
-                "id": "orenburg",
-                "type": "CITY"
-            },
-            "type": "Feature"
+                ]
+            }
         }
+    ],
+    "properties": {
+        "minZoom": 4.5,
+        "maxZoom": 8
+    },
+    "type": "FeatureCollection",
+    "bbox": [
+        15,
+        30,
+        120,
+        80
     ]
 }
