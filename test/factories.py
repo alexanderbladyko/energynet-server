@@ -16,7 +16,7 @@ class BaseFactory:
 
         redis.sadd(cls.model.key, instance.id)
 
-        return instance
+        return instance        
 
 
 class UserFactory(BaseFactory):
