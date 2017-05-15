@@ -18,16 +18,17 @@ class ListTestCase(BaseTest):
 
         self.user_1 = ensure_user(self.user)
 
-        self.games_count = 4
         self.games = []
-        for i in range(self.games_count):
+        for i in range(4):
             self.games.append(factories.GameFactory.create(
                 data={'name': 'game_{}'.format(i), 'players_limit': i + 1}
             ))
-        
-        self.lobby_1 = factories.LobbyFactory.create(game_id=self.games[0].id)
-        self.lobby_2 = factories.LobbyFactory.create(game_id=self.games[1].id)
-        self.lobby_3 = factories.LobbyFactory.create(game_id=self.games[3].id)
+        self.games_count = len(self.games)
+
+        self.lobbies = []
+        for i in [0, 1, 3]:
+            game = self.games[i]
+            self.lobbies.append(factories.LobbyFactory.create(game_id=game.id))
 
         super(ListTestCase, self).setUp()
 
@@ -37,9 +38,8 @@ class ListTestCase(BaseTest):
             self.db.commit()
 
         self.user_1.remove(redis)
-        self.lobby_1.remove(redis)
-        self.lobby_2.remove(redis)
-        self.lobby_3.remove(redis)
+        for lobby in self.lobbies:
+            lobby.remove(redis)
         for game in self.games:
             game.remove(redis)
 
@@ -55,23 +55,20 @@ class ListTestCase(BaseTest):
     def test_list(self, load_user_mock):
         load_user_mock.return_value = self.user
         self.client = io.test_client(app, namespace='/games')
-        redis.set(User.current_lobby_id.key(self.user.id), self.lobby.id)
-        received = self.client.get_received()
-        
+
+        received = self.client.get_received('/games')
+
         self.client.disconnect()
         self.assertEqual(len(received), 1)
-        self.assertListEqual(received[0]['args'], [{
-            'id': self.lobby_1,
-            'name': self.games[0].name,
-            'playersLimit': self.games[0].players_limit, 
-        }, {
-            'id': self.lobby_2,
-            'name': self.games[1].name,
-            'playersLimit': self.games[1].players_limit,            
-        }, {
-            'id': self.lobby_2,
-            'name': self.games[3].name,
-            'playersLimit': self.games[3].players_limit, 
+        asserted_list = received[0]['args'][0]
 
-        }])
+        expected_list = []
+        for i in [0, 1, 3]:
+            game = self.games[i]
+            expected_list.append({
+                'id': game.id,
+                'name': game.data['name'],
+                'playersLimit': game.data['players_limit'],
+            })
 
+        self.assertEqual(asserted_list, expected_list)

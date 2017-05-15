@@ -1,6 +1,6 @@
 from flask_socketio import emit
 
-from core.models import Game, User
+from core.models import Game, User, Lobby
 from utils.redis import redis
 
 
@@ -23,3 +23,16 @@ def notify_lobby_users(game_id):
 
     room_key = 'games:%s' % game.id
     emit('lobby', lobby_info, room=room_key)
+
+
+def get_lobbies():
+    game_ids = redis.smembers(Lobby.key)
+    games = []
+    for game_id in sorted(game_ids):
+        game = Game.get_by_id(redis, int(game_id), [Game.data, Game.owner_id])
+        games.append({
+            'id': game.id,
+            'name': game.data['name'],
+            'playersLimit': game.data['players_limit'],
+        })
+    return games

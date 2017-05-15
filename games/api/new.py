@@ -1,9 +1,13 @@
-from flask_socketio import emit, join_room
+from flask_socketio import emit
 from flask_login import current_user
 
 from auth.helpers import authenticated_only
 from core.models import User, Game, Lobby
-from utils.redis import redis
+from core.logic import join_room
+from games.logic import get_lobbies
+from utils.redis import (
+    redis, redis_retry_transaction, RedisTransactionException
+)
 from utils.server import app
 
 
@@ -16,7 +20,7 @@ def create_new(data):
         'New game creating (%s, %s)' % (name, players_limit)
     )
 
-    user = User.get_by_id(current_user.id)
+    user = User.get_by_id(redis, current_user.id)
     if user.current_lobby_id or user.current_game_id:
         emit('new', {
             'success': False,
@@ -24,35 +28,47 @@ def create_new(data):
         })
         return
 
-    pipeline = redis.pipeline()
+    pipe = redis.pipeline()
+    try:
+        game_id = create_new_game(pipe, name, players_limit, user.id)
+    except RedisTransactionException:
+        emit('new_game', {
+            'success': False,
+            'message': 'Failed to add user to game'
+        })
+        return
+    except:
+        emit('new_game', {
+            'success': False,
+            'message': 'Unknown exception'
+        })
+        return
 
-    game = Game()
-    game.data = {
-        'name': name,
-        'players_limit': players_limit,
-    }
-    game.owner_id = current_user.id
-    game.user_ids = [current_user.id]
-    game.save(p=pipeline)
-
-    lobby = Lobby()
-    lobby.id = game.id
-    lobby.save(p=pipeline)
-
-    user.current_lobby_id = lobby.id
-    user.save(p=pipeline)
-
-    pipeline.execute()
-
-    games = Game.get_all()
-
-    key = 'game:%d' % game.id
-    join_room(key)
+    join_room(game_id)
 
     emit('new_game', {
         'success': True,
     })
-    emit(
-        'games', [game.serialize() for game in games],
-        namespace='/games', broadcast=True
-    )
+    emit('games', get_lobbies(), namespace='/games', broadcast=True)
+
+
+@redis_retry_transaction()
+def create_new_game(pipe, name, players_limit, user_id):
+    pipe.watch([
+        Game.index(), User.current_lobby_id.key(user_id), Game.key, Lobby.key,
+    ])
+
+    game_id = pipe.incr(Game.index())
+    Game.data.write(pipe, {
+        'name': name,
+        'players_limit': players_limit,
+    }, game_id)
+    Game.owner_id.write(pipe, user_id, game_id)
+    Game.user_ids.write(pipe, [user_id], game_id)
+
+    pipe.sadd(Lobby.key, game_id)
+
+    User.current_lobby_id.write(pipe, game_id, user_id)
+
+    pipe.execute()
+    return game_id
