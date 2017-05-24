@@ -13,9 +13,9 @@ def notify_lobby_users(game_id):
     lobby_info = game.data.copy()
     users = list()
     for user_id in game.user_ids:
-        user = User.get_by_id(redis, user_id, [User.data, User.game_data])
+        user = User.get_by_id(redis, user_id, [User.data])
 
-        users.append(user.serialize([User.data, User.game_data]))
+        users.append(user.serialize([User.data]))
 
     lobby_info.update({
         'users': users,

@@ -25,7 +25,3 @@ class User(BaseModel):
     )
     current_game_id = KeyField(Integer)
     current_lobby_id = KeyField(Integer)
-    game_data = HashField(
-        color=String,
-        money=Integer
-    )

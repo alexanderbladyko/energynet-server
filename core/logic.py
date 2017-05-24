@@ -6,7 +6,7 @@ from utils.redis import redis, redis_retry_transaction
 
 def ensure_user(db_user):
     if redis.sismember(User.key, db_user.id):
-        return User.get_by_id(db_user.id)
+        return User.get_by_id(redis, db_user.id)
     else:
         pipe = redis.pipeline()
         return _create_user(pipe, db_user)

@@ -16,7 +16,9 @@ class JoinTestCase(BaseTest):
     def setUp(self):
         self.user = self.create_user(name='user')
 
-        self.game = factories.GameFactory.create(data={'name': 'game1'})
+        self.game = factories.GameFactory.create(
+            data={'name': 'game1', 'players_limit': 4}
+        )
         self.lobby = factories.LobbyFactory.create(self.game.id)
 
         super(JoinTestCase, self).setUp()
@@ -64,11 +66,10 @@ class JoinTestCase(BaseTest):
             'lobby', {
                 'name': 'game1',
                 'users': [{
-                    'game_data': {'color': None, 'money': None},
                     'data': {'avatar': None, 'name': 'user'},
                     'id': 1
                 }],
-                'players_limit': None
+                'players_limit': 4
             }, room='games:%s' % self.game.id
         )
 
@@ -110,14 +111,51 @@ class JoinTestCase(BaseTest):
             'lobby', {
                 'name': 'game1',
                 'users': [{
-                    'game_data': {'color': None, 'money': None},
                     'data': {'avatar': None, 'name': None},
                     'id': 2
                 }, {
-                    'game_data': {'color': None, 'money': None},
                     'data': {'avatar': None, 'name': 'user_2'},
                     'id': 3
                 }],
-                'players_limit': None
+                'players_limit': 4
             }, room='games:%s' % self.game.id
         )
+
+    @patch('games.logic.emit')
+    @patch('core.logic.join_room')
+    @patch('flask_login._get_user')
+    def test_players_limit_exceeded(
+            self, load_user_mock, join_room_mock, emit_mock
+    ):
+        Game.user_ids.write(redis, [self.user.id], id=self.game.id)
+        redis.hset(Game.data.key(self.game.id), 'players_limit', 1)
+
+        User.current_lobby_id.write(redis, self.lobby.id, id=self.user.id)
+
+        self.user_2 = self.create_user(name='user_2')
+        load_user_mock.return_value = self.user_2
+        self.client = io.test_client(app)
+        self.client.get_received()
+
+        self.client.emit('join', {'id': self.game.id})
+
+        received = self.client.get_received()
+
+        self.client.disconnect()
+        self.assertEqual(len(received), 1)
+        self.assertListEqual(received[0]['args'], [{
+            'success': False,
+            'message': 'Players limit of game exceeded'
+        }])
+        self.assertRedisInt(
+            self.lobby.id, User.current_lobby_id.key(self.user.id)
+        )
+        self.assertEqual(
+            Game.user_ids.read(redis, self.game.id),
+            {self.user.id}
+        )
+        join_room_mock.assert_not_called()
+
+        User.delete(redis, self.user_2.id)
+
+        emit_mock.assert_not_called()
