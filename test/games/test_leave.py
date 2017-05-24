@@ -105,7 +105,6 @@ class LeaveTestCase(BaseTest):
                 'users': [{
                     'data': {'avatar': None, 'name': 'test_user'},
                     'id': 2,
-                    'game_data': {'color': None, 'money': None}
                 }],
                 'players_limit': 4
             }, room='games:%s' % self.game.id
