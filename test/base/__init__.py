@@ -1,3 +1,6 @@
+import json
+from contextlib import contextmanager
+from unittest.mock import MagicMock
 from psycopg2.extras import DictCursor
 from jsonschema import validate
 from jsonschema.exceptions import ValidationError
@@ -11,6 +14,8 @@ from db.utils import connect_to_db
 from utils.server import app as server
 from utils.redis import redis
 
+from test.base.fake_map_config import FAKE_MAP_CONFIG
+
 
 class BaseTest(TestCase):
     def create_app(self):
@@ -21,6 +26,13 @@ class BaseTest(TestCase):
     def setUpClass(cls):
         super(BaseTest, cls).setUpClass()
         cls.db = connect_to_db()
+
+        cls.map = 'test_map'
+        cls.test_map_config = FAKE_MAP_CONFIG
+        cls.map_config = {
+            cls.map: cls.test_map_config
+        }
+        cls.map_config_mock = MagicMock(maps=cls.map_config)
 
         redis.flushdb()
 
@@ -96,7 +108,9 @@ class BaseTest(TestCase):
         with self.app.test_client() as client:
             self.authenticate_client(client, user)
 
-            return client.post(url, data=data)
+            return client.post(
+                url, data=json.dumps(data), content_type='application/json'
+            )
 
     def authenticate_client(self, client, user):
         if user:

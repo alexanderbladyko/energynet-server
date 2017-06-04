@@ -1,4 +1,4 @@
-from flask import request, jsonify, abort
+from flask import request, jsonify
 from flask_login import login_user
 
 from auth.logic import get_password
@@ -7,21 +7,25 @@ from auth.models import User
 
 def login():
     if request.method == 'POST':
-        data = dict(request.form)
+        data = request.get_json()
 
-        user = User.get_by_name(data['username'][0], [
+        user = User.get_by_name(data['username'], [
             User.Fields.ID,
             User.Fields.PASSWORD,
             User.Fields.SALT,
         ])
-        password = data['password'][0]
+        password = data['password']
         result_password = get_password(password, user.salt)
 
         if result_password == user.password:
-            login_user(user)
-            return jsonify({
-                'isAuthenticated': True,
-            })
+            if login_user(user, remember=True):
+                return jsonify({
+                    'isAuthenticated': True,
+                })
+            else:
+                return jsonify({
+                    'isAuthenticated': False,
+                }), 409
         else:
             return jsonify({
                 'isAuthenticated': False,

@@ -44,7 +44,7 @@ class LeaveTestCase(BaseTest):
 
     @patch('games.logic.emit')
     @patch('core.logic.leave_room')
-    @patch('flask_login._get_user')
+    @patch('flask_login.utils._get_user')
     def test_leave(self, load_user_mock, leave_room_mock, emit_mock):
         load_user_mock.return_value = self.user
         self.client = io.test_client(app)
@@ -71,7 +71,7 @@ class LeaveTestCase(BaseTest):
 
     @patch('games.logic.emit')
     @patch('core.logic.leave_room')
-    @patch('flask_login._get_user')
+    @patch('flask_login.utils._get_user')
     def test_leave_two_users(self, load_user_mock, leave_room_mock, emit_mock):
         user = self.create_user(name='user_2')
         user_2 = ensure_user(user)

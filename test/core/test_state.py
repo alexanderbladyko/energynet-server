@@ -26,7 +26,7 @@ class StateApiTestCase(BaseTest):
 
         super(StateApiTestCase, self).tearDown()
 
-    @patch('flask_login._get_user')
+    @patch('flask_login.utils._get_user')
     def test_not_in_game(self, load_user_mock):
         load_user_mock.return_value = self.user
 
@@ -44,7 +44,7 @@ class StateApiTestCase(BaseTest):
         }])
 
 
-    @patch('flask_login._get_user')
+    @patch('flask_login.utils._get_user')
     def test_in_game_lobby(self, load_user_mock):
         load_user_mock.return_value = self.user
 

@@ -41,7 +41,7 @@ class JoinTestCase(BaseTest):
 
     @patch('games.logic.emit')
     @patch('core.logic.join_room')
-    @patch('flask_login._get_user')
+    @patch('flask_login.utils._get_user')
     def test_join(self, load_user_mock, join_room_mock, emit_mock):
         load_user_mock.return_value = self.user
         self.client = io.test_client(app)
@@ -75,7 +75,7 @@ class JoinTestCase(BaseTest):
 
     @patch('games.logic.emit')
     @patch('core.logic.join_room')
-    @patch('flask_login._get_user')
+    @patch('flask_login.utils._get_user')
     def test_join_second_user(self, load_user_mock, join_room_mock, emit_mock):
         Game.user_ids.write(redis, [self.user.id], id=self.game.id)
 
@@ -123,7 +123,7 @@ class JoinTestCase(BaseTest):
 
     @patch('games.logic.emit')
     @patch('core.logic.join_room')
-    @patch('flask_login._get_user')
+    @patch('flask_login.utils._get_user')
     def test_players_limit_exceeded(
             self, load_user_mock, join_room_mock, emit_mock
     ):

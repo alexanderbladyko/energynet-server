@@ -27,6 +27,19 @@ class UserFactory(BaseFactory):
         'avatar': 'avatar'
     }
 
+    @classmethod
+    def ensure_from_db(cls, db_user, *args, **kwargs):
+        instance = cls.model()
+        instance.id = db_user.id
+
+        for name, field in cls.model.get_all_fields():
+            value = kwargs.get(name) or getattr(cls, name, None)
+            setattr(instance, name, value)
+            if value:
+                field.write(redis, value, instance.id)
+
+        return instance
+
 
 class GameFactory(BaseFactory):
     model = Game

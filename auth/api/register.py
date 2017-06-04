@@ -10,10 +10,10 @@ def register():
         if current_user.is_authenticated:
             abort(400)
 
-        data = dict(request.form)
+        data = request.get_json()
 
-        name = data['username'][0]
-        raw_password = data['password'][0]
+        name = data['username']
+        raw_password = data['password']
 
         try:
             User.create(name, raw_password)

@@ -1,5 +1,6 @@
 from flask_socketio import emit
 
+from utils.server import app
 from base.exceptions import EnergynetException
 from utils.redis import (
     RedisTransactionException
@@ -19,11 +20,13 @@ def game_response(topic):
                     'message': e.message
                 })
             except RedisTransactionException:
+                app.logger.error('TransactionFailed')
                 emit(topic, {
                     'success': False,
                     'message': 'Failed to execute transaction'
                 })
-            except:
+            except Exception as e:
+                app.logger.error('Response error', exception=e)
                 emit(topic, {
                     'success': False,
                     'message': 'Unknown exception'

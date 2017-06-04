@@ -1,3 +1,5 @@
+import json
+
 from test.base import BaseTest
 
 from auth.models import User as DbUser
@@ -63,15 +65,16 @@ class LoginApiTestCase(BaseTest):
 
     def test_success(self):
         with self.app.test_client() as client:
-            response = client.post(self.URL, data=dict(
+            response = client.post(self.URL, data=json.dumps(dict(
                 username=self.username,
                 password=self.password
-            ))
+            )), content_type='application/json')
+
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(response.json, dict(isAuthenticated=True))
+
             with client.session_transaction() as sess:
                 self.assertEqual(sess['user_id'], str(self.user.id))
-
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json, dict(isAuthenticated=True))
 
     def test_fail_login(self):
         response = self.client_post(self.URL, data=dict(

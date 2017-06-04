@@ -32,7 +32,7 @@ class CreateNewTestCase(BaseTest):
         super(CreateNewTestCase, self).tearDown()
 
     @patch('games.api.new.join_room')
-    @patch('flask_login._get_user')
+    @patch('flask_login.utils._get_user')
     def test_new(self, load_user_mock, join_room_mock):
         load_user_mock.return_value = self.user
         self.client = io.test_client(app, namespace='/games')

@@ -7,7 +7,7 @@ from utils.server import app
 
 def ws_connect():
     if current_user.is_authenticated:
-        app.logger.info(
+        app.logger.error(
             'User (%s, %s) connected' % (current_user.id, current_user.name)
         )
         emit('handshake', 'connected')
@@ -17,10 +17,10 @@ def ws_connect():
 
 
 def ws_disconnect():
-    if not isinstance(current_user, AnonymousUserMixin):
-        app.logger.info('User %s disconnected' % current_user.name)
+    if current_user == AnonymousUserMixin:
+        app.logger.error('Some anonymous is disconnected')
     else:
-        app.logger.info('Some anonymous is disconnected')
+        app.logger.error('User disconnected')
 
 
 def error_handler(e):
