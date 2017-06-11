@@ -1,0 +1,1 @@
+FIND_GAME_ROOM_KEY = 'games'

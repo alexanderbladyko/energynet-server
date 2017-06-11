@@ -7,14 +7,14 @@ from utils.config import config
 from redis_db import RedisTransactionException
 
 
-def _init_redis():
+def _init_redis(db):
     host = config.get('redis', 'host')
     port = config.get('redis', 'port')
-    db = config.get('redis', 'db')
 
     return StrictRedis(host=host, port=port, db=db)
 
-redis = _init_redis()
+redis = _init_redis(config.get('redis', 'db'))
+sessions_redis = _init_redis(config.get('redis', 'session_db'))
 
 
 class redis_session(ContextDecorator):

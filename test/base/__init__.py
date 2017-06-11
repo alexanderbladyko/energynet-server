@@ -11,7 +11,7 @@ import app
 from auth.logic import get_password
 from auth.models import User
 from db.utils import connect_to_db
-from utils.server import app as server
+ as server
 from utils.redis import redis
 
 from test.base.fake_map_config import FAKE_MAP_CONFIG

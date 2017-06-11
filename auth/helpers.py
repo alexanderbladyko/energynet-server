@@ -1,13 +1,21 @@
 import functools
-from flask_login import current_user
+import jwt
+from flask import request
 from flask_socketio import disconnect
+
+from auth.models import User
 
 
 def authenticated_only(f):
     @functools.wraps(f)
     def wrapped(*args, **kwargs):
-        if not current_user.is_authenticated:
+        auth_token = request.args.get('token')
+        try:
+            user_id = User.decode_auth_token(auth_token)
+            return f(user_id, *args, **kwargs)
+        except jwt.ExpiredSignatureError:
             disconnect()
-        else:
-            return f(*args, **kwargs)
+        except jwt.InvalidTokenError:
+            disconnect()
+
     return wrapped

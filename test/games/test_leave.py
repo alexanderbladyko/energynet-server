@@ -4,7 +4,7 @@ from test.base import BaseTest
 from auth.models import User as DbUser
 from core.logic import ensure_user
 from core.models import Game, Lobby, User
-from utils.server import app
+
 from utils.socket_server import io
 from utils.redis import redis
 

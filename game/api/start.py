@@ -10,13 +10,13 @@ from core.constants import StepTypes
 from core.models import User, Game, Lobby, Player
 from game.logic import notify_game_players
 from utils.redis import redis_retry_transaction, redis
-from utils.server import app
+
 
 
 @authenticated_only
 @game_response(topic='start_game')
 def start_game(data):
-    app.logger.info('Starting game')
+    # app.logger.info('Starting game')
 
     user = User.get_by_id(redis, current_user.id, [User.current_lobby_id])
 

@@ -1,25 +1,21 @@
 from flask_socketio import emit
-from flask_login import current_user
 
 from auth.helpers import authenticated_only
 from base.exceptions import EnergynetException
 from base.decorators import game_response
 from core.logic import join_game
 from core.models import User, Game, Lobby
-from games.logic import notify_lobby_users
+from games.logic import notify_lobby_users, unsubscribe_from_games
 from utils.redis import redis_retry_transaction, redis
-from utils.server import app
 
 
 @authenticated_only
 @game_response(topic='join_game')
-def join_lobby(data):
-    app.logger.info(
-        'Join lobby'
-    )
+def join_lobby(user_id, data):
+    # app.logger.info('Join lobby')
     game_id = data['id']
 
-    user = User.get_by_id(redis, current_user.id)
+    user = User.get_by_id(redis, user_id)
 
     if user.current_lobby_id or user.current_game_id:
         raise EnergynetException(message='User is already in the game')
@@ -27,6 +23,7 @@ def join_lobby(data):
     pipe = redis.pipeline()
     add_user_to_game(pipe, game_id, user.id)
 
+    unsubscribe_from_games()
     join_game(game_id)
 
     emit('join_game', {

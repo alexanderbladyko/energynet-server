@@ -1,6 +1,7 @@
-from flask_socketio import emit
+from flask_socketio import emit, join_room, leave_room
 
 from core.models import Game, User, Lobby
+from games.constants import FIND_GAME_ROOM_KEY
 from utils.redis import redis
 
 
@@ -18,7 +19,8 @@ def notify_lobby_users(game_id):
         users.append(user.serialize([User.data]))
 
     lobby_info.update({
-        'users': users,
+        'players': users,
+        'users': [],
     })
 
     room_key = 'games:%s' % game.id
@@ -36,3 +38,15 @@ def get_lobbies():
             'playersLimit': game.data['players_limit'],
         })
     return games
+
+
+def notify_user_finding_game():
+    emit('games', get_lobbies(), room=FIND_GAME_ROOM_KEY)
+
+
+def subscribe_to_games():
+    join_room(FIND_GAME_ROOM_KEY)
+
+
+def unsubscribe_from_games():
+    leave_room(FIND_GAME_ROOM_KEY)

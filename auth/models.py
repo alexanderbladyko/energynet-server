@@ -1,3 +1,5 @@
+import datetime
+import jwt
 from psycopg2 import IntegrityError
 from psycopg2.extras import DictCursor
 from flask_login import UserMixin
@@ -6,6 +8,7 @@ from auth.logic import generate_salt, get_password
 from base.exceptions import EnergynetException
 from db.utils import get_db
 from db.helpers import select, insert
+from utils.config import config
 
 
 class User(UserMixin):
@@ -77,3 +80,36 @@ class User(UserMixin):
                 db.rollback()
                 raise EnergynetException('Could not create user')
         return id
+
+    @classmethod
+    def encode_auth_token(cls, user_id):
+        """
+        Generates the Auth Token
+        :return: string
+        """
+
+        try:
+            now = datetime.datetime.utcnow()
+            expire = int(config.get('socketio', 'expire_token'))
+            payload = {
+                'exp': now + datetime.timedelta(seconds=expire),
+                'iat': now,
+                'sub': user_id,
+            }
+            return jwt.encode(
+                payload,
+                config.get('socketio', 'secret'),
+                algorithm='HS256'
+            )
+        except Exception as e:
+            return e
+
+    @staticmethod
+    def decode_auth_token(auth_token):
+        """
+        Decodes the auth token
+        :param auth_token:
+        :return: integer
+        """
+        payload = jwt.decode(auth_token, config.get('socketio', 'secret'))
+        return payload['sub']

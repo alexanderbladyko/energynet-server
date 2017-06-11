@@ -1,26 +1,22 @@
 from flask_socketio import emit
-from flask_login import current_user
 
 from auth.helpers import authenticated_only
 from core.models import User, Game, Lobby
-from core.logic import join_room
-from games.logic import get_lobbies
+from core.logic import join_game
+from games.logic import notify_user_finding_game, unsubscribe_from_games
 from utils.redis import (
     redis, redis_retry_transaction, RedisTransactionException
 )
-from utils.server import app
 
 
 @authenticated_only
-def create_new(data):
+def create_new(user_id, data):
     name = data['name']
     players_limit = data['playersLimit']
 
-    app.logger.info(
-        'New game creating (%s, %s)' % (name, players_limit)
-    )
+    # app.logger.info('New game creating (%s, %s)' % (name, players_limit))
 
-    user = User.get_by_id(redis, current_user.id)
+    user = User.get_by_id(redis, user_id)
     if user.current_lobby_id or user.current_game_id:
         emit('new', {
             'success': False,
@@ -44,12 +40,13 @@ def create_new(data):
         })
         return
 
-    join_room(game_id)
+    unsubscribe_from_games()
+    join_game(game_id)
 
     emit('new_game', {
         'success': True,
     })
-    emit('games', get_lobbies(), namespace='/games', broadcast=True)
+    notify_user_finding_game()
 
 
 @redis_retry_transaction()

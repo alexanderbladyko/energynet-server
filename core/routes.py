@@ -1,5 +1,4 @@
-from utils.server import app
-from utils.socket_server import io
+from utils.server import blueprint, socketio
 
 from core.api.config import get_config
 from core.api.socket import (
@@ -10,10 +9,10 @@ from core.api.state import get_state
 
 class CoreRoutes(object):
     def init_routes(self):
-        app.route('/config')(get_config)
+        blueprint.route('/config')(get_config)
 
-        io.on('connect')(ws_connect)
-        io.on('disconnect')(ws_disconnect)
-        # io.on_error()(error_handler)
-        # io.on_error_default(default_error_handler)
-        io.on('state')(get_state)
+        socketio.on('connect')(ws_connect)
+        # socketio.on('disconnect')(ws_disconnect)
+        # socketio.on_error()(error_handler)
+        # socketio.on_error_default(default_error_handler)
+        socketio.on_event('state', get_state)

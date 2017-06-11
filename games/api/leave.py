@@ -1,5 +1,4 @@
 from flask_socketio import emit
-from flask_login import current_user
 
 from auth.helpers import authenticated_only
 from base.exceptions import EnergynetException
@@ -8,14 +7,13 @@ from core.logic import leave_game
 from core.models import User, Game, Lobby
 from games.logic import notify_lobby_users
 from utils.redis import redis_retry_transaction, redis
-from utils.server import app
 
 
 @authenticated_only
 @game_response(topic='leave_game')
-def leave_lobby(data):
-    app.logger.info('Leaving lobby')
-    user = User.get_by_id(redis, current_user.id, [User.current_lobby_id])
+def leave_lobby(user_id, data):
+    # app.logger.info('Leaving lobby')
+    user = User.get_by_id(redis, user_id, [User.current_lobby_id])
 
     if not user.current_lobby_id:
         raise EnergynetException(message='User is not in the lobby')

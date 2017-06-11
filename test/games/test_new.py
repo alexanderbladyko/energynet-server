@@ -3,7 +3,7 @@ from test.base import BaseTest
 
 from auth.models import User as DbUser
 
-from utils.server import app
+
 from utils.socket_server import io
 from utils.redis import redis
 

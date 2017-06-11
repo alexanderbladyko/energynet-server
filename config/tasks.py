@@ -6,7 +6,7 @@ from psycopg2.extras import DictCursor
 from yaml import load
 
 from db.utils import get_db
-from utils.server import app
+
 
 
 class ConfigTasks:
@@ -52,7 +52,7 @@ class Load(Command):
 
             db.commit()
 
-        app.logger.info('Finished loading')
+        # app.logger.info('Finished loading')
 
     def _load_fields(self, cursor, field_name, common_data, steps_data):
         data = common_data.copy()
@@ -141,7 +141,7 @@ where cities.area_name in (
 
             db.commit()
 
-        app.logger.info('Finished deleting')
+        # app.logger.info('Finished deleting')
 
 
 class Normalize(Command):
@@ -358,7 +358,7 @@ class Build(Command):
         with open(output, 'w+') as output_file:
             output_file.write(json.dumps(result, indent=4))
 
-        app.logger.info('Finished building')
+        # app.logger.info('Finished building')
 
     def _create_feature(self, geometry, props):
         return {

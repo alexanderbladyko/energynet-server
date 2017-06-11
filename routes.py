@@ -11,6 +11,5 @@ routes = [
 ]
 
 
-def init_routes():
-    for instance in routes:
-        instance.init_routes()
+for instance in routes:
+    instance.init_routes()

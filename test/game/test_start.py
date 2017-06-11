@@ -4,7 +4,7 @@ from test.base import BaseTest
 from auth.models import User as DbUser
 from core.constants import StepTypes
 from core.models import Game, User, Lobby, Player
-from utils.server import app
+
 from utils.socket_server import io
 from utils.redis import redis
 

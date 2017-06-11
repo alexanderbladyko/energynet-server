@@ -1,5 +1,4 @@
 from flask import request, jsonify
-from flask_login import login_user
 
 from auth.logic import get_password
 from auth.models import User
@@ -18,14 +17,11 @@ def login():
         result_password = get_password(password, user.salt)
 
         if result_password == user.password:
-            if login_user(user, remember=True):
-                return jsonify({
-                    'isAuthenticated': True,
-                })
-            else:
-                return jsonify({
-                    'isAuthenticated': False,
-                }), 409
+            user_token = User.encode_auth_token(user.id)
+            return jsonify({
+                'isAuthenticated': True,
+                'userToken': user_token.decode(),
+            })
         else:
             return jsonify({
                 'isAuthenticated': False,
