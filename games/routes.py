@@ -9,9 +9,9 @@ from games.api.leave import leave_lobby
 
 class GamesRoutes(object):
     def init_routes(self):
-        socketio.on_event('find_game', find_game)
-        socketio.on_event('new_game', create_new)
-        socketio.on_event('list', get_list)
-        socketio.on_event('lobby', send_lobby_info)
-        socketio.on_event('join_game', join_lobby)
-        socketio.on_event('leave_game', leave_lobby)
+        socketio.on_event('games', find_game)
+        socketio.on_event('games_new', create_new)
+        socketio.on_event('games_list', get_list)
+        socketio.on_event('game_lobby', send_lobby_info)
+        socketio.on_event('game_join', join_lobby)
+        socketio.on_event('game_leave', leave_lobby)

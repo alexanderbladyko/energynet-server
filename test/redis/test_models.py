@@ -8,15 +8,15 @@ from redis_db import (
 
 class TestClass(BaseModel):
     key = 'testing'
-    int_key = KeyField(Integer)
-    str_key = KeyField(String)
-    int_set = SetField(Integer)
-    str_set = SetField(String)
-    int_list = ListField(Integer)
-    str_list = ListField(String)
+    int_key = KeyField(Integer())
+    str_key = KeyField(String())
+    int_set = SetField(Integer())
+    str_set = SetField(String())
+    int_list = ListField(Integer())
+    str_list = ListField(String())
     hash_key = HashField(
-        int_key=Integer,
-        str_key=String,
+        int_key=Integer(),
+        str_key=String(),
     )
 
 

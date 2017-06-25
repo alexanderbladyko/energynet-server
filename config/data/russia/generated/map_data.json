@@ -1,16 +1,18 @@
 {
-    "resourceGroup": {
-        "uranium": 1,
-        "coal": 3,
-        "oil": 3,
-        "waste": 3
-    },
-    "userStationsCount": [
+    "endGameCitiesCount": [
+        21,
+        17,
+        17,
+        15,
+        14
+    ],
+    "startCash": 50,
+    "areasCount": [
+        3,
+        3,
         4,
-        3,
-        3,
-        3,
-        3
+        5,
+        5
     ],
     "payment": [
         10,
@@ -34,845 +36,6 @@
         145,
         148,
         150
-    ],
-    "cities": [
-        {
-            "name": "murmansk",
-            "area": "area1",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "peterburg",
-            "area": "area2",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "kaliningrad",
-            "area": "area2",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "moscow",
-            "area": "area2",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "voronezh",
-            "area": "area3",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "tula",
-            "area": "area2",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "ryazan",
-            "area": "area1",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "arkhangelsk",
-            "area": "area2",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "novgorod",
-            "area": "area2",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "samara",
-            "area": "area4",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "saratov",
-            "area": "area3",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "astrakhan",
-            "area": "area3",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "mahachkala",
-            "area": "area3",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "krasnodar",
-            "area": "area3",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "volgograd",
-            "area": "area3",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "ufa",
-            "area": "area4",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "chelyabinsk",
-            "area": "area4",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "omsk",
-            "area": "area5",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "barnaul",
-            "area": "area5",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "novosibirsk",
-            "area": "area5",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "kemerovo",
-            "area": "area6",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "krasnoyarsk",
-            "area": "area6",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "tomsk",
-            "area": "area5",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "surgut",
-            "area": "area5",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "bratsk",
-            "area": "area6",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "chita",
-            "area": "area6",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "ulan_ude",
-            "area": "area6",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "irkutsk",
-            "area": "area6",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "norilsk",
-            "area": "area5",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "kazan",
-            "area": "area1",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "nizhnekamsk",
-            "area": "area1",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "perm",
-            "area": "area4",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "yaroslavl",
-            "area": "area2",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "kirov",
-            "area": "area1",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "syktyvkar",
-            "area": "area1",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "tyumen",
-            "area": "area5",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "ekaterinburg",
-            "area": "area4",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "ulyanovsk",
-            "area": "area1",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "rostov",
-            "area": "area3",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "novokuznetsk",
-            "area": "area6",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "cheboksary",
-            "area": "area1",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        },
-        {
-            "name": "orenburg",
-            "area": "area4",
-            "slots": [
-                10,
-                15,
-                20
-            ]
-        }
-    ],
-    "endGameCitiesCount": [
-        21,
-        17,
-        17,
-        15,
-        14
-    ],
-    "resourceLimits": {
-        "uranium": 12,
-        "coal": 24,
-        "oil": 24,
-        "waste": 24
-    },
-    "refill": [
-        {
-            "uranium": [
-                0,
-                1,
-                1,
-                1,
-                2,
-                2
-            ],
-            "coal": [
-                0,
-                2,
-                2,
-                3,
-                4,
-                5
-            ],
-            "oil": [
-                0,
-                3,
-                3,
-                5,
-                5,
-                7
-            ],
-            "waste": [
-                0,
-                2,
-                2,
-                3,
-                4,
-                4
-            ]
-        },
-        {
-            "uranium": [
-                0,
-                1,
-                1,
-                1,
-                2,
-                2
-            ],
-            "coal": [
-                0,
-                2,
-                3,
-                4,
-                5,
-                6
-            ],
-            "oil": [
-                0,
-                4,
-                4,
-                6,
-                7,
-                9
-            ],
-            "waste": [
-                0,
-                2,
-                2,
-                3,
-                3,
-                5
-            ]
-        },
-        {
-            "uranium": [
-                0,
-                1,
-                1,
-                2,
-                2,
-                3
-            ],
-            "coal": [
-                0,
-                4,
-                4,
-                5,
-                6,
-                7
-            ],
-            "oil": [
-                0,
-                3,
-                3,
-                4,
-                5,
-                6
-            ],
-            "waste": [
-                0,
-                3,
-                3,
-                4,
-                5,
-                6
-            ]
-        }
-    ],
-    "secondPhaseCitiesCount": [
-        10,
-        7,
-        7,
-        7,
-        6
-    ],
-    "areasCount": [
-        3,
-        3,
-        4,
-        5,
-        5
-    ],
-    "stations": [
-        {
-            "cost": 3,
-            "efficiency": 1,
-            "resources": [
-                "oil"
-            ],
-            "capacity": 2
-        },
-        {
-            "cost": 4,
-            "efficiency": 1,
-            "resources": [
-                "coal"
-            ],
-            "capacity": 2
-        },
-        {
-            "cost": 5,
-            "efficiency": 1,
-            "resources": [
-                "coal",
-                "oil"
-            ],
-            "capacity": 2
-        },
-        {
-            "cost": 7,
-            "efficiency": 2,
-            "resources": [
-                "oil"
-            ],
-            "capacity": 3
-        },
-        {
-            "cost": 8,
-            "efficiency": 2,
-            "resources": [
-                "coal"
-            ],
-            "capacity": 3
-        },
-        {
-            "cost": 9,
-            "efficiency": 1,
-            "resources": [
-                "oil"
-            ],
-            "capacity": 1
-        },
-        {
-            "cost": 10,
-            "efficiency": 2,
-            "resources": [
-                "coal"
-            ],
-            "capacity": 2
-        },
-        {
-            "cost": 11,
-            "efficiency": 2,
-            "resources": [
-                "uranium"
-            ],
-            "capacity": 1
-        },
-        {
-            "cost": 12,
-            "efficiency": 2,
-            "resources": [
-                "coal",
-                "oil"
-            ],
-            "capacity": 2
-        },
-        {
-            "cost": 13,
-            "efficiency": 1,
-            "resources": [],
-            "capacity": 0
-        },
-        {
-            "cost": 15,
-            "efficiency": 3,
-            "resources": [
-                "coal"
-            ],
-            "capacity": 2
-        },
-        {
-            "cost": 16,
-            "efficiency": 3,
-            "resources": [
-                "oil"
-            ],
-            "capacity": 2
-        },
-        {
-            "cost": 17,
-            "efficiency": 2,
-            "resources": [
-                "uranium"
-            ],
-            "capacity": 1
-        },
-        {
-            "cost": 18,
-            "efficiency": 2,
-            "resources": [],
-            "capacity": 0
-        },
-        {
-            "cost": 19,
-            "efficiency": 3,
-            "resources": [
-                "waste"
-            ],
-            "capacity": 2
-        },
-        {
-            "cost": 20,
-            "efficiency": 5,
-            "resources": [
-                "coal"
-            ],
-            "capacity": 3
-        },
-        {
-            "cost": 21,
-            "efficiency": 4,
-            "resources": [
-                "coal",
-                "oil"
-            ],
-            "capacity": 2
-        },
-        {
-            "cost": 22,
-            "efficiency": 2,
-            "resources": [],
-            "capacity": 0
-        },
-        {
-            "cost": 23,
-            "efficiency": 3,
-            "resources": [
-                "uranium"
-            ],
-            "capacity": 1
-        },
-        {
-            "cost": 24,
-            "efficiency": 4,
-            "resources": [
-                "waste"
-            ],
-            "capacity": 2
-        },
-        {
-            "cost": 25,
-            "efficiency": 5,
-            "resources": [
-                "coal"
-            ],
-            "capacity": 2
-        },
-        {
-            "cost": 26,
-            "efficiency": 5,
-            "resources": [
-                "oil"
-            ],
-            "capacity": 2
-        },
-        {
-            "cost": 27,
-            "efficiency": 3,
-            "resources": [],
-            "capacity": 0
-        },
-        {
-            "cost": 28,
-            "efficiency": 4,
-            "resources": [
-                "uranium"
-            ],
-            "capacity": 1
-        },
-        {
-            "cost": 29,
-            "efficiency": 4,
-            "resources": [
-                "coal",
-                "oil"
-            ],
-            "capacity": 1
-        },
-        {
-            "cost": 30,
-            "efficiency": 6,
-            "resources": [
-                "waste"
-            ],
-            "capacity": 3
-        },
-        {
-            "cost": 31,
-            "efficiency": 6,
-            "resources": [
-                "coal"
-            ],
-            "capacity": 3
-        },
-        {
-            "cost": 32,
-            "efficiency": 6,
-            "resources": [
-                "oil"
-            ],
-            "capacity": 3
-        },
-        {
-            "cost": 33,
-            "efficiency": 4,
-            "resources": [],
-            "capacity": 0
-        },
-        {
-            "cost": 33.5,
-            "efficiency": 6,
-            "resources": [
-                "coal",
-                "oil",
-                "waste",
-                "uranium"
-            ],
-            "capacity": 3
-        },
-        {
-            "cost": 34,
-            "efficiency": 5,
-            "resources": [
-                "uranium"
-            ],
-            "capacity": 1
-        },
-        {
-            "cost": 35,
-            "efficiency": 5,
-            "resources": [
-                "oil"
-            ],
-            "capacity": 1
-        },
-        {
-            "cost": 36,
-            "efficiency": 7,
-            "resources": [
-                "coal"
-            ],
-            "capacity": 3
-        },
-        {
-            "cost": 37,
-            "efficiency": 4,
-            "resources": [],
-            "capacity": 0
-        },
-        {
-            "cost": 38,
-            "efficiency": 7,
-            "resources": [
-                "waste"
-            ],
-            "capacity": 3
-        },
-        {
-            "cost": 39,
-            "efficiency": 6,
-            "resources": [
-                "uranium"
-            ],
-            "capacity": 1
-        },
-        {
-            "cost": 40,
-            "efficiency": 6,
-            "resources": [
-                "oil"
-            ],
-            "capacity": 2
-        },
-        {
-            "cost": 42,
-            "efficiency": 6,
-            "resources": [
-                "coal"
-            ],
-            "capacity": 2
-        },
-        {
-            "cost": 44,
-            "efficiency": 5,
-            "resources": [],
-            "capacity": 0
-        },
-        {
-            "cost": 46,
-            "efficiency": 7,
-            "resources": [
-                "coal",
-                "oil"
-            ],
-            "capacity": 3
-        },
-        {
-            "cost": 50,
-            "efficiency": 6,
-            "resources": [],
-            "capacity": 0
-        },
-        {
-            "cost": -1,
-            "efficiency": 0,
-            "resources": [],
-            "capacity": 0
-        }
     ],
     "junctions": [
         {
@@ -1499,30 +662,876 @@
             "cost": 10
         }
     ],
+    "secondPhaseCitiesCount": [
+        10,
+        7,
+        7,
+        7,
+        6
+    ],
+    "userStationsCount": [
+        4,
+        3,
+        3,
+        3,
+        3
+    ],
+    "resourceLimits": {
+        "uranium": 12,
+        "waste": 24,
+        "oil": 24,
+        "coal": 24
+    },
+    "refill": [
+        {
+            "uranium": [
+                0,
+                1,
+                1,
+                1,
+                2,
+                2
+            ],
+            "waste": [
+                0,
+                2,
+                2,
+                3,
+                4,
+                4
+            ],
+            "oil": [
+                0,
+                3,
+                3,
+                5,
+                5,
+                7
+            ],
+            "coal": [
+                0,
+                2,
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        {
+            "uranium": [
+                0,
+                1,
+                1,
+                1,
+                2,
+                2
+            ],
+            "waste": [
+                0,
+                2,
+                2,
+                3,
+                3,
+                5
+            ],
+            "oil": [
+                0,
+                4,
+                4,
+                6,
+                7,
+                9
+            ],
+            "coal": [
+                0,
+                2,
+                3,
+                4,
+                5,
+                6
+            ]
+        },
+        {
+            "uranium": [
+                0,
+                1,
+                1,
+                2,
+                2,
+                3
+            ],
+            "waste": [
+                0,
+                3,
+                3,
+                4,
+                5,
+                6
+            ],
+            "oil": [
+                0,
+                3,
+                3,
+                4,
+                5,
+                6
+            ],
+            "coal": [
+                0,
+                4,
+                4,
+                5,
+                6,
+                7
+            ]
+        }
+    ],
+    "resourceGroup": {
+        "uranium": 1,
+        "waste": 3,
+        "oil": 3,
+        "coal": 3
+    },
+    "colors": [
+        "#bc3029",
+        "#d8dd37",
+        "#48d635",
+        "#2c97c1",
+        "#393a3a",
+        "#c66ad8"
+    ],
+    "stations": [
+        {
+            "capacity": 2,
+            "resources": [
+                "oil"
+            ],
+            "cost": 3,
+            "efficiency": 1
+        },
+        {
+            "capacity": 2,
+            "resources": [
+                "coal"
+            ],
+            "cost": 4,
+            "efficiency": 1
+        },
+        {
+            "capacity": 2,
+            "resources": [
+                "coal",
+                "oil"
+            ],
+            "cost": 5,
+            "efficiency": 1
+        },
+        {
+            "capacity": 3,
+            "resources": [
+                "oil"
+            ],
+            "cost": 7,
+            "efficiency": 2
+        },
+        {
+            "capacity": 3,
+            "resources": [
+                "coal"
+            ],
+            "cost": 8,
+            "efficiency": 2
+        },
+        {
+            "capacity": 1,
+            "resources": [
+                "oil"
+            ],
+            "cost": 9,
+            "efficiency": 1
+        },
+        {
+            "capacity": 2,
+            "resources": [
+                "coal"
+            ],
+            "cost": 10,
+            "efficiency": 2
+        },
+        {
+            "capacity": 1,
+            "resources": [
+                "uranium"
+            ],
+            "cost": 11,
+            "efficiency": 2
+        },
+        {
+            "capacity": 2,
+            "resources": [
+                "coal",
+                "oil"
+            ],
+            "cost": 12,
+            "efficiency": 2
+        },
+        {
+            "capacity": 0,
+            "resources": [],
+            "cost": 13,
+            "efficiency": 1
+        },
+        {
+            "capacity": 2,
+            "resources": [
+                "coal"
+            ],
+            "cost": 15,
+            "efficiency": 3
+        },
+        {
+            "capacity": 2,
+            "resources": [
+                "oil"
+            ],
+            "cost": 16,
+            "efficiency": 3
+        },
+        {
+            "capacity": 1,
+            "resources": [
+                "uranium"
+            ],
+            "cost": 17,
+            "efficiency": 2
+        },
+        {
+            "capacity": 0,
+            "resources": [],
+            "cost": 18,
+            "efficiency": 2
+        },
+        {
+            "capacity": 2,
+            "resources": [
+                "waste"
+            ],
+            "cost": 19,
+            "efficiency": 3
+        },
+        {
+            "capacity": 3,
+            "resources": [
+                "coal"
+            ],
+            "cost": 20,
+            "efficiency": 5
+        },
+        {
+            "capacity": 2,
+            "resources": [
+                "coal",
+                "oil"
+            ],
+            "cost": 21,
+            "efficiency": 4
+        },
+        {
+            "capacity": 0,
+            "resources": [],
+            "cost": 22,
+            "efficiency": 2
+        },
+        {
+            "capacity": 1,
+            "resources": [
+                "uranium"
+            ],
+            "cost": 23,
+            "efficiency": 3
+        },
+        {
+            "capacity": 2,
+            "resources": [
+                "waste"
+            ],
+            "cost": 24,
+            "efficiency": 4
+        },
+        {
+            "capacity": 2,
+            "resources": [
+                "coal"
+            ],
+            "cost": 25,
+            "efficiency": 5
+        },
+        {
+            "capacity": 2,
+            "resources": [
+                "oil"
+            ],
+            "cost": 26,
+            "efficiency": 5
+        },
+        {
+            "capacity": 0,
+            "resources": [],
+            "cost": 27,
+            "efficiency": 3
+        },
+        {
+            "capacity": 1,
+            "resources": [
+                "uranium"
+            ],
+            "cost": 28,
+            "efficiency": 4
+        },
+        {
+            "capacity": 1,
+            "resources": [
+                "coal",
+                "oil"
+            ],
+            "cost": 29,
+            "efficiency": 4
+        },
+        {
+            "capacity": 3,
+            "resources": [
+                "waste"
+            ],
+            "cost": 30,
+            "efficiency": 6
+        },
+        {
+            "capacity": 3,
+            "resources": [
+                "coal"
+            ],
+            "cost": 31,
+            "efficiency": 6
+        },
+        {
+            "capacity": 3,
+            "resources": [
+                "oil"
+            ],
+            "cost": 32,
+            "efficiency": 6
+        },
+        {
+            "capacity": 0,
+            "resources": [],
+            "cost": 33,
+            "efficiency": 4
+        },
+        {
+            "capacity": 3,
+            "resources": [
+                "coal",
+                "oil",
+                "waste",
+                "uranium"
+            ],
+            "cost": 33.5,
+            "efficiency": 6
+        },
+        {
+            "capacity": 1,
+            "resources": [
+                "uranium"
+            ],
+            "cost": 34,
+            "efficiency": 5
+        },
+        {
+            "capacity": 1,
+            "resources": [
+                "oil"
+            ],
+            "cost": 35,
+            "efficiency": 5
+        },
+        {
+            "capacity": 3,
+            "resources": [
+                "coal"
+            ],
+            "cost": 36,
+            "efficiency": 7
+        },
+        {
+            "capacity": 0,
+            "resources": [],
+            "cost": 37,
+            "efficiency": 4
+        },
+        {
+            "capacity": 3,
+            "resources": [
+                "waste"
+            ],
+            "cost": 38,
+            "efficiency": 7
+        },
+        {
+            "capacity": 1,
+            "resources": [
+                "uranium"
+            ],
+            "cost": 39,
+            "efficiency": 6
+        },
+        {
+            "capacity": 2,
+            "resources": [
+                "oil"
+            ],
+            "cost": 40,
+            "efficiency": 6
+        },
+        {
+            "capacity": 2,
+            "resources": [
+                "coal"
+            ],
+            "cost": 42,
+            "efficiency": 6
+        },
+        {
+            "capacity": 0,
+            "resources": [],
+            "cost": 44,
+            "efficiency": 5
+        },
+        {
+            "capacity": 3,
+            "resources": [
+                "coal",
+                "oil"
+            ],
+            "cost": 46,
+            "efficiency": 7
+        },
+        {
+            "capacity": 0,
+            "resources": [],
+            "cost": 50,
+            "efficiency": 6
+        },
+        {
+            "capacity": 0,
+            "resources": [],
+            "cost": -1,
+            "efficiency": 0
+        }
+    ],
+    "cities": [
+        {
+            "name": "murmansk",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area1"
+        },
+        {
+            "name": "peterburg",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area2"
+        },
+        {
+            "name": "kaliningrad",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area2"
+        },
+        {
+            "name": "moscow",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area2"
+        },
+        {
+            "name": "voronezh",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area3"
+        },
+        {
+            "name": "tula",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area2"
+        },
+        {
+            "name": "ryazan",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area1"
+        },
+        {
+            "name": "arkhangelsk",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area2"
+        },
+        {
+            "name": "novgorod",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area2"
+        },
+        {
+            "name": "samara",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area4"
+        },
+        {
+            "name": "saratov",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area3"
+        },
+        {
+            "name": "astrakhan",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area3"
+        },
+        {
+            "name": "mahachkala",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area3"
+        },
+        {
+            "name": "krasnodar",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area3"
+        },
+        {
+            "name": "volgograd",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area3"
+        },
+        {
+            "name": "ufa",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area4"
+        },
+        {
+            "name": "chelyabinsk",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area4"
+        },
+        {
+            "name": "omsk",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area5"
+        },
+        {
+            "name": "barnaul",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area5"
+        },
+        {
+            "name": "novosibirsk",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area5"
+        },
+        {
+            "name": "kemerovo",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area6"
+        },
+        {
+            "name": "krasnoyarsk",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area6"
+        },
+        {
+            "name": "tomsk",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area5"
+        },
+        {
+            "name": "surgut",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area5"
+        },
+        {
+            "name": "bratsk",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area6"
+        },
+        {
+            "name": "chita",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area6"
+        },
+        {
+            "name": "ulan_ude",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area6"
+        },
+        {
+            "name": "irkutsk",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area6"
+        },
+        {
+            "name": "norilsk",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area5"
+        },
+        {
+            "name": "kazan",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area1"
+        },
+        {
+            "name": "nizhnekamsk",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area1"
+        },
+        {
+            "name": "perm",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area4"
+        },
+        {
+            "name": "yaroslavl",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area2"
+        },
+        {
+            "name": "kirov",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area1"
+        },
+        {
+            "name": "syktyvkar",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area1"
+        },
+        {
+            "name": "tyumen",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area5"
+        },
+        {
+            "name": "ekaterinburg",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area4"
+        },
+        {
+            "name": "ulyanovsk",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area1"
+        },
+        {
+            "name": "rostov",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area3"
+        },
+        {
+            "name": "novokuznetsk",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area6"
+        },
+        {
+            "name": "cheboksary",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area1"
+        },
+        {
+            "name": "orenburg",
+            "slots": [
+                10,
+                15,
+                20
+            ],
+            "area": "area4"
+        }
+    ],
     "areas": [
         {
             "name": "area1",
-            "color": "#393939"
+            "color": "#70d06f"
         },
         {
             "name": "area2",
-            "color": "#393939"
+            "color": "#c9619d"
         },
         {
             "name": "area3",
-            "color": "#393939"
+            "color": "#e2dc3e"
         },
         {
             "name": "area4",
-            "color": "#393939"
+            "color": "#f11616"
         },
         {
             "name": "area5",
-            "color": "#393939"
+            "color": "#5e74b0"
         },
         {
             "name": "area6",
-            "color": "#393939"
+            "color": "#ec6c18"
         }
     ]
 }

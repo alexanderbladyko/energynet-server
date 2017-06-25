@@ -1,6 +1,3 @@
-from flask_socketio import emit
-from flask_login import current_user
-
 import config
 
 from auth.helpers import authenticated_only
@@ -12,24 +9,22 @@ from game.logic import notify_game_players
 from utils.redis import redis_retry_transaction, redis
 
 
-
 @authenticated_only
-@game_response(topic='start_game')
-def start_game(data):
+@game_response(topic='game_start')
+def start_game(user_id, data):
     # app.logger.info('Starting game')
-
-    user = User.get_by_id(redis, current_user.id, [User.current_lobby_id])
+    user = User.get_by_id(redis, user_id, [User.current_lobby_id])
 
     game_id = user.current_lobby_id
 
     pipe = redis.pipeline()
     start_game_transaction(pipe, game_id, user.id)
 
-    emit('start', {
-        'success': True,
-    })
-
     notify_game_players(game_id)
+
+    return {
+        'success': True,
+    }
 
 
 @redis_retry_transaction()

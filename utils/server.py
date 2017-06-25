@@ -4,9 +4,9 @@ from flask_socketio import SocketIO
 from utils.blueprint import blueprint
 from utils.config import config
 # from utils.logger import handler
-from utils.login_manager import login_manager
-from utils.redis import sessions_redis
-from utils.sessions import RedisSessionInterface
+# from utils.login_manager import login_manager
+# from utils.redis import sessions_redis
+# from utils.sessions import RedisSessionInterface
 
 socketio = SocketIO(engineio_logger=True)
 

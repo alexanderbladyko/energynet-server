@@ -10,7 +10,7 @@ from utils.redis import redis_retry_transaction, redis
 
 
 @authenticated_only
-@game_response(topic='join_game')
+@game_response(topic='game_join')
 def join_lobby(user_id, data):
     # app.logger.info('Join lobby')
     game_id = data['id']
@@ -26,7 +26,7 @@ def join_lobby(user_id, data):
     unsubscribe_from_games()
     join_game(game_id)
 
-    emit('join_game', {
+    emit('game_join', {
         'success': True,
     })
     notify_lobby_users(game_id=game_id)

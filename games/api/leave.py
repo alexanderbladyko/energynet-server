@@ -10,7 +10,7 @@ from utils.redis import redis_retry_transaction, redis
 
 
 @authenticated_only
-@game_response(topic='leave_game')
+@game_response(topic='game_leave')
 def leave_lobby(user_id, data):
     # app.logger.info('Leaving lobby')
     user = User.get_by_id(redis, user_id, [User.current_lobby_id])
@@ -25,7 +25,7 @@ def leave_lobby(user_id, data):
 
     leave_game(game_id)
 
-    emit('leave_game', {
+    emit('game_leave', {
         'success': True,
     })
     notify_lobby_users(game_id=game_id)

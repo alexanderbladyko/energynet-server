@@ -4,7 +4,7 @@ from config.tasks import ConfigTasks
 from db.tasks import DbTasks
 from test.tasks import TestsTasks
 
-
+from app import app
 
 
 manager = Manager(app)

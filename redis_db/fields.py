@@ -2,9 +2,10 @@ from redis_db.types import String
 
 
 class BaseField:
-    def __init__(self):
+    def __init__(self, mapping_name=None, *args, **kwargs):
         self.base = None
         self.name = None
+        self.mapping_name = mapping_name
 
     def key(self, id=None):
         if id:
@@ -23,8 +24,8 @@ class BaseField:
 
 
 class KeyField(BaseField):
-    def __init__(self, type):
-        super(KeyField, self).__init__()
+    def __init__(self, type, *args, **kwargs):
+        super(KeyField, self).__init__(*args, **kwargs)
         self.type = type
 
     def read(self, pipe, id=None):
@@ -32,8 +33,8 @@ class KeyField(BaseField):
 
 
 class SetField(BaseField):
-    def __init__(self, type):
-        super(SetField, self).__init__()
+    def __init__(self, type, *args, **kwargs):
+        super(SetField, self).__init__(*args, **kwargs)
         self.type = type
 
     def read(self, pipe, id=None):
@@ -44,8 +45,8 @@ class SetField(BaseField):
 
 
 class ListField(BaseField):
-    def __init__(self, type):
-        super(ListField, self).__init__()
+    def __init__(self, type, *args, **kwargs):
+        super(ListField, self).__init__(*args, **kwargs)
         self.type = type
 
     def read(self, pipe, id=None):
@@ -59,7 +60,7 @@ class ListField(BaseField):
 
 class HashField(BaseField):
     def __init__(self, *args, **kwargs):
-        super(HashField, self).__init__()
+        super(HashField, self).__init__(*args, **kwargs)
         self.fields = kwargs
 
     def read(self, pipe, id=None):
@@ -138,23 +139,16 @@ class BaseModel(metaclass=FieldNameResolverMetaClass):
         obj = {
             'id': self.id,
         }
-        for name, _ in self.get_all_fields(fields):
-            obj.update({
-                name: getattr(self, name, None)
-            })
+        for name, field in self.get_all_fields(fields):
+            value = getattr(self, name, None)
+            key_name = field.mapping_name or name
+            if isinstance(value, set):
+                value = list(value)
+            if isinstance(value, dict):
+                obj[key_name] = {}
+                for name, sub_field in field.fields.items():
+                    sub_key_name = sub_field.mapping_name or name
+                    obj[key_name][sub_key_name] = value.get(name)
+                continue
+            obj[key_name] = value
         return obj
-
-
-class TestClass(BaseModel):
-    key = 'test'
-    a = BaseField()
-
-    def __init__(self):
-        super(TestClass, self).__init__()
-
-        self.a = '23232'
-
-
-x = TestClass()
-x.a = ['123', 4, 5]
-x.a.append('6')

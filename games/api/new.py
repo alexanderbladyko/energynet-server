@@ -1,6 +1,8 @@
 from flask_socketio import emit
 
 from auth.helpers import authenticated_only
+from base.decorators import game_response
+from base.exceptions import EnergynetException
 from core.models import User, Game, Lobby
 from core.logic import join_game
 from games.logic import notify_user_finding_game, unsubscribe_from_games
@@ -10,6 +12,7 @@ from utils.redis import (
 
 
 @authenticated_only
+@game_response(topic='games_new')
 def create_new(user_id, data):
     name = data['name']
     players_limit = data['playersLimit']
@@ -18,32 +21,20 @@ def create_new(user_id, data):
 
     user = User.get_by_id(redis, user_id)
     if user.current_lobby_id or user.current_game_id:
-        emit('new', {
-            'success': False,
-            'message': 'User is already in the game'
-        })
-        return
+        raise EnergynetException(message='User is already in the game')
 
     pipe = redis.pipeline()
     try:
         game_id = create_new_game(pipe, name, players_limit, user.id)
     except RedisTransactionException:
-        emit('new_game', {
-            'success': False,
-            'message': 'Failed to add user to game'
-        })
-        return
+        raise EnergynetException(message='Failed to add user to game')
     except:
-        emit('new_game', {
-            'success': False,
-            'message': 'Unknown exception'
-        })
-        return
+        raise EnergynetException(message='Unknown exception')
 
     unsubscribe_from_games()
     join_game(game_id)
 
-    emit('new_game', {
+    emit('games_new', {
         'success': True,
     })
     notify_user_finding_game()

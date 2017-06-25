@@ -104,8 +104,8 @@ class User(UserMixin):
         except Exception as e:
             return e
 
-    @staticmethod
-    def decode_auth_token(auth_token):
+    @classmethod
+    def decode_auth_token(cls, auth_token):
         """
         Decodes the auth token
         :param auth_token:
@@ -113,3 +113,10 @@ class User(UserMixin):
         """
         payload = jwt.decode(auth_token, config.get('socketio', 'secret'))
         return payload['sub']
+
+    @classmethod
+    def get_current_user_id(cls, auth_token):
+        try:
+            return cls.decode_auth_token(auth_token)
+        except (jwt.ExpiredSignatureError, jwt.InvalidTokenError):
+            return None

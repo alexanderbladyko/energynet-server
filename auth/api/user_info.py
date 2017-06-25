@@ -10,7 +10,7 @@ def get_user_info():
     auth_token = request.headers.get('Authorization')
     is_authenticated = False
     try:
-        user_id = User.decode_auth_token(auth_token)
+        response['id'] = User.decode_auth_token(auth_token)
         is_authenticated = True
     except jwt.ExpiredSignatureError:
         pass

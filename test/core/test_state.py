@@ -4,7 +4,7 @@ from test.base import BaseTest
 from auth.models import User as DbUser
 from core.models import User
 
-from utils.socket_server import io
+from utils.server import socketio
 from utils.redis import redis
 
 
@@ -26,36 +26,35 @@ class StateApiTestCase(BaseTest):
 
         super(StateApiTestCase, self).tearDown()
 
-    @patch('flask_login.utils._get_user')
-    def test_not_in_game(self, load_user_mock):
-        load_user_mock.return_value = self.user
+    def test_not_in_game(self):
+        with self.user_logged_in(self.user.id):
+            client = self.create_test_client()
+            # redis.set(User.current_lobby_id.key(self.user.id), self.lobby.id)
+            client.get_received()
 
-        self.client = io.test_client(app)
-        # redis.set(User.current_lobby_id.key(self.user.id), self.lobby.id)
-        self.client.get_received()
+            client.emit('state', {})
 
-        self.client.emit('state', {})
+            received = client.get_received()
+            client.disconnect()
 
-        received = self.client.get_received()
         self.assertEqual(len(received), 1)
         self.assertListEqual(received[0]['args'], [{
             'inGame': False,
             'inLobby': False,
         }])
 
+    def test_in_game_lobby(self):
+        with self.user_logged_in(self.user.id):
+            client = self.create_test_client()
+            redis.set(User.current_lobby_id.key(self.user.id), 10)
+            redis.set(User.current_game_id.key(self.user.id), 10)
+            client.get_received()
 
-    @patch('flask_login.utils._get_user')
-    def test_in_game_lobby(self, load_user_mock):
-        load_user_mock.return_value = self.user
+            client.emit('state', {})
 
-        self.client = io.test_client(app)
-        redis.set(User.current_lobby_id.key(self.user.id), 10)
-        redis.set(User.current_game_id.key(self.user.id), 10)
-        self.client.get_received()
+            received = client.get_received()
+            client.disconnect()
 
-        self.client.emit('state', {})
-
-        received = self.client.get_received()
         self.assertEqual(len(received), 1)
         self.assertListEqual(received[0]['args'], [{
             'inGame': True,

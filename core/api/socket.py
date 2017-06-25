@@ -1,19 +1,18 @@
 import jwt
 
-from flask import request
 from flask_socketio import emit
 
-from auth.models import User
+from auth import helpers
 from core.logic import ensure_user
 
 
 def ws_connect():
-    auth_token = request.args.get('token')
     try:
-        user_id = User.decode_auth_token(auth_token)
+        user_id = helpers.get_current_user_id()
         emit('handshake', {
             'id': user_id,
         })
+        ensure_user(user_id)
     except (jwt.ExpiredSignatureError, jwt.InvalidTokenError):
         return None
 

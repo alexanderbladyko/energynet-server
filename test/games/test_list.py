@@ -1,11 +1,9 @@
-from unittest.mock import patch
 from test.base import BaseTest
 
 from auth.models import User as DbUser
 from core.logic import ensure_user
 from core.models import Game, Lobby, User
 
-from utils.socket_server import io
 from utils.redis import redis
 
 from test import factories
@@ -16,7 +14,7 @@ class ListTestCase(BaseTest):
         self.username = 'test_user'
         self.user = self.create_user(name=self.username)
 
-        self.user_1 = ensure_user(self.user)
+        self.user_1 = ensure_user(self.user.id)
 
         self.games = []
         for i in range(4):
@@ -51,14 +49,15 @@ class ListTestCase(BaseTest):
 
         super(ListTestCase, self).tearDown()
 
-    @patch('flask_login.utils._get_user')
-    def test_list(self, load_user_mock):
-        load_user_mock.return_value = self.user
-        self.client = io.test_client(app, namespace='/games')
+    def test_list(self):
+        with self.user_logged_in(self.user.id):
+            client = self.create_test_client()
+            received = client.get_received()
 
-        received = self.client.get_received('/games')
+            client.emit('games_list', {})
+            received = client.get_received()
 
-        self.client.disconnect()
+            client.disconnect()
         self.assertEqual(len(received), 1)
         asserted_list = received[0]['args'][0]
 

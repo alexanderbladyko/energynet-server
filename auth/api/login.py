@@ -19,6 +19,7 @@ def login():
         if result_password == user.password:
             user_token = User.encode_auth_token(user.id)
             return jsonify({
+                'id': user.id,
                 'isAuthenticated': True,
                 'userToken': user_token.decode(),
             })

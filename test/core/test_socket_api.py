@@ -1,9 +1,7 @@
-from unittest.mock import patch
 from test.base import BaseTest
 
 from auth.models import User as DbUser
 
-from utils.socket_server import io
 from utils.redis import redis
 
 
@@ -21,16 +19,16 @@ class SocketApiTestCase(BaseTest):
 
         super(SocketApiTestCase, self).tearDown()
 
-    @patch('flask_login.utils._get_user')
-    def test_connect(self, load_user_mock):
-        load_user_mock.return_value = self.user
-
-        client = io.test_client(app)
-        received = client.get_received()
+    def test_connect(self):
+        with self.user_logged_in(self.user.id):
+            client = self.create_test_client()
+            received = client.get_received()
+            client.disconnect()
 
         self.assertEqual(len(received), 1)
-        self.assertListEqual(received[0]['args'], ['connected'])
-        client.disconnect()
+        self.assertEqual(received[0]['args'][0], {
+            'id': self.user.id,
+        })
 
         redis.delete('user')
         redis.delete('user:%d:data' % self.user.id)

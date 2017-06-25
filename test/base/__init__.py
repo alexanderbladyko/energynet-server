@@ -1,18 +1,17 @@
 import json
 from contextlib import contextmanager
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch
 from psycopg2.extras import DictCursor
 from jsonschema import validate
 from jsonschema.exceptions import ValidationError
 from flask_testing import TestCase
 
-import app
-
+from app import app as server
 from auth.logic import get_password
 from auth.models import User
 from db.utils import connect_to_db
- as server
 from utils.redis import redis
+from utils.server import socketio
 
 from test.base.fake_map_config import FAKE_MAP_CONFIG
 
@@ -73,6 +72,9 @@ class BaseTest(TestCase):
                     break
 
         self.assertFalse(redis.keys())
+
+    def create_test_client(self):
+        return socketio.test_client(self.app)
 
     def create_user(self, name='test_user', password='test_password'):
         salt = 'test_salt'
@@ -146,3 +148,8 @@ class BaseTest(TestCase):
 
     def assertRedisValue(self, value, key):
         self.assertEqual(value, redis.get(key).decode('utf-8'))
+
+    @contextmanager
+    def user_logged_in(self, user_id):
+        with patch('auth.helpers.get_current_user_id', return_value=user_id):
+            yield

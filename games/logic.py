@@ -9,6 +9,7 @@ def notify_lobby_users(game_id):
     game = Game.get_by_id(redis, game_id, [
         Game.user_ids,
         Game.data,
+        Game.owner_id,
     ])
 
     lobby_info = game.data.copy()
@@ -16,15 +17,19 @@ def notify_lobby_users(game_id):
     for user_id in game.user_ids:
         user = User.get_by_id(redis, user_id, [User.data])
 
-        users.append(user.serialize([User.data]))
+        users.append({
+            'id': user.id,
+            'name': user.data['name'],
+        })
 
     lobby_info.update({
         'players': users,
         'users': [],
+        'ownerId': game.owner_id
     })
 
     room_key = 'games:%s' % game.id
-    emit('lobby', lobby_info, room=room_key)
+    emit('game_lobby', lobby_info, room=room_key)
 
 
 def get_lobbies():

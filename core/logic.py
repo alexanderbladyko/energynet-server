@@ -1,14 +1,18 @@
 from flask_socketio import join_room, leave_room
 
+from auth.models import User as DbUser
 from core.models import User
 from utils.redis import redis, redis_retry_transaction
 
 
-def ensure_user(db_user):
-    if redis.sismember(User.key, db_user.id):
-        return User.get_by_id(redis, db_user.id)
+def ensure_user(user_id):
+    if redis.exists(User.data.key(user_id)):
+        return User.get_by_id(redis, user_id)
     else:
         pipe = redis.pipeline()
+        db_user = DbUser.get_by_id(user_id, [
+            DbUser.Fields.ID, DbUser.Fields.NAME
+        ])
         return _create_user(pipe, db_user)
 
 

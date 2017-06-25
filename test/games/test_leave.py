@@ -5,7 +5,6 @@ from auth.models import User as DbUser
 from core.logic import ensure_user
 from core.models import Game, Lobby, User
 
-from utils.socket_server import io
 from utils.redis import redis
 
 from test import factories
@@ -16,7 +15,7 @@ class LeaveTestCase(BaseTest):
         self.username = 'test_user'
         self.user = self.create_user(name=self.username)
 
-        self.user_1 = ensure_user(self.user)
+        self.user_1 = ensure_user(self.user.id)
 
         self.game = factories.GameFactory.create(
             user_ids=[self.user.id], data={'name': 'game1', 'players_limit': 4}
@@ -42,55 +41,56 @@ class LeaveTestCase(BaseTest):
 
         super(LeaveTestCase, self).tearDown()
 
-    @patch('games.logic.emit')
-    @patch('core.logic.leave_room')
-    @patch('flask_login.utils._get_user')
-    def test_leave(self, load_user_mock, leave_room_mock, emit_mock):
-        load_user_mock.return_value = self.user
-        self.client = io.test_client(app)
+    def test_leave(self):
         redis.set(User.current_lobby_id.key(self.user.id), self.lobby.id)
-        self.client.get_received()
+        with patch('games.logic.emit') as emit_mock:
+            with patch('core.logic.leave_room') as leave_room_mock:
+                with self.user_logged_in(self.user.id):
+                    client = self.create_test_client()
+                    client.get_received()
 
-        self.client.emit('leave', {})
+                    client.emit('game_leave', {})
 
-        received = self.client.get_received()
+                    received = client.get_received()
 
-        self.client.disconnect()
+                    client.disconnect()
+
         self.assertEqual(len(received), 1)
         self.assertListEqual(received[0]['args'], [{'success': True}])
         self.assertEqual(Game.user_ids.read(redis, self.game.id), set())
         leave_room_mock.assert_called_once_with('games:%s' % self.game.id)
 
         emit_mock.assert_called_once_with(
-            'lobby', {
+            'game_lobby', {
                 'name': 'game1',
                 'users': [],
-                'players_limit': 4
+                'players': [],
+                'players_limit': 4,
+                'ownerId': None,
             }, room='games:%s' % self.game.id
         )
 
-    @patch('games.logic.emit')
-    @patch('core.logic.leave_room')
-    @patch('flask_login.utils._get_user')
-    def test_leave_two_users(self, load_user_mock, leave_room_mock, emit_mock):
+    def test_leave_two_users(self):
         user = self.create_user(name='user_2')
-        user_2 = ensure_user(user)
-
-        load_user_mock.return_value = user
+        user_2 = ensure_user(user.id)
 
         Game.user_ids.write(
             redis, [self.user_1.id, user_2.id], id=self.game.id
         )
-
-        self.client = io.test_client(app)
         redis.set(User.current_lobby_id.key(user_2.id), self.lobby.id)
-        self.client.get_received()
 
-        self.client.emit('leave', {})
+        with patch('games.logic.emit') as emit_mock:
+            with patch('core.logic.leave_room') as leave_room_mock:
+                with self.user_logged_in(user_2.id):
+                    client = self.create_test_client()
+                    client.get_received()
 
-        received = self.client.get_received()
+                    client.emit('game_leave', {})
 
-        self.client.disconnect()
+                    received = client.get_received()
+
+                    client.disconnect()
+
         self.assertEqual(len(received), 1)
         self.assertListEqual(received[0]['args'], [{'success': True}])
         self.assertEqual(
@@ -100,13 +100,15 @@ class LeaveTestCase(BaseTest):
         leave_room_mock.assert_called_once_with('games:%s' % self.game.id)
 
         emit_mock.assert_called_once_with(
-            'lobby', {
+            'game_lobby', {
                 'name': 'game1',
-                'users': [{
-                    'data': {'avatar': None, 'name': 'test_user'},
+                'users': [],
+                'players': [{
+                    'name': 'test_user',
                     'id': 2,
                 }],
-                'players_limit': 4
+                'players_limit': 4,
+                'ownerId': None,
             }, room='games:%s' % self.game.id
         )
 

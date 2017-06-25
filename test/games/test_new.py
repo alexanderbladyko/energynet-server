@@ -3,8 +3,6 @@ from test.base import BaseTest
 
 from auth.models import User as DbUser
 
-
-from utils.socket_server import io
 from utils.redis import redis
 
 from core.models import Game, User, Lobby
@@ -31,26 +29,26 @@ class CreateNewTestCase(BaseTest):
 
         super(CreateNewTestCase, self).tearDown()
 
-    @patch('games.api.new.join_room')
-    @patch('flask_login.utils._get_user')
-    def test_new(self, load_user_mock, join_room_mock):
-        load_user_mock.return_value = self.user
-        self.client = io.test_client(app, namespace='/games')
-        self.client.get_received('/games')
+    def test_new(self):
+        with patch('games.api.new.join_game') as join_game_mock:
+            with patch('games.api.new.unsubscribe_from_games') as unsub_mock:
+                with self.user_logged_in(self.user.id):
+                    client = self.create_test_client()
+                    client.get_received()
 
-        self.client.emit('new', {
-            'name': 'new_game',
-            'playersLimit': 4,
-        }, namespace='/games')
+                    client.emit('games_new', {
+                        'name': 'new_game',
+                        'playersLimit': 4,
+                    })
 
-        received = self.client.get_received('/games')
-        self.client.disconnect()
+                    received = client.get_received()
+                    client.disconnect()
 
-        self.assertEqual(len(received), 2)
+        self.assertEqual(len(received), 1)
         self.assertListEqual(received[0]['args'], [{'success': True}])
-        self.assertListEqual(received[1]['args'], [[{
-            'name': 'new_game', 'id': 1, 'playersLimit': 4
-        }]])
+        # self.assertListEqual(received[1]['args'], [[{
+        #     'name': 'new_game', 'id': 1, 'playersLimit': 4
+        # }]])
 
         index = int(redis.get(Game.index()))
         self.assertEqual(Game.owner_id.read(redis, index), self.user.id)
@@ -60,7 +58,8 @@ class CreateNewTestCase(BaseTest):
         })
         self.assertEqual(Game.user_ids.read(redis, index), {self.user.id})
 
-        join_room_mock.assert_called_once_with(index)
+        join_game_mock.assert_called_once_with(index)
+        unsub_mock.assert_called_once_with()
 
         redis.delete(Game.owner_id.key(index))
         redis.delete(Game.data.key(index))

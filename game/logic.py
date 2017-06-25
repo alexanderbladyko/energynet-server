@@ -5,6 +5,13 @@ from utils.redis import redis
 
 
 def notify_game_players(game_id):
+    response = get_game_data(game_id)
+
+    room_key = 'games:%s' % game_id
+    emit('game', response, room=room_key)
+
+
+def get_game_data(game_id):
     game = Game.get_by_id(redis, game_id)
 
     users = []
@@ -13,10 +20,7 @@ def notify_game_players(game_id):
 
         users.append(user.serialize())
 
-    response = {
+    return {
         'meta': game.serialize(),
         'data': users,
     }
-
-    room_key = 'games:%s' % game.id
-    emit('game', response, room=room_key)

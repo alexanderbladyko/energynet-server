@@ -25,3 +25,11 @@ resourceGroup:
     oil: 3
     waste: 3
     uranium: 1
+colors: [
+    '#bc3029',
+    '#d8dd37',
+    '#48d635',
+    '#2c97c1',
+    '#393a3a',
+    '#c66ad8'
+]

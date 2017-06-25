@@ -1,4 +1,7 @@
 class Base:
+    def __init__(self, mapping_name=None, *args, **kwargs):
+        self.mapping_name = mapping_name
+
     cast_from_fn = None
 
     @classmethod

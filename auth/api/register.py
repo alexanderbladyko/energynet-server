@@ -1,5 +1,4 @@
 from flask import request, jsonify, abort
-from flask_login import current_user
 
 from auth.models import User
 from base.exceptions import EnergynetException
@@ -7,7 +6,9 @@ from base.exceptions import EnergynetException
 
 def register():
     if request.method == 'POST':
-        if current_user.is_authenticated:
+        auth_token = request.headers.get('Authorization')
+        user_id = User.get_current_user_id(auth_token)
+        if user_id is not None:
             abort(400)
 
         data = request.get_json()
