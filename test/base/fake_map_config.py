@@ -14,6 +14,15 @@ FAKE_MAP_CONFIG = {
     'resourceGroup': {
         'uranium': 1, 'coal': 3, 'oil': 3, 'waste': 3
     },
+    'resourceInitials': {
+        'uranium': 13, 'coal': 11, 'oil': 5, 'waste': 0
+    },
+    'initialStationRules': [
+        {'cost': 10, 'place': 0, 'delta': 3},
+        {'cost': 11, 'place': 0, 'delta': 4},
+        {'cost': 13, 'place': 0},
+        {'cost': -1, 'place': -1},
+    ],
     'payment': [
         10, 22, 33, 44, 54, 64, 73, 82, 90, 98, 105, 112, 118, 124, 129, 134,
         138, 142, 145, 148, 150

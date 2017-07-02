@@ -2,7 +2,6 @@ import datetime
 import jwt
 from psycopg2 import IntegrityError
 from psycopg2.extras import DictCursor
-from flask_login import UserMixin
 
 from auth.logic import generate_salt, get_password
 from base.exceptions import EnergynetException
@@ -11,7 +10,7 @@ from db.helpers import select, insert
 from utils.config import config
 
 
-class User(UserMixin):
+class User:
     DB_TABLE = 'accounts'
 
     SEQUENCE_NAME = 'accounts_id_seq'

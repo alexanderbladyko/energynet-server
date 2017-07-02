@@ -32,9 +32,13 @@ def _create_user(pipe, db_user):
     return instance
 
 
+def game_room_key(game_id):
+    return 'games:%s' % game_id
+
+
 def join_game(game_id):
-    join_room('games:%s' % game_id)
+    join_room(game_room_key(game_id))
 
 
 def leave_game(game_id):
-    leave_room('games:%s' % game_id)
+    leave_room(game_room_key(game_id))

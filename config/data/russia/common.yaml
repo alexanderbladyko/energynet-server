@@ -15,6 +15,11 @@ secondPhaseCitiesCount: [
 endGameCitiesCount: [
     21, 17, 17, 15, 14
 ]
+resourceInitials:
+    coal: 18
+    oil: 24
+    waste: 0
+    uranium: 7
 resourceLimits:
     coal: 24
     oil: 24

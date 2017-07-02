@@ -1,6 +1,6 @@
 from .exceptions import RedisTransactionException
 from .fields import KeyField, BaseModel, SetField, ListField, HashField
-from .types import Integer, String
+from .types import Integer, String, Float
 
 __all__ = [
     'RedisTransactionException',
@@ -11,4 +11,5 @@ __all__ = [
     'BaseModel',
     'Integer',
     'String',
+    'Float'
 ]

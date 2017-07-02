@@ -55,7 +55,7 @@ class ListField(BaseField):
         ]
 
     def write(self, pipe, value: list, id=None):
-        pipe.lpush(self.key(id), *value)
+        pipe.rpush(self.key(id), *value)
 
 
 class HashField(BaseField):
@@ -71,7 +71,10 @@ class HashField(BaseField):
         }
 
     def write(self, pipe, value: set, id=None):
-        pipe.hmset(self.key(id), value)
+        pipe.hmset(self.key(id), {
+            k: value.get(k)
+            for k, f in self.fields.items() if value.get(k) is not None
+        })
 
 
 class FieldNameResolverMetaClass(type):

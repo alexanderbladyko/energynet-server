@@ -1,4 +1,6 @@
-from redis_db import BaseModel, HashField, String, Integer, KeyField, SetField
+from redis_db import (
+    ListField, BaseModel, HashField, String, Integer, KeyField, SetField, Float
+)
 
 
 class Game(BaseModel):
@@ -21,6 +23,15 @@ class Game(BaseModel):
         station=Integer(),
     )
     map = KeyField(String())
+    resources = HashField(
+        coal=Integer(),
+        oil=Integer(),
+        waste=Integer(),
+        uranium=Integer(),
+    )
+    stations = ListField(Float())
+    #  list of free colors to choose
+    reserved_colors = SetField(String())
 
 
 class Lobby(BaseModel):

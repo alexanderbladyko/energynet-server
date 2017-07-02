@@ -30,9 +30,16 @@ class UserFactory(BaseFactory):
     @classmethod
     def ensure_from_db(cls, db_user, *args, **kwargs):
         instance = cls.model()
+
         instance.id = db_user.id
 
         for name, field in cls.model.get_all_fields():
+            if name == 'data':
+                field.write(redis, {
+                    'name': db_user.name,
+                    'avatar': None,
+                }, instance.id)
+                continue
             value = kwargs.get(name) or getattr(cls, name, None)
             setattr(instance, name, value)
             if value:

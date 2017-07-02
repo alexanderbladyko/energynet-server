@@ -14,5 +14,4 @@ def game_info(user_id, data):
     game_id = user.current_game_id
 
     join_game(game_id)
-
     emit('game', get_game_data(game_id))

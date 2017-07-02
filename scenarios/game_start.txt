@@ -1,29 +1,24 @@
-FLUSHDB
 DEL     game:1:data
 HMSET   game:1:data players_limit 4 name 423
+SET     game:1:map russia
 SET     game:1:owner_id 2
+SET     game:1:step colors
 DEL     game:1:user_ids
 SADD    game:1:user_ids 2 3 4 5
-DEL     game:1:map
-SET     game:1:map russia
 SET     game:index 1
-DEL     lobby
-SADD    lobby 1
-SET     user:2:current_lobby_id 1
+SET     player:2:cash 50
+SET     player:3:cash 50
+SET     player:4:cash 50
+SET     player:5:cash 50
 SET     user:2:current_game_id 1
 DEL     user:2:data
 HMSET   user:2:data name al
-SET     user:3:current_lobby_id 1
 SET     user:3:current_game_id 1
 DEL     user:3:data
 HMSET   user:3:data name la
-SET     user:4:current_lobby_id 1
 SET     user:4:current_game_id 1
 DEL     user:4:data
 HMSET   user:4:data name aa
-SET     user:5:current_lobby_id 1
 SET     user:5:current_game_id 1
 DEL     user:5:data
 HMSET   user:5:data name ll
-ECHO    "USER al is owner with ID 2"
-ECHO    "Lobby 1"

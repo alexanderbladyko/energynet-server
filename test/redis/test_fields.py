@@ -17,6 +17,7 @@ class TestClass(BaseModel):
     hash_key = HashField(
         int_key=Integer(),
         str_key=String(),
+        none_key=String(),
     )
 
 
@@ -32,6 +33,7 @@ class RedisKeyFieldTestCase(BaseTest):
         TestClass.hash_key.write(redis, {
             'int_key': 13,
             'str_key': 'str_test',
+            'none_key': None,
             'invalid_key': 'some_val',
         }, id=1)
         super(RedisKeyFieldTestCase, self).setUp()
@@ -64,9 +66,10 @@ class RedisKeyFieldTestCase(BaseTest):
         self.assertEqual(TestClass.str_key.read(redis, 1), 'test1')
         self.assertEqual(TestClass.int_set.read(redis, 1), {1, 2, 3, 4, 5})
         self.assertEqual(TestClass.str_set.read(redis, 1), {'a', 'x', 'w'})
-        self.assertEqual(TestClass.int_list.read(redis, 1), [33, 8, 5, 4])
-        self.assertEqual(TestClass.str_list.read(redis, 2), ['t', 'u', 'l'])
+        self.assertEqual(TestClass.int_list.read(redis, 1), [4, 5, 8, 33])
+        self.assertEqual(TestClass.str_list.read(redis, 2), ['l', 'u', 't'])
         self.assertEqual(TestClass.hash_key.read(redis, 1), {
             'int_key': 13,
             'str_key': 'str_test',
+            'none_key': None,
         })

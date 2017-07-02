@@ -1,11 +1,14 @@
+from flask_socketio import emit
+
 import config
 
 from auth.helpers import authenticated_only
 from base.decorators import game_response
 from base.exceptions import EnergynetException
 from core.constants import StepTypes
+from core.logic import game_room_key
 from core.models import User, Game, Lobby, Player
-from game.logic import notify_game_players
+from game.logic import notify_game_players, get_start_stations
 from utils.redis import redis_retry_transaction, redis
 
 
@@ -22,9 +25,7 @@ def start_game(user_id, data):
 
     notify_game_players(game_id)
 
-    return {
-        'success': True,
-    }
+    emit('game_start', {'success': True}, room=game_room_key(game_id))
 
 
 @redis_retry_transaction()
@@ -53,10 +54,15 @@ def start_game_transaction(pipe, game_id, user_id):
 
     pipe.set(Game.step.key(game_id), StepTypes.COLORS)
 
+    map_config = config.config.maps.get(game.map)
+    Game.resources.write(pipe, map_config.get('resourceInitials'), game_id)
+    stations = get_start_stations(map_config)
+    Game.stations.write(pipe, stations, game_id)
+
     for player_id in game.user_ids:
-        pipe.delete(User.current_lobby_id.key(player_id))
+        User.current_lobby_id.delete(pipe, player_id)
         Player.cash.write(
-            pipe, config.config.maps.get(game.map).get('startCash'), player_id
+            pipe, map_config.get('startCash'), player_id
         )
 
     pipe.execute()

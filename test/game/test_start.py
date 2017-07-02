@@ -64,82 +64,100 @@ class StartGameTestCase(BaseTest):
         super(StartGameTestCase, self).tearDown()
 
     def test_start(self):
-        with patch('game.logic.emit') as emit_mock:
-            with self.user_logged_in(self.db_user_1.id):
-                with patch('config.config', self.map_config_mock):
-                    client = self.create_test_client()
-                    client.get_received()
+        stations = [1, 2, 3, 4]
+        with patch('game.api.start.get_start_stations', return_value=stations):
+            with patch('game.logic.emit') as emit_mock:
+                with self.user_logged_in(self.db_user_1.id):
+                    with patch('config.config', self.map_config_mock):
+                        client = self.create_test_client()
+                        client.get_received()
 
-                    client.emit('game_start', {})
+                        client.emit('game_start', {})
 
-                    received = client.get_received()
+                        received = client.get_received()
 
-                    client.disconnect()
+                        client.disconnect()
 
-                    self.assertEqual(emit_mock.call_count, 1)
-                    name, data = emit_mock.call_args[0]
-                    room = emit_mock.call_args[1]['room']
-                    self.assertEqual(name, 'game')
-                    self.assertEqual(data['meta'], {
-                        'phase': None,
-                        'data': {
-                            'playersLimit': 3,
-                            'name': 'game1'
-                        },
-                        'id': self.game.id,
-                        'map': self.map,
-                        'turn': None,
-                        'ownerId': self.user_1.id,
-                        'step': StepTypes.COLORS,
-                        'auction': {
-                            'bet': None,
-                            'station': None
-                        },
-                        'areas': [],
-                        'userIds': self.user_ids
-                    })
-                    self.assertEqual(data['data'], [
-                        {
-                            'color': None,
-                            'cities': [],
-                            'cash': 33,
-                            'resources': {
-                                'waste': None,
-                                'oil': None,
-                                'coal': None,
-                                'uranium': None
-                            },
-                            'id': self.user_1.id,
-                            'stations': []
-                        },
-                        {
-                            'color': None,
-                            'cities': [],
-                            'cash': 33,
-                            'resources': {
-                                'waste': None,
-                                'oil': None,
-                                'coal': None,
-                                'uranium': None
-                            },
-                            'id': self.user_2.id,
-                            'stations': []
-                        }, {
-                            'color': None,
-                            'cities': [],
-                            'cash': 33,
-                            'resources': {
-                                'waste': None,
-                                'oil': None,
-                                'coal': None,
-                                'uranium': None
-                            },
-                            'id': self.user_3.id,
-                            'stations': []
-                        }
-                    ])
+        self.assertEqual(emit_mock.call_count, 1)
+        name, data = emit_mock.call_args[0]
+        room = emit_mock.call_args[1]['room']
+        self.assertEqual(name, 'game')
+        self.assertEqual(data['meta'], {
+            'phase': None,
+            'data': {
+                'playersLimit': 3,
+                'name': 'game1'
+            },
+            'id': self.game.id,
+            'map': self.map,
+            'turn': None,
+            'stations': stations,
+            'ownerId': self.user_1.id,
+            'step': StepTypes.COLORS,
+            'auction': {
+                'bet': None,
+                'station': None
+            },
+            'areas': [],
+            'userIds': self.user_ids,
+            'resources': {
+                'uranium': 13, 'coal': 11, 'oil': 5, 'waste': 0
+            }
+        })
+        self.assertEqual(data['data'], [
+            {
+                'color': None,
+                'cities': [],
+                'cash': 33,
+                'data': {
+                    'name': 'user_1',
+                    'avatar': None,
+                },
+                'resources': {
+                    'waste': None,
+                    'oil': None,
+                    'coal': None,
+                    'uranium': None
+                },
+                'id': self.user_1.id,
+                'stations': []
+            },
+            {
+                'color': None,
+                'cities': [],
+                'cash': 33,
+                'data': {
+                    'name': 'user_2',
+                    'avatar': None,
+                },
+                'resources': {
+                    'waste': None,
+                    'oil': None,
+                    'coal': None,
+                    'uranium': None
+                },
+                'id': self.user_2.id,
+                'stations': []
+            }, {
+                'color': None,
+                'cities': [],
+                'cash': 33,
+                'data': {
+                    'name': 'user_3',
+                    'avatar': None,
+                },
+                'resources': {
+                    'waste': None,
+                    'oil': None,
+                    'coal': None,
+                    'uranium': None
+                },
+                'id': self.user_3.id,
+                'stations': []
+            }
+        ])
 
-                    self.assertEqual(room, 'games:%s' % self.game.id)
+        self.assertEqual(room, 'games:%s' % self.game.id)
 
         self.assertEqual(len(received), 1)
         self.assertListEqual(received[0]['args'], [{'success': True}])

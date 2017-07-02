@@ -20,6 +20,11 @@ class Integer(Base):
         return int(v) if v else None
 
 
+class Float(Base):
+    def cast_from_fn(v):
+        return float(v) if v else None
+
+
 class String(Base):
     def cast_from_fn(v):
         return v.decode('utf-8') if v else None
