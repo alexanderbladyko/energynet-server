@@ -64,12 +64,14 @@ class StartGameTestCase(BaseTest):
         super(StartGameTestCase, self).tearDown()
 
     def test_start(self):
-        stations = [1, 2, 3, 4]
+        stations = [1.0, 2.0, 3.0, 4.0]
         with patch('game.api.start.get_start_stations', return_value=stations):
             with patch('game.logic.emit') as emit_mock:
                 with self.user_logged_in(self.db_user_1.id):
                     with patch('config.config', self.map_config_mock):
                         client = self.create_test_client()
+
+                        client.emit('game', {})
                         client.get_received()
 
                         client.emit('game_start', {})
@@ -82,6 +84,9 @@ class StartGameTestCase(BaseTest):
         name, data = emit_mock.call_args[0]
         room = emit_mock.call_args[1]['room']
         self.assertEqual(name, 'game')
+        ordered_user_ids = Game.order.read(redis, self.game.id)
+        first_user_id = ordered_user_ids[0]
+        self.assertEqual(list(set(self.user_ids)), list(set(ordered_user_ids)))
         self.assertEqual(data['meta'], {
             'phase': None,
             'data': {
@@ -90,19 +95,21 @@ class StartGameTestCase(BaseTest):
             },
             'id': self.game.id,
             'map': self.map,
-            'turn': None,
+            'turn': first_user_id,
             'stations': stations,
             'ownerId': self.user_1.id,
             'step': StepTypes.COLORS,
             'auction': {
-                'bet': None,
-                'station': None
+                'bid': None,
+                'station': None,
+                'userId': None,
             },
             'areas': [],
             'userIds': self.user_ids,
             'resources': {
                 'uranium': 13, 'coal': 11, 'oil': 5, 'waste': 0
-            }
+            },
+            'order': ordered_user_ids,
         })
         self.assertEqual(data['data'], [
             {

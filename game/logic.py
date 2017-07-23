@@ -37,6 +37,7 @@ def get_game_data(game_id):
             Game.auction,
             Game.map,
             Game.resources,
+            Game.order,
         ]),
         'data': users,
     }

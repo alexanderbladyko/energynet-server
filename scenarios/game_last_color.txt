@@ -1,0 +1,36 @@
+DEL     game:1:data
+HMSET   game:1:data players_limit 4 name 423
+SET     game:1:map russia
+DEL     game:1:order
+RPUSH   game:1:order 2 5 4 3
+SET     game:1:owner_id 2
+DEL     game:1:reserved_colors
+SADD    game:1:reserved_colors '#2c97c1' '#393a3a' '#c66ad8'
+DEL     game:1:resources
+HMSET   game:1:resources waste 0 uranium 7 coal 18 oil 24
+DEL     game:1:stations
+RPUSH   game:1:stations 3 4 5 7 8 9 13 25 19 11 46 10 28 '33.5' 17 18 12 23 20 32 30 40 38 44 50 33 22 16 26 27 34 36 39 29 24 37 35 21 15 31 42 -1
+SET     game:1:step colors
+SET     game:1:turn 2
+DEL     game:1:user_ids
+SADD    game:1:user_ids 2 3 4 5
+SET     game:index 1
+SET     player:2:cash 50
+SET     player:3:cash 50
+SET     player:3:color '#2c97c1'
+SET     player:4:cash 50
+SET     player:4:color '#c66ad8'
+SET     player:5:cash 50
+SET     player:5:color '#393a3a'
+SET     user:2:current_game_id 1
+DEL     user:2:data
+HMSET   user:2:data name al
+SET     user:3:current_game_id 1
+DEL     user:3:data
+HMSET   user:3:data name la
+SET     user:4:current_game_id 1
+DEL     user:4:data
+HMSET   user:4:data name aa
+SET     user:5:current_game_id 1
+DEL     user:5:data
+HMSET   user:5:data name ll

@@ -1,10 +1,8 @@
-from unittest.mock import patch
 from test.base import BaseTest
 
 from auth.models import User as DbUser
 from core.models import User
 
-from utils.server import socketio
 from utils.redis import redis
 
 

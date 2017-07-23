@@ -2,7 +2,7 @@ from utils.server import blueprint, socketio
 
 from core.api.config import get_config
 from core.api.socket import (
-    ws_connect, ws_disconnect, error_handler, default_error_handler
+    ws_connect
 )
 from core.api.geo import geo_data
 from core.api.map_data import map_data
@@ -16,7 +16,4 @@ class CoreRoutes(object):
         blueprint.route('/game_api/map/<string:map_name>/map_data')(map_data)
 
         socketio.on('connect')(ws_connect)
-        # socketio.on('disconnect')(ws_disconnect)
-        # socketio.on_error()(error_handler)
-        # socketio.on_error_default(default_error_handler)
         socketio.on_event('state', get_state)

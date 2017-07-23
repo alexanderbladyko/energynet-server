@@ -2,7 +2,7 @@ import psycopg2
 from flask import g
 
 from utils.config import config
-# 
+
 
 db_url = config.get('db', 'url')
 

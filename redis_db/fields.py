@@ -16,8 +16,10 @@ class BaseField:
         return pipe.get(self.key(id))
 
     def write(self, pipe, value, id=None):
-        if value:
+        if value is not None:
             pipe.set(self.key(id), value)
+        else:
+            pipe.delete(self.key(id))
 
     def delete(self, pipe, id=None):
         pipe.delete(self.key(id))

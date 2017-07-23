@@ -8,7 +8,6 @@ from yaml import load
 from db.utils import get_db
 
 
-
 class ConfigTasks:
     def init_tasks(self, manager):
         manager.add_command('config.load', Load())
@@ -270,7 +269,8 @@ class Split(Command):
             file.write(json.dumps({
                 'type': 'FeatureCollection',
                 'features': [
-                    f for f in features if f['geometry']['type'] == 'LineString'
+                    f for f in features
+                    if f['geometry']['type'] == 'LineString'
                 ],
             }))
 

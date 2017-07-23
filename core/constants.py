@@ -1,11 +1,10 @@
 class StepTypes:
     AUCTION = 'auction'
-    AUCTION_CHOOSE = 'auction_choose'
     AREAS = 'areas'
     CITIES_BUY = 'cities_buy'
     COLORS = 'colors'
     RESOURCES_BUY = 'resources_buy'
-    EXCLUDE_STATION = 'exclude_station'
+    STATION_REMOVE = 'station_remove'
 
 
 COLORS = [

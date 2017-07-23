@@ -51,6 +51,6 @@ def choose_color_transaction(pipe, game_id, user_id, color):
     users_count = pipe.scard(Game.user_ids.key(game_id))
     colors_count = pipe.scard(Game.reserved_colors.key(game_id))
     if colors_count == users_count:
-        Game.step.write(pipe, StepTypes.AUCTION_CHOOSE, game_id)
+        Game.step.write(pipe, StepTypes.AUCTION, game_id)
 
     pipe.execute()

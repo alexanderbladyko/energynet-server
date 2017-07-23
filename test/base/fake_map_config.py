@@ -83,13 +83,15 @@ FAKE_MAP_CONFIG = {
     'stations': [
         {'resources': ['oil'], 'cost': 3, 'capacity': 2, 'efficiency': 1},
         {'resources': ['coal'], 'cost': 4, 'capacity': 2, 'efficiency': 1},
-        {'resources': ['coal', 'oil'], 'cost': 5, 'capacity': 2, 'efficiency': 1},
+        {'resources': ['coal', 'oil'], 'cost': 5, 'capacity': 2,
+            'efficiency': 1},
         {'resources': ['oil'], 'cost': 7, 'capacity': 3, 'efficiency': 2},
         {'resources': ['coal'], 'cost': 8, 'capacity': 3, 'efficiency': 2},
         {'resources': ['oil'], 'cost': 9, 'capacity': 1, 'efficiency': 1},
         {'resources': ['coal'], 'cost': 10, 'capacity': 2, 'efficiency': 2},
         {'resources': ['uranium'], 'cost': 11, 'capacity': 1, 'efficiency': 2},
-        {'resources': ['coal', 'oil'], 'cost': 12, 'capacity': 2, 'efficiency': 2},
+        {'resources': ['coal', 'oil'], 'cost': 12, 'capacity': 2,
+            'efficiency': 2},
         {'resources': [], 'cost': 13, 'capacity': 0, 'efficiency': 1},
         {'resources': ['coal'], 'cost': 15, 'capacity': 2, 'efficiency': 3},
         {'resources': ['oil'], 'cost': 16, 'capacity': 2, 'efficiency': 3},
@@ -97,13 +99,31 @@ FAKE_MAP_CONFIG = {
         {'resources': [], 'cost': 18, 'capacity': 0, 'efficiency': 2},
         {'resources': ['waste'], 'cost': 19, 'capacity': 2, 'efficiency': 3},
         {'resources': ['coal'], 'cost': 20, 'capacity': 3, 'efficiency': 5},
-        {'resources': ['coal', 'oil'], 'cost': 21, 'capacity': 2, 'efficiency': 4},
+        {'resources': ['coal', 'oil'], 'cost': 21, 'capacity': 2,
+            'efficiency': 4},
         {'resources': [], 'cost': 22, 'capacity': 0, 'efficiency': 2},
     ],
+    'activeStationsCount': 3,
+    'visibleStationsCount': 6,
     'areasCount': [3, 3, 4, 5, 5],
     'refill': [
-        {'uranium': [0, 1, 1, 1, 2, 2], 'coal': [0, 2, 2, 3, 4, 5], 'oil': [0, 3, 3, 5, 5, 7], 'waste': [0, 2, 2, 3, 4, 4]},
-        {'uranium': [0, 1, 1, 1, 2, 2], 'coal': [0, 2, 3, 4, 5, 6], 'oil': [0, 4, 4, 6, 7, 9], 'waste': [0, 2, 2, 3, 3, 5]},
-        {'uranium': [0, 1, 1, 2, 2, 3], 'coal': [0, 4, 4, 5, 6, 7], 'oil': [0, 3, 3, 4, 5, 6], 'waste': [0, 3, 3, 4, 5, 6]}
+        {
+            'uranium': [0, 1, 1, 1, 2, 2],
+            'coal': [0, 2, 2, 3, 4, 5],
+            'oil': [0, 3, 3, 5, 5, 7],
+            'waste': [0, 2, 2, 3, 4, 4]
+        },
+        {
+            'uranium': [0, 1, 1, 1, 2, 2],
+            'coal': [0, 2, 3, 4, 5, 6],
+            'oil': [0, 4, 4, 6, 7, 9],
+            'waste': [0, 2, 2, 3, 3, 5]
+        },
+        {
+            'uranium': [0, 1, 1, 2, 2, 3],
+            'coal': [0, 4, 4, 5, 6, 7],
+            'oil': [0, 3, 3, 4, 5, 6],
+            'waste': [0, 3, 3, 4, 5, 6]
+        },
     ]
 }

@@ -20,9 +20,9 @@ def ws_connect():
 def ws_disconnect():
     pass
     # if current_user == AnonymousUserMixin:
-        # app.logger.error('Some anonymous is disconnected')
+    #     app.logger.error('Some anonymous is disconnected')
     # else:
-        # app.logger.error('User disconnected')
+    #     app.logger.error('User disconnected')
 
 
 def error_handler(e):

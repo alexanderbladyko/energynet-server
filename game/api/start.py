@@ -1,4 +1,5 @@
 from flask_socketio import emit
+from random import shuffle
 
 import config
 
@@ -58,6 +59,12 @@ def start_game_transaction(pipe, game_id, user_id):
     Game.resources.write(pipe, map_config.get('resourceInitials'), game_id)
     stations = get_start_stations(map_config)
     Game.stations.write(pipe, stations, game_id)
+
+    users_order = list(game.user_ids)
+    shuffle(users_order)
+    Game.order.write(pipe, users_order, game_id)
+
+    Game.turn.write(pipe, users_order[0], game_id)
 
     for player_id in game.user_ids:
         User.current_lobby_id.delete(pipe, player_id)
