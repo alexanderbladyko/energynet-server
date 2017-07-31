@@ -210,6 +210,8 @@ class AuctionBidTestCase(BaseTest):
         })
         self.assertEqual(game.turn, self.user_3.id)
         self.assertEqual(game.step, StepTypes.RESOURCES_BUY)
+        self.assertEqual(game.auction_user_ids, set())
+        self.assertEqual(game.auction_passed_user_ids, set())
 
         player = Player.get_by_id(redis, self.user_1.id)
         self.assertEqual(player.stations, {3.0})

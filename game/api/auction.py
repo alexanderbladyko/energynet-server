@@ -64,10 +64,11 @@ def auction_bid_transaction(pipe, user_id, bid, station):
     if bid < station:
         raise EnergynetException('Bid has to be bigger')
 
-    if game.user_ids - game.auction_off_user_ids == {user_id}:
+    if game.get_users_left_for_auction() == {user_id}:
         winner = Player.get_by_id(redis, user_id, [Player.stations])
 
         _add_station_to_winner(pipe, winner, game, station, map_config)
+        Game.auction_user_ids.delete(pipe, game.id)
     else:
         Game.auction.write(pipe, {
             'bid': bid,
@@ -75,9 +76,8 @@ def auction_bid_transaction(pipe, user_id, bid, station):
             'user_id': user_id,
         }, game_id)
 
-        folded_users = game.auction_off_user_ids
-        next_user_id = game.get_next_user_id(user_id, exclude_ids=folded_users)
-        Game.turn.write(pipe, next_user_id, game_id)
+        player = Player.get_by_id(redis, user_id, [])
+        _game_next_turn_user(pipe, game, player)
 
     pipe.execute()
 
@@ -133,10 +133,8 @@ def auction_pass_transaction(pipe, user_id):
             Game.auction_passed_user_ids.delete(pipe, game_id)
             Game.auction.delete(pipe, game_id)
         else:
-            next_user_id = game.get_next_user_id(
-                user_id, exclude_ids=game.auction_off_user_ids.union({user_id})
-            )
-            Game.turn.write(pipe, next_user_id, game_id)
+            player = Player.get_by_id(redis, user_id, [])
+            _game_next_turn_user(pipe, game, player)
             _mark_player_out_of_auction_round(pipe, game, player)
     else:
         if game.phase == 0:
@@ -146,10 +144,10 @@ def auction_pass_transaction(pipe, user_id):
 
             if game.get_users_left_for_auction() == {player.id}:
                 _move_to_next_stage(pipe, game)
+                Game.auction_user_ids.delete(pipe, game.id)
             else:
                 _game_next_turn_user(pipe, game, player)
-
-                _mark_player_out_of_auction_round(pipe, game, player)
+                pipe.sadd(Game.auction_user_ids.key(game.id), player.id)
 
     pipe.execute()
 
@@ -157,7 +155,6 @@ def auction_pass_transaction(pipe, user_id):
 
 
 def _move_to_next_stage(pipe, game):
-    Game.auction_user_ids.delete(pipe, game.id)
     Game.step.write(pipe, StepTypes.RESOURCES_BUY, game.id)
     Game.turn.write(pipe, game.order[-1], game.id)
 
@@ -196,7 +193,6 @@ def _add_station_to_winner(pipe, player, game, station, map_config):
             Game.step.write(pipe, StepTypes.RESOURCES_BUY, game.id)
             Game.turn.write(pipe, new_order[-1], game.id)
         else:
-            # pipe.sadd(Game.auction_user_ids.key(game.id), player.id)
             _game_station_bought_next_turn_user(pipe, game, player)
     pipe.lrem(Game.stations.key(game.id), 0, station)
     pipe.sadd(Player.stations.key(player.id), station)
@@ -209,20 +205,14 @@ def _game_station_bought_next_turn_user(pipe, game, player):
     if next_user_id:
         Game.turn.write(pipe, next_user_id, game.id)
     else:
-        Game.step.write(pipe, StepTypes.RESOURCES_BUY, game.id)
-        Game.turn.write(pipe, game.order[-1], game.id)
+        _move_to_next_stage(pipe, game)
 
 
 def _game_next_turn_user(pipe, game, player):
-    exclude_ids = game.auction_user_ids.union(game.auction_passed_user_ids)
-    next_user_id = game.get_next_user_id(player.id, exclude_ids=exclude_ids)
-    if next_user_id:
-        Game.turn.write(pipe, next_user_id, game.id)
-        pipe.sadd(Game.auction_user_ids.key(game.id), player.id)
-    else:
-        Game.auction_user_ids.delete(pipe, game.id)
-        Game.auction_passed_user_ids.delete(pipe, game.id)
-        Game.turn.write(pipe, next_user_id, game.id)
+    next_user_id = game.get_next_user_id(
+        player.id, exclude_ids=game.auction_off_user_ids
+    )
+    Game.turn.write(pipe, next_user_id, game.id)
 
 
 def _mark_player_out_of_auction_round(pipe, game, player):
