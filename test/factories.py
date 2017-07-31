@@ -9,9 +9,12 @@ class BaseFactory:
         instance.id = redis.incr(cls.model.index())
 
         for name, field in cls.model.get_all_fields():
-            value = kwargs.get(name) or getattr(cls, name, None)
+            if name in kwargs:
+                value = kwargs.get(name)
+            else:
+                value = getattr(cls, name, None)
             setattr(instance, name, value)
-            if value:
+            if value is not None:
                 field.write(redis, value, instance.id)
 
         redis.sadd(cls.model.key, instance.id)
@@ -42,7 +45,7 @@ class UserFactory(BaseFactory):
                 continue
             value = kwargs.get(name) or getattr(cls, name, None)
             setattr(instance, name, value)
-            if value:
+            if value is not None:
                 field.write(redis, value, instance.id)
 
         return instance

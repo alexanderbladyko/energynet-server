@@ -1,6 +1,7 @@
 __pycache__/
 htmlcov/
 .pyc
+.coverage
 
 etc/config_local.ini
 etc/config_tests.ini

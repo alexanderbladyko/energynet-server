@@ -395,5 +395,12 @@ class GenerateMapData(Command):
         result.update(steps_data)
         result.update(map_data)
 
+        exclude_fields = [
+            'visibleStationsCount', 'resourceInitials', 'activeStationsCount',
+            'auction', 'initialStationRules'
+        ]
+        for exclude_field in exclude_fields:
+            result.pop(exclude_field, None)
+
         with open(output, 'w+') as output_file:
             output_file.write(json.dumps(result, indent=4))

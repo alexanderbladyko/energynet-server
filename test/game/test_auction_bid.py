@@ -19,11 +19,15 @@ class AuctionBidTestCase(BaseTest):
         self.stations = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0]
 
         self.game = factories.GameFactory.create(
-            data={'name': 'game1', 'players_limit': 3}, turn=self.db_user_1.id,
-            owner_id=self.db_user_1.id, map=self.map, stations=self.stations,
+            data={'name': 'game1', 'players_limit': 3},
+            turn=self.db_user_1.id,
+            owner_id=self.db_user_1.id,
+            map=self.map,
+            stations=self.stations,
             user_ids={self.db_user_1.id, self.db_user_2.id, self.db_user_3.id},
             order=[self.db_user_1.id, self.db_user_2.id, self.db_user_3.id],
-            step=StepTypes.AUCTION, auction={},
+            step=StepTypes.AUCTION,
+            auction={},
         )
 
         self.user_1 = factories.UserFactory.ensure_from_db(
@@ -98,15 +102,13 @@ class AuctionBidTestCase(BaseTest):
 
         self.notify_mock.assert_called_with(self.game.id)
 
-        auctionData = Game.auction.read(redis, self.game.id)
-        self.assertEqual(auctionData, {
+        game = Game.get_by_id(redis, self.game.id)
+        self.assertEqual(game.auction, {
             'bid': 7,
             'station': 3.0,
             'user_id': self.user_1.id,
         })
-
-        next_user = Game.turn.read(redis, self.game.id)
-        self.assertEqual(next_user, self.user_2.id)
+        self.assertEqual(game.turn, self.user_2.id)
 
         data = received[0]['args'][0]
         self.assertEqual(data, {'success': True})
@@ -149,11 +151,11 @@ class AuctionBidTestCase(BaseTest):
         data = received[0]['args'][0]
         self.assertFalse(data['success'])
 
-    def test_bet_is_smaller(self):
+    def test_bid_is_smaller(self):
         Game.auction.write(redis, {
             'bid': 7,
             'station': 3.0,
-            'user_id': self.user_1.id,
+            'user_id': self.user_3.id,
         }, self.game.id)
 
         with self.user_logged_in(self.user_1.id):
@@ -168,7 +170,7 @@ class AuctionBidTestCase(BaseTest):
         self.assertEqual(auctionData, {
             'bid': 7,
             'station': 3.0,
-            'user_id': self.user_1.id,
+            'user_id': self.user_3.id,
         })
 
         data = received[0]['args'][0]
@@ -185,3 +187,97 @@ class AuctionBidTestCase(BaseTest):
 
         data = received[0]['args'][0]
         self.assertFalse(data['success'])
+
+    def test_bid_last_user_winner(self):
+        Game.auction_user_ids.write(
+            redis, [self.user_2.id, self.user_3.id], self.game.id
+        )
+        Game.phase.write(redis, 1, self.game.id)
+
+        with self.user_logged_in(self.db_user_1.id):
+            received = self._create_auction_bid({
+                'bid': 7,
+                'station': 3.0,
+            })
+
+        self.notify_mock.assert_called_with(self.game.id)
+
+        game = Game.get_by_id(redis, self.game.id)
+        self.assertEqual(game.auction, {
+            'bid': None,
+            'station': None,
+            'user_id': None,
+        })
+        self.assertEqual(game.turn, self.user_3.id)
+        self.assertEqual(game.step, StepTypes.RESOURCES_BUY)
+
+        player = Player.get_by_id(redis, self.user_1.id)
+        self.assertEqual(player.stations, {3.0})
+
+        data = received[0]['args'][0]
+        self.assertEqual(data, {'success': True})
+
+    def test_bid_last_user_winner_stations_limit(self):
+        Game.auction_user_ids.write(
+            redis, [self.user_2.id, self.user_3.id], self.game.id
+        )
+        Game.phase.write(redis, 1, self.game.id)
+        Player.stations.write(redis, {1, 2, 4}, self.user_1.id)
+
+        with self.user_logged_in(self.db_user_1.id):
+            received = self._create_auction_bid({
+                'bid': 7,
+                'station': 3.0,
+            })
+
+        self.notify_mock.assert_called_with(self.game.id)
+
+        game = Game.get_by_id(redis, self.game.id)
+        self.assertEqual(game.auction, {
+            'bid': None,
+            'station': None,
+            'user_id': None,
+        })
+        self.assertEqual(game.turn, self.user_1.id)
+        self.assertEqual(game.step, StepTypes.STATION_REMOVE)
+
+        player = Player.get_by_id(redis, self.user_1.id)
+        self.assertEqual(player.stations, {1.0, 2.0, 3.0, 4.0})
+
+        data = received[0]['args'][0]
+        self.assertEqual(data, {'success': True})
+
+    def test_bid_last_user_reorder(self):
+        Game.auction_user_ids.write(
+            redis, [self.user_2.id, self.user_3.id], self.game.id
+        )
+        Game.phase.write(redis, 0, self.game.id)
+        Player.stations.write(redis, {1}, self.user_1.id)
+        Player.stations.write(redis, {2}, self.user_2.id)
+        Player.stations.write(redis, {4}, self.user_3.id)
+
+        with self.user_logged_in(self.db_user_1.id):
+            received = self._create_auction_bid({
+                'bid': 7,
+                'station': 3.0,
+            })
+
+        self.notify_mock.assert_called_with(self.game.id)
+
+        game = Game.get_by_id(redis, self.game.id)
+        self.assertEqual(game.auction, {
+            'bid': None,
+            'station': None,
+            'user_id': None,
+        })
+        self.assertEqual(game.order, [
+            self.user_3.id, self.user_1.id, self.user_2.id,
+        ])
+        self.assertEqual(game.turn, self.user_2.id)
+        self.assertEqual(game.step, StepTypes.RESOURCES_BUY)
+
+        player = Player.get_by_id(redis, self.user_1.id)
+        self.assertEqual(player.stations, {1.0, 3.0})
+
+        data = received[0]['args'][0]
+        self.assertEqual(data, {'success': True})

@@ -8,6 +8,11 @@ FAKE_MAP_CONFIG = {
         {'name': 'area5', 'color': '#5e74b0'},
         {'name': 'area6', 'color': '#ec6c18'}
     ],
+    'auction': {
+        'removeOnFirstPass': False,
+        'removeOnAnyonePass': False,
+        'removeStationsLowNetworkSize': False,
+    },
     'resourceLimits': {
         'uranium': 12, 'coal': 24, 'oil': 24, 'waste': 24
     },

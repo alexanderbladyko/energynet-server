@@ -36,8 +36,8 @@ class AuctionPassTestCase(BaseTest):
             phase=1,
             auction_passed_user_ids=[],
             auction_user_ids=[],
+            passed_count=0,
         )
-
         self.user_1 = factories.UserFactory.ensure_from_db(
             self.db_user_1, current_game_id=self.game.id,
             current_lobby_id=self.game.id
@@ -56,7 +56,6 @@ class AuctionPassTestCase(BaseTest):
         self.map_config_patcher = patch('config.config', self.map_config_mock)
 
         self.notify_mock = self.notify_patcher.start()
-        self.map_config_mock = self.map_config_patcher.start()
 
         super().setUp()
 
@@ -76,7 +75,7 @@ class AuctionPassTestCase(BaseTest):
         redis.delete(Game.index())
         redis.delete(User.index())
 
-        for patcher in [self.notify_patcher, self.map_config_patcher]:
+        for patcher in [self.notify_patcher]:
             patcher.stop()
 
         super().tearDown()
@@ -94,22 +93,61 @@ class AuctionPassTestCase(BaseTest):
     def _check_game_is_not_changed(self):
         self.notify_mock.assert_not_called()
 
-        auctionData = Game.auction.read(redis, self.game.id)
-        self.assertEqual(auctionData, self.initial_auction)
+        game = Game.get_by_id(redis, self.game.id)
+        self.assertEqual(game.auction, self.initial_auction)
+        self.assertEqual(game.data, {'name': 'game1', 'players_limit': 3})
+        self.assertEqual(game.owner_id, self.db_user_1.id)
+        self.assertEqual(game.map, self.map)
+        self.assertEqual(game.stations, self.stations)
+        self.assertEqual(game.user_ids, {
+            self.db_user_1.id, self.db_user_2.id, self.db_user_3.id
+        })
+        self.assertEqual(game.order, [
+            self.db_user_1.id, self.db_user_2.id, self.db_user_3.id
+        ])
+        self.assertEqual(game.auction, self.initial_auction)
+        self.assertEqual(game.phase, 1)
+        self.assertEqual(game.auction_passed_user_ids, set())
+        self.assertEqual(game.auction_user_ids, set())
 
     def test_not_your_turn(self):
         Game.turn.write(redis, self.user_2.id, self.game.id)
-        with self.user_logged_in(self.user_1.id):
-            received = self._create_auction_pass()
+        with self.fake_map_config():
+            with self.user_logged_in(self.user_1.id):
+                received = self._create_auction_pass()
 
         self._check_game_is_not_changed()
 
         data = received[0]['args'][0]
         self.assertFalse(data['success'])
 
+    def test_incorrect_step(self):
+        Game.step.write(redis, StepTypes.STATION_REMOVE, self.game.id)
+        with self.fake_map_config():
+            with self.user_logged_in(self.user_1.id):
+                received = self._create_auction_pass()
+
+        self._check_game_is_not_changed()
+
+        data = received[0]['args'][0]
+        self.assertFalse(data['success'])
+
+    def test_cannot_pass_on_first_phase(self):
+        Game.phase.write(redis, 0, self.game.id)
+        Game.auction.delete(redis, self.game.id)
+        with self.fake_map_config():
+            with self.user_logged_in(self.user_1.id):
+                received = self._create_auction_pass()
+
+        self.notify_mock.assert_not_called()
+
+        data = received[0]['args'][0]
+        self.assertFalse(data['success'])
+
     def test_auction_pass_with_no_passed(self):
-        with self.user_logged_in(self.db_user_1.id):
-            received = self._create_auction_pass()
+        with self.fake_map_config():
+            with self.user_logged_in(self.db_user_1.id):
+                received = self._create_auction_pass()
 
         self.notify_mock.assert_called_with(self.game.id)
 
@@ -126,36 +164,18 @@ class AuctionPassTestCase(BaseTest):
         data = received[0]['args'][0]
         self.assertEqual(data, {'success': True})
 
-    def test_incorrect_step(self):
-        Game.step.write(redis, StepTypes.STATION_REMOVE, self.game.id)
-        with self.user_logged_in(self.user_1.id):
-            received = self._create_auction_pass()
-
-        self._check_game_is_not_changed()
-
-        data = received[0]['args'][0]
-        self.assertFalse(data['success'])
-
-    def test_cannot_pass_on_first_phase(self):
-        Game.phase.write(redis, 0, self.game.id)
+    def test_pass(self):
         Game.auction.delete(redis, self.game.id)
-        with self.user_logged_in(self.user_1.id):
-            received = self._create_auction_pass()
-
-        self.notify_mock.assert_not_called()
-
-        data = received[0]['args'][0]
-        self.assertFalse(data['success'])
-
-    def test_pass_station(self):
-        Game.auction.delete(redis, self.game.id)
-        with self.user_logged_in(self.user_1.id):
-            received = self._create_auction_pass()
+        with self.fake_map_config():
+            with self.user_logged_in(self.user_1.id):
+                received = self._create_auction_pass()
 
         self.notify_mock.assert_called_with(self.game.id)
 
         game = Game.get_by_id(redis, self.game.id)
         self.assertEqual(game.turn, self.user_2.id)
+        self.assertEqual(game.passed_count, 1)
+        self.assertEqual(game.auction_user_ids, {self.user_1.id})
 
         data = received[0]['args'][0]
         self.assertTrue(data['success'])
@@ -165,8 +185,9 @@ class AuctionPassTestCase(BaseTest):
             self.user_2.id
         }, self.game.id)
 
-        with self.user_logged_in(self.user_1.id):
-            received = self._create_auction_pass()
+        with self.fake_map_config():
+            with self.user_logged_in(self.user_1.id):
+                received = self._create_auction_pass()
 
         self.notify_mock.assert_called_with(self.game.id)
 
@@ -178,6 +199,7 @@ class AuctionPassTestCase(BaseTest):
         })
         self.assertEqual(game.step, StepTypes.AUCTION)
         self.assertEqual(game.turn, self.user_1.id)
+        self.assertEqual(game.stations, [s for s in self.stations if s != 5.0])
 
         user_stations = Player.stations.read(redis, self.user_3.id)
         self.assertEqual(user_stations, {5.0})
@@ -191,8 +213,9 @@ class AuctionPassTestCase(BaseTest):
         }, self.game.id)
         Player.stations.write(redis, [6, 7, 8], self.user_3.id)
 
-        with self.user_logged_in(self.user_1.id):
-            received = self._create_auction_pass()
+        with self.fake_map_config():
+            with self.user_logged_in(self.user_1.id):
+                received = self._create_auction_pass()
 
         self.notify_mock.assert_called_with(self.game.id)
 
@@ -224,8 +247,68 @@ class AuctionPassTestCase(BaseTest):
         }, self.game.id)
         Player.stations.write(redis, [9], self.user_1.id)
 
-        with self.user_logged_in(self.user_1.id):
-            received = self._create_auction_pass()
+        with self.fake_map_config():
+            with self.user_logged_in(self.user_1.id):
+                received = self._create_auction_pass()
+
+        self.notify_mock.assert_called_with(self.game.id)
+
+        game = Game.get_by_id(redis, self.game.id)
+
+        self.assertEqual(game.auction, {
+            'bid': None,
+            'station': None,
+            'user_id': None,
+        })
+        self.assertEqual(game.turn, self.user_3.id)
+        self.assertEqual(game.auction_user_ids, set())
+        self.assertEqual(game.auction_passed_user_ids, set())
+        self.assertEqual(game.step, StepTypes.RESOURCES_BUY)
+        self.assertEqual(game.stations, self.stations)
+        self.assertEqual(game.passed_count, 1)
+
+        data = received[0]['args'][0]
+        self.assertTrue(data['success'])
+
+    def test_station_removed_first_pass(self):
+        Game.auction.delete(redis, self.game.id)
+        map_config_change = {
+            'auction': {
+                'removeOnFirstPass': True,
+                'removeOnAnyonePass': False,
+                'removeStationsLowNetworkSize': False,
+            }
+        }
+        with self.fake_map_config(map_config_change):
+            with self.user_logged_in(self.user_1.id):
+                received = self._create_auction_pass()
+
+        self.notify_mock.assert_called_with(self.game.id)
+
+        game = Game.get_by_id(redis, self.game.id)
+
+        self.assertEqual(game.stations, self.stations[1:])
+
+        data = received[0]['args'][0]
+        self.assertTrue(data['success'])
+
+    def test_station_removed_anyone_passed(self):
+        Game.auction.delete(redis, self.game.id)
+        Game.auction_user_ids.write(redis, {
+            self.user_2.id, self.user_3.id
+        }, self.game.id)
+        Player.stations.write(redis, [9], self.user_1.id)
+
+        map_config_change = {
+            'auction': {
+                'removeOnFirstPass': False,
+                'removeOnAnyonePass': True,
+                'removeStationsLowNetworkSize': False,
+            }
+        }
+        with self.fake_map_config(map_config_change):
+            with self.user_logged_in(self.user_1.id):
+                received = self._create_auction_pass()
 
         self.notify_mock.assert_called_with(self.game.id)
 
@@ -239,7 +322,7 @@ class AuctionPassTestCase(BaseTest):
         self.assertEqual(game.turn, self.user_3.id)
         self.assertEqual(game.auction_passed_user_ids, set())
         self.assertEqual(game.step, StepTypes.RESOURCES_BUY)
-        self.assertEqual(game.stations, self.stations)
+        self.assertEqual(game.stations, self.stations[1:])
 
         data = received[0]['args'][0]
         self.assertTrue(data['success'])

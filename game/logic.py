@@ -66,18 +66,18 @@ def get_start_stations(map_config):
 
 def get_auction_data(game_id, map_config):
     active_count = map_config.get('activeStationsCount')
-    visible_count = map_config.get('visibleStationsCount')
 
-    stations = Game.stations.read(redis, game_id)
+    game = Game.get_by_id(redis, game_id, [Game.stations])
+    visible_stations = game.get_sorted_stations(map_config)
     data = []
-    for index in range(visible_count):
+    for index, station in enumerate(visible_stations):
         data.append({
-            'cost': stations[index],
+            'cost': station,
             'available': index < active_count,
         })
     return {
         'meta': {
-            'left': len(stations),
+            'left': len(game.stations),
         },
         'data': data
     }

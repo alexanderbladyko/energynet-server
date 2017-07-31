@@ -17,12 +17,12 @@ class Base:
 
 class Integer(Base):
     def cast_from_fn(v):
-        return int(v) if v else None
+        return int(v) if v is not None else None
 
 
 class Float(Base):
     def cast_from_fn(v):
-        return float(v) if v else None
+        return float(v) if v is not None else None
 
 
 class String(Base):

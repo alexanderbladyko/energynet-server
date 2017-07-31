@@ -15,6 +15,10 @@ secondPhaseCitiesCount: [
 endGameCitiesCount: [
     21, 17, 17, 15, 14
 ]
+auction:
+    removeOnFirstPass: true
+    removeOnAnyonePass: false
+    removeStationsLowNetworkSize: false
 resourceInitials:
     coal: 18
     oil: 24

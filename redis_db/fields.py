@@ -43,7 +43,8 @@ class SetField(BaseField):
         return set(self.type.cast_from(m) for m in pipe.smembers(self.key(id)))
 
     def write(self, pipe, value: set, id=None):
-        pipe.sadd(self.key(id), *value)
+        if len(value):
+            pipe.sadd(self.key(id), *value)
 
 
 class ListField(BaseField):
@@ -57,7 +58,8 @@ class ListField(BaseField):
         ]
 
     def write(self, pipe, value: list, id=None):
-        pipe.rpush(self.key(id), *value)
+        if len(value):
+            pipe.rpush(self.key(id), *value)
 
 
 class HashField(BaseField):
@@ -73,10 +75,12 @@ class HashField(BaseField):
         }
 
     def write(self, pipe, value: set, id=None):
-        pipe.hmset(self.key(id), {
+        data = {
             k: value.get(k)
             for k, f in self.fields.items() if value.get(k) is not None
-        })
+        }
+        if data:
+            pipe.hmset(self.key(id), data)
 
 
 class FieldNameResolverMetaClass(type):

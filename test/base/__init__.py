@@ -153,3 +153,14 @@ class BaseTest(TestCase):
     def user_logged_in(self, user_id):
         with patch('auth.helpers.get_current_user_id', return_value=user_id):
             yield
+
+    @contextmanager
+    def fake_map_config(self, replace_config_part=None):
+        if replace_config_part:
+            map_config = self.map_config.copy()
+            for key, value in replace_config_part.items():
+                map_config[self.map][key] = value
+        else:
+            map_config = self.map_config
+        with patch('config.config', MagicMock(maps=map_config)):
+            yield

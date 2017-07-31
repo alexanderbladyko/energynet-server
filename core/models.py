@@ -40,6 +40,10 @@ class Game(BaseModel):
     auction_passed_user_ids = SetField(Integer())
     passed_count = KeyField(Integer())
 
+    @property
+    def auction_off_user_ids(self):
+        return self.auction_user_ids.union(self.auction_passed_user_ids)
+
     def get_next_user_id(self, user_id, exclude_ids=None):
         index = self.order.index(user_id) + 1
         next_ids = self.order[index:] + self.order[:index]
@@ -60,9 +64,15 @@ class Game(BaseModel):
             self.auction_passed_user_ids
         )
 
-    @property
-    def auction_off_user_ids(self):
-        return self.auction_user_ids.union(self.auction_passed_user_ids)
+    def get_sorted_stations(self, map_config):
+        visible_count = map_config.get('visibleStationsCount')
+
+        return sorted(self.stations[i] for i in range(visible_count))
+
+    def get_order_data_by_users(self, redis):
+        return {
+            id: Player.get_order_data(redis, id) for id in self.user_ids
+        }
 
 
 class Lobby(BaseModel):
@@ -93,3 +103,9 @@ class Player(BaseModel):
         uranium=Integer(),
     )
     cities = SetField(String())
+
+    @classmethod
+    def get_order_data(cls, redis, player_id):
+        cities_count = redis.scard(cls.cities.key(player_id))
+        stations_count = min(cls.stations.read(redis, player_id))
+        return (cities_count, stations_count)
