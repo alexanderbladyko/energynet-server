@@ -135,7 +135,7 @@ def auction_pass_transaction(pipe, user_id):
         else:
             player = Player.get_by_id(redis, user_id, [])
             _game_next_turn_user(pipe, game, player)
-            _mark_player_out_of_auction_round(pipe, game, player)
+            pipe.sadd(Game.auction_passed_user_ids.key(game.id), player.id)
     else:
         if game.phase == 0:
             raise EnergynetException('You cannot pass')
@@ -213,7 +213,3 @@ def _game_next_turn_user(pipe, game, player):
         player.id, exclude_ids=game.auction_off_user_ids
     )
     Game.turn.write(pipe, next_user_id, game.id)
-
-
-def _mark_player_out_of_auction_round(pipe, game, player):
-    pipe.sadd(Game.auction_passed_user_ids.key(game.id), player.id)
