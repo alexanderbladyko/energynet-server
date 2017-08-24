@@ -1,3 +1,4 @@
+from core.constants import Resources
 from redis_db import (
     ListField, BaseModel, HashField, String, Integer, KeyField, SetField, Float
 )
@@ -74,6 +75,23 @@ class Game(BaseModel):
             id: Player.get_order_data(redis, id) for id in self.user_ids
         }
 
+    def get_resource_price(self, map_config, new_resources):
+        groups = map_config.get('resourceGroup')
+        limits = map_config.get('resourceLimits')
+        price = 0
+        for resource in Resources.ALL:
+            group = groups.get(resource)
+            limit = limits.get(resource)
+            exists = self.resources.get(resource)
+            desired = new_resources.get(resource)
+            if exists < desired:
+                return False, 0
+            for i in range(desired):
+                resource_position = limit - exists + i
+                next_price = int(resource_position / group) + 1
+                price += next_price
+        return True, price
+
 
 class Lobby(BaseModel):
     key = 'lobby'
@@ -103,6 +121,47 @@ class Player(BaseModel):
         uranium=Integer(),
     )
     cities = SetField(String())
+
+    def can_hold_new_resources(self, map_config, new_resources):
+        stations_config = map_config.get('stations')
+        user_stations = [
+            s for s in stations_config if s.get('cost') in self.stations
+        ]
+        # creating resources slots grouped by count of resources
+        slots_by_count = {}
+        for station in user_stations:
+            resources = station.get('resources')
+            count = len(resources)
+            if not slots_by_count.get(count):
+                slots_by_count[count] = []
+            slots_by_count[count].extend([
+                resources for _ in range(station.get('capacity') * 2)
+            ])
+
+        # sort every slots in group
+        for count in slots_by_count.keys():
+            slots_by_count[count] = sorted(slots_by_count[count])
+
+        # trying to spread resources
+        for resource in sorted(Resources.ALL):
+            player_resources = self.resources.get(resource, 0) or 0
+            total = (
+                player_resources + new_resources.get(resource)
+            )
+            for resource_count in range(len(Resources.ALL)):
+                i = 0
+                while i < len(slots_by_count.get(resource_count + 1, [])):
+                    slot = slots_by_count.get(resource_count + 1, [])[i]
+                    if resource in slot and total > 0:
+                        del slots_by_count[resource_count + 1][i]
+                        total -= 1
+                    else:
+                        i += 1
+
+            if total > 0:
+                return False, 'Not enough space for {}'.format(resource)
+
+        return True, ''
 
     @classmethod
     def get_order_data(cls, redis, player_id):

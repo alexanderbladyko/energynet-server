@@ -15,3 +15,12 @@ COLORS = [
     '#E4CD03',
     '#F90300',
 ]
+
+
+class Resources:
+    COAL = 'coal'
+    OIL = 'oil'
+    URANIUM = 'uranium'
+    WASTE = 'waste'
+
+    ALL = [COAL, OIL, URANIUM, WASTE]

@@ -1,4 +1,4 @@
-from core.models import User, Game, Lobby
+from core.models import User, Game, Lobby, Player
 from utils.redis import redis
 
 
@@ -58,6 +58,12 @@ class GameFactory(BaseFactory):
         'name': 'game',
         'players_limit': 5
     }
+
+
+class PlayerFactory(BaseFactory):
+    model = Player
+
+    cash = 50
 
 
 class LobbyFactory(BaseFactory):
