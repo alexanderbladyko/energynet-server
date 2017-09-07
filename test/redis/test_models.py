@@ -2,7 +2,8 @@ from test.base import BaseTest
 
 from utils.redis import redis
 from redis_db import (
-    KeyField, Integer, String, BaseModel, SetField, ListField, HashField,
+    KeyField, Integer, String, Float, BaseModel, SetField, ListField,
+    HashField, DictField,
 )
 
 
@@ -18,6 +19,7 @@ class TestClass(BaseModel):
         int_key=Integer(),
         str_key=String(),
     )
+    float_str_dict = DictField(Float(), String())
 
 
 class GetByIdTestCase(BaseTest):
@@ -34,6 +36,10 @@ class GetByIdTestCase(BaseTest):
             'int_key': 13,
             'invalid_key': 'some_val',
         })
+        redis.hmset('testing:1:float_str_dict', {
+            1.3: 'one.three',
+            9.6: 'nine.six',
+        })
         super(GetByIdTestCase, self).setUp()
 
     def tearDown(self):
@@ -46,6 +52,7 @@ class GetByIdTestCase(BaseTest):
         redis.delete('testing:1:str_list')
         redis.delete('testing:2:str_list')
         redis.delete('testing:1:hash_key')
+        redis.delete('testing:1:float_str_dict')
         super(GetByIdTestCase, self).tearDown()
 
     def test_all_fields(self):
@@ -60,6 +67,10 @@ class GetByIdTestCase(BaseTest):
             'int_key': 13,
             'str_key': None,
         })
+        self.assertEqual(test_obj.float_str_dict, {
+            1.3: 'one.three',
+            9.6: 'nine.six',
+        })
 
     def test_some_fields(self):
         test_obj = TestClass.get_by_id(redis, 2, [
@@ -70,3 +81,4 @@ class GetByIdTestCase(BaseTest):
         self.assertEqual(test_obj.str_list, ['t', 'u', 'l'])
         self.assertEqual(test_obj.int_list, [])
         self.assertEqual(test_obj.hash_key, None)
+        self.assertEqual(test_obj.float_str_dict, None)

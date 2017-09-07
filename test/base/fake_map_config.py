@@ -1,4 +1,12 @@
 FAKE_MAP_CONFIG = {
+    'colors': [
+        '#bc3029',
+        '#d8dd37',
+        '#48d635',
+        '#2c97c1',
+        '#393a3a',
+        '#c66ad8'
+    ],
     'startCash': 33,
     'areas': [
         {'name': 'area1', 'color': '#70d06f'},

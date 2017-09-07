@@ -2,7 +2,8 @@ from test.base import BaseTest
 
 from utils.redis import redis
 from redis_db import (
-    KeyField, Integer, String, BaseModel, SetField, ListField, HashField
+    KeyField, Integer, String, BaseModel, SetField, ListField, HashField,
+    DictField,
 )
 
 
@@ -19,6 +20,7 @@ class TestClass(BaseModel):
         str_key=String(),
         none_key=String(),
     )
+    str_int_dict = DictField(String(), Integer())
 
 
 class RedisKeyFieldTestCase(BaseTest):
@@ -36,6 +38,11 @@ class RedisKeyFieldTestCase(BaseTest):
             'none_key': None,
             'invalid_key': 'some_val',
         }, id=1)
+        TestClass.str_int_dict.write(redis, {
+            'a': 1,
+            'b': 3,
+            'c': 2,
+        }, id=1)
         super(RedisKeyFieldTestCase, self).setUp()
 
     def tearDown(self):
@@ -47,6 +54,7 @@ class RedisKeyFieldTestCase(BaseTest):
         TestClass.int_list.delete(redis, id=1)
         TestClass.str_list.delete(redis, id=2)
         TestClass.hash_key.delete(redis, id=1)
+        TestClass.str_int_dict.delete(redis, id=1)
         super(RedisKeyFieldTestCase, self).tearDown()
 
     def test_keys(self):
@@ -72,4 +80,9 @@ class RedisKeyFieldTestCase(BaseTest):
             'int_key': 13,
             'str_key': 'str_test',
             'none_key': None,
+        })
+        self.assertEqual(TestClass.str_int_dict.read(redis, 1), {
+            'a': 1,
+            'b': 3,
+            'c': 2,
         })

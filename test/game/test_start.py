@@ -114,7 +114,7 @@ class StartGameTestCase(BaseTest):
         self.assertEqual(data['data'], [
             {
                 'color': None,
-                'cities': [],
+                'cities': {},
                 'cash': 33,
                 'data': {
                     'name': 'user_1',
@@ -131,7 +131,7 @@ class StartGameTestCase(BaseTest):
             },
             {
                 'color': None,
-                'cities': [],
+                'cities': {},
                 'cash': 33,
                 'data': {
                     'name': 'user_2',
@@ -147,7 +147,7 @@ class StartGameTestCase(BaseTest):
                 'stations': []
             }, {
                 'color': None,
-                'cities': [],
+                'cities': {},
                 'cash': 33,
                 'data': {
                     'name': 'user_3',

@@ -27,7 +27,7 @@ class BaseField:
 
 class KeyField(BaseField):
     def __init__(self, type, *args, **kwargs):
-        super(KeyField, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.type = type
 
     def read(self, pipe, id=None):
@@ -36,7 +36,7 @@ class KeyField(BaseField):
 
 class SetField(BaseField):
     def __init__(self, type, *args, **kwargs):
-        super(SetField, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.type = type
 
     def read(self, pipe, id=None):
@@ -64,7 +64,7 @@ class ListField(BaseField):
 
 class HashField(BaseField):
     def __init__(self, *args, **kwargs):
-        super(HashField, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.fields = kwargs
 
     def read(self, pipe, id=None):
@@ -81,6 +81,24 @@ class HashField(BaseField):
         }
         if data:
             pipe.hmset(self.key(id), data)
+
+
+class DictField(BaseField):
+    def __init__(self, key_type, value_type, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.key_type = key_type
+        self.value_type = value_type
+
+    def read(self, pipe, id=None):
+        data = pipe.hgetall(self.key(id))
+        return {
+            self.key_type.cast_from(k): self.value_type.cast_from(v)
+            for k, v in data.items()
+        }
+
+    def write(self, pipe, value: set, id=None):
+        if value:
+            pipe.hmset(self.key(id), value)
 
 
 class FieldNameResolverMetaClass(type):
@@ -153,7 +171,7 @@ class BaseModel(metaclass=FieldNameResolverMetaClass):
             key_name = field.mapping_name or name
             if isinstance(value, set):
                 value = list(value)
-            if isinstance(value, dict):
+            if isinstance(value, dict) and isinstance(field, HashField):
                 obj[key_name] = {}
                 for name, sub_field in field.fields.items():
                     sub_key_name = sub_field.mapping_name or name

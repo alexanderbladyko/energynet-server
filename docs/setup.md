@@ -88,8 +88,3 @@ server {
 ```
 ENERGYNET_CONFIG=etc/config_local.ini FLASK_APP=app.py python manage.py sync_db
 ```
-
-> To run tests use
-```
-python -m unittest discover
-```

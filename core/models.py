@@ -1,6 +1,7 @@
 from core.constants import Resources
 from redis_db import (
-    ListField, BaseModel, HashField, String, Integer, KeyField, SetField, Float
+    ListField, BaseModel, HashField, String, Integer, KeyField, SetField,
+    Float, DictField,
 )
 
 
@@ -120,7 +121,7 @@ class Player(BaseModel):
         waste=Integer(),
         uranium=Integer(),
     )
-    cities = SetField(String())
+    cities = DictField(String(), Integer())
 
     def can_hold_new_resources(self, map_config, new_resources):
         stations_config = map_config.get('stations')

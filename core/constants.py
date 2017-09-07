@@ -5,6 +5,7 @@ class StepTypes:
     COLORS = 'colors'
     RESOURCES_BUY = 'resources_buy'
     STATION_REMOVE = 'station_remove'
+    FINANCE_RECEIVE = 'finance_receive'
 
 
 COLORS = [
