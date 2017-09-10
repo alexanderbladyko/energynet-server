@@ -1,7 +1,6 @@
 import config
 from auth.helpers import authenticated_only
 from base.exceptions import EnergynetException
-from base.decorators import game_response
 from core.constants import StepTypes
 from core.models import User, Game, Player
 from game.logic import notify_game_players
@@ -9,7 +8,6 @@ from utils.redis import redis, redis_retry_transaction
 
 
 @authenticated_only
-@game_response(topic='color_choose')
 def choose_color(user_id, data):
     color = data.get('color')
 

@@ -3,7 +3,6 @@ from flask_socketio import emit
 import config
 
 from auth.helpers import authenticated_only
-from base.decorators import game_response
 from base.exceptions import EnergynetException
 from core.constants import StepTypes
 from core.models import Game, User, Player
@@ -21,7 +20,6 @@ def get_resources(user_id, data):
 
 
 @authenticated_only
-@game_response('resource_buy')
 def resource_buy(user_id, data):
     pipe = redis.pipeline()
     resource_buy_transaction(pipe, user_id, data)

@@ -3,7 +3,6 @@ from flask_socketio import emit
 import config
 
 from auth.helpers import authenticated_only
-from base.decorators import game_response
 from base.exceptions import EnergynetException
 from core.constants import StepTypes
 from core.models import Game, User, Player
@@ -25,7 +24,6 @@ def get_auction(user_id, data):
 
 
 @authenticated_only
-@game_response('auction_bid')
 def auction_bid(user_id, data):
     bid = data.get('bid')
     station = data.get('station')
@@ -88,7 +86,6 @@ def auction_bid_transaction(pipe, user_id, bid, station):
 
 
 @authenticated_only
-@game_response('auction_pass')
 def auction_pass(user_id, data):
     pipe = redis.pipeline()
     auction_pass_transaction(pipe, user_id)

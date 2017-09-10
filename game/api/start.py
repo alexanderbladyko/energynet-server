@@ -4,7 +4,6 @@ from random import shuffle
 import config
 
 from auth.helpers import authenticated_only
-from base.decorators import game_response
 from base.exceptions import EnergynetException
 from core.constants import StepTypes
 from core.logic import game_room_key
@@ -14,9 +13,7 @@ from utils.redis import redis_retry_transaction, redis
 
 
 @authenticated_only
-@game_response(topic='game_start')
 def start_game(user_id, data):
-    # app.logger.info('Starting game')
     user = User.get_by_id(redis, user_id, [User.current_lobby_id])
 
     game_id = user.current_lobby_id

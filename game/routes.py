@@ -1,4 +1,4 @@
-from utils.server import socketio
+from utils.server import register_url
 from game.api.auction import get_auction, auction_bid, auction_pass
 from game.api.info import game_info
 from game.api.resources import get_resources, resource_buy
@@ -10,20 +10,20 @@ from game.api.cities import cities_buy
 
 class GameRoutes(object):
     def init_routes(self):
-        socketio.on_event('game_start', start_game)
+        register_url('game_start', start_game, handle_response=True)
 
-        socketio.on_event('game', game_info)
+        register_url('game', game_info)
 
-        socketio.on_event('resources', get_resources)
-        socketio.on_event('auction', get_auction)
+        register_url('resources', get_resources)
+        register_url('auction', get_auction)
 
-        socketio.on_event('color_choose', choose_color)
+        register_url('color_choose', choose_color, handle_response=True)
 
-        socketio.on_event('auction_bid', auction_bid)
-        socketio.on_event('auction_pass', auction_pass)
+        register_url('auction_bid', auction_bid, handle_response=True)
+        register_url('auction_pass', auction_pass, handle_response=True)
 
-        socketio.on_event('resource_buy', resource_buy)
+        register_url('resource_buy', resource_buy, handle_response=True)
 
-        socketio.on_event('station_remove', station_remove)
+        register_url('station_remove', station_remove, handle_response=True)
 
-        socketio.on_event('cities_buy', cities_buy)
+        register_url('cities_buy', cities_buy, handle_response=True)

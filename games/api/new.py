@@ -1,7 +1,6 @@
 from flask_socketio import emit
 
 from auth.helpers import authenticated_only
-from base.decorators import game_response
 from base.exceptions import EnergynetException
 from core.models import User, Game, Lobby
 from core.logic import join_game
@@ -12,7 +11,6 @@ from utils.redis import (
 
 
 @authenticated_only
-@game_response(topic='games_new')
 def create_new(user_id, data):
     name = data['name']
     players_limit = data['playersLimit']

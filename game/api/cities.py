@@ -1,7 +1,6 @@
 import config
 
 from auth.helpers import authenticated_only
-from base.decorators import game_response
 from base.exceptions import EnergynetException
 from core.constants import StepTypes
 from core.models import Game, User, Player
@@ -11,7 +10,6 @@ from utils.redis import redis, redis_retry_transaction
 
 
 @authenticated_only
-@game_response('cities_buy')
 def cities_buy(user_id, data):
     cities = data.get('cities')
 

@@ -1,5 +1,5 @@
-from utils.server import blueprint, socketio
 
+from utils.server import blueprint, socketio, register_url
 from core.api.config import get_config
 from core.api.socket import (
     ws_connect
@@ -16,4 +16,4 @@ class CoreRoutes(object):
         blueprint.route('/game_api/map/<string:map_name>/map_data')(map_data)
 
         socketio.on('connect')(ws_connect)
-        socketio.on_event('state', get_state)
+        register_url('state', get_state)
