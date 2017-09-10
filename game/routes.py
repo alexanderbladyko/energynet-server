@@ -5,6 +5,7 @@ from game.api.resources import get_resources, resource_buy
 from game.api.start import start_game
 from game.api.color import choose_color
 from game.api.station_remove import station_remove
+from game.api.cities import cities_buy
 
 
 class GameRoutes(object):
@@ -24,3 +25,5 @@ class GameRoutes(object):
         socketio.on_event('resource_buy', resource_buy)
 
         socketio.on_event('station_remove', station_remove)
+
+        socketio.on_event('cities_buy', cities_buy)

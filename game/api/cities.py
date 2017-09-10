@@ -33,7 +33,7 @@ def cities_buy_transaction(pipe, user_id, cities):
 
     player = Player.get_by_id(redis, user_id, [Player.cities, Player.cash])
 
-    if set(player.cities.key()).intersection(set(cities)):
+    if set(player.cities.keys()).intersection(set(cities)):
         raise EnergynetException('Cities already owned by user')
 
     game = Game.get_by_id(redis, game_id, [
@@ -47,8 +47,8 @@ def cities_buy_transaction(pipe, user_id, cities):
 
     map_config = config.config.maps.get(game.map)
     city_by_name = {
-        city['name']: city for city in map_config['cities']
-        if city['name'] in cities
+            city['name']: city for city in map_config['cities']
+            if city['name'] in cities
     }
     if [city for city in city_by_name.values()
             if city['area'] not in game.areas]:
@@ -71,12 +71,12 @@ def cities_buy_transaction(pipe, user_id, cities):
 
     paths = get_closest_paths(map_config, player.cities.keys(), cities)
 
-    price = sum(paths.values() + request_cities.values())
+    price = sum(list(paths.values()) + list(request_cities.values()))
     if player.cash < price:
         raise EnergynetException('Not enough cash to buy cities')
 
-    Player.write(pipe, player.cash - price, user_id)
-    pipe.hmset(Player.cities.key(id), request_cities)
+    Player.cash.write(pipe, player.cash - price, user_id)
+    pipe.hmset(Player.cities.key(user_id), request_cities)
 
     next_step = False
     index = game.order.index(user_id)
