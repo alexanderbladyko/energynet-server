@@ -47,7 +47,7 @@ class StationRemoveTestCase(BaseTest):
         self.user_ids = [self.user_1.id, self.user_2.id, self.user_3.id]
 
         self.notify_patcher = patch(
-            'game.api.station_remove.notify_game_players'
+            'game.api.stations.notify_game_players'
         )
         self.map_config_patcher = patch('config.config', self.map_config_mock)
 

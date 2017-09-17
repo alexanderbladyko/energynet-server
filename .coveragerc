@@ -1,0 +1,10 @@
+# .coveragerc to control coverage.py
+[run]
+branch = True
+omit =
+    config/tasks.py
+    test/base/__init__.py
+    base/decorators.py
+
+[html]
+directory = htmlcov

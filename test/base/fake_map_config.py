@@ -34,6 +34,12 @@ FAKE_MAP_CONFIG = {
         {'cost': 10, 'place': 0, 'delta': 3},
         {'cost': 11, 'place': 0, 'delta': 4},
         {'cost': 13, 'place': 0},
+        {'cost': 3, 'place': 0},
+        {'cost': 4, 'place': 1},
+        {'cost': 5, 'place': 2},
+        {'cost': 7, 'place': 3},
+        {'cost': 8, 'place': 4},
+        {'cost': 9, 'place': 5},
         {'cost': -1, 'place': -1},
     ],
     'payment': [

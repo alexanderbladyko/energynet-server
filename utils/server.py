@@ -21,4 +21,7 @@ def create_app():
 
 
 def register_url(url, handler, handle_response=False):
-    socketio.on_event(url, game_response(url)(handler))
+    if handle_response:
+        socketio.on_event(url, game_response(url)(handler))
+    else:
+        socketio.on_event(url, handler)

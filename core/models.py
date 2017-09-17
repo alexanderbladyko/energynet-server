@@ -123,11 +123,12 @@ class Player(BaseModel):
     )
     cities = DictField(String(), Integer())
 
-    def can_hold_new_resources(self, map_config, new_resources):
+    def get_user_stations(self, map_config):
         stations_config = map_config.get('stations')
-        user_stations = [
-            s for s in stations_config if s.get('cost') in self.stations
-        ]
+        return [s for s in stations_config if s.get('cost') in self.stations]
+
+    def can_hold_new_resources(self, map_config, new_resources):
+        user_stations = self.get_user_stations(map_config)
         # creating resources slots grouped by count of resources
         slots_by_count = {}
         for station in user_stations:

@@ -4,8 +4,9 @@ from game.api.info import game_info
 from game.api.resources import get_resources, resource_buy
 from game.api.start import start_game
 from game.api.color import choose_color
-from game.api.station_remove import station_remove
+from game.api.stations import station_remove
 from game.api.cities import cities_buy
+from game.api.finance import finance_receive
 
 
 class GameRoutes(object):
@@ -27,3 +28,5 @@ class GameRoutes(object):
         register_url('station_remove', station_remove, handle_response=True)
 
         register_url('cities_buy', cities_buy, handle_response=True)
+
+        register_url('finance_receive', finance_receive, handle_response=True)

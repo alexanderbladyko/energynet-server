@@ -43,6 +43,9 @@ def station_remove_transaction(pipe, user_id, station):
         raise EnergynetException('Its not STATION_REMOVE')
 
     pipe.srem(Player.stations.key(user_id), station)
+
+    # TODO. remove resources which could not be supported by stations
+
     if game.get_users_left_for_auction() == {user_id}:
         Game.step.write(pipe, StepTypes.RESOURCES_BUY, game.id)
         Game.turn.write(pipe, game.order[-1], game.id)
