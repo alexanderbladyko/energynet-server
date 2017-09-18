@@ -1,0 +1,9 @@
+---
+- name: Run redis
+  docker_container:
+    name: energynet_redis
+    image: "redis:{{ redis_version }}"
+    state: started
+    pull: yes
+    restart: yes
+    network_mode: "{{ energynet_network_name }}"

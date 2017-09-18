@@ -1,0 +1,8 @@
+---
+- name: Install dependencies (Ubuntu)
+  apt:
+    name: "{{ item }}"
+    state: present
+  become: true
+  with_items: "{{ python_dependencies }}"
+  when: ansible_distribution == "Ubuntu"

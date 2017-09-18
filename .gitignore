@@ -3,6 +3,7 @@ htmlcov/
 .pyc
 .coverage
 
+ansible/playbook.retry
 etc/config_local.ini
 etc/config_tests.ini
 energynet.log
