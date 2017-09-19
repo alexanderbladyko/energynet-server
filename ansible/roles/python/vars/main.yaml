@@ -1,7 +1,0 @@
----
-python_version: 3.5.1
-pyenv_path: "{{ ansible_env.HOME }}/.pyenv"
-pyenv_executable: "{{ pyenv_path }}/bin/pyenv"
-
-virtualenv_name: wgrms
-virtualenv: "{{ pyenv_path }}/versions/{{ virtualenv_name }}"

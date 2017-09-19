@@ -1,6 +1,6 @@
 __pycache__/
 htmlcov/
-.pyc
+.env_cache
 .coverage
 
 ansible/playbook.retry

@@ -1,9 +1,0 @@
----
-- name: Install pyenv
-  shell: curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
-  args:
-    creates: "{{ pyenv_path }}"
-
-- name: Update pyenv
-  shell: "{{ pyenv_executable }} update"
-

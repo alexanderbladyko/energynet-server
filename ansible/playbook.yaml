@@ -9,4 +9,4 @@
       become: true
     - role: redis
     - role: postgres
-    - role: python
+    - role: app

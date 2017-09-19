@@ -1,9 +1,0 @@
----
-
-- name: Include vars for Ubuntu
-  include_vars: Ubuntu.yaml
-  when: ansible_distribution == "Ubuntu"
-
-- include: dependencies.yaml
-- include: pyenv.yaml
-- include: python.yaml

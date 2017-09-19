@@ -1,4 +1,5 @@
 ---
+
 - name: Run redis
   docker_container:
     name: energynet_redis

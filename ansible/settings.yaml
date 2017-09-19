@@ -8,16 +8,21 @@ postgres_container_ip: "192.168.102.3"
 ansible_root: "{{ inventory_dir }}/"
 project_root: "{{ ansible_root }}../"
 env_cache_dir: "{{ project_root }}.env_cache/"
-config_local_path: "{{ project_root }}etc/config.local.ini"
 energynet_subnet: "192.168.102.0/24"
 energynet_network_name: "energynet_network"
+
+# Dev
+dev_config_local_path: "{{ project_root }}etc/config_local.ini"
+
+# Tests
+test_config_local_path: "{{ project_root }}etc/config_tests.ini"
 
 # postgresql
 postgres_version: 9.6.5
 
 databases:
-    energynet_dev: { name: "energynet_dev", user_name: "postgres", password: "postgres"}
-    energynet_tests: { name: "energynet_tests", user_name: "postgres", password: "postgres"}
+    energynet_dev: { name: "energynet_dev" }
+    energynet_tests: { name: "energynet_tests" }
 
 # Redis
 redis_version: 3.2

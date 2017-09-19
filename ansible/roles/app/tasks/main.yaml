@@ -1,0 +1,5 @@
+---
+- name: Generate config
+  template:
+    src: config.ini.j2
+    dest: "{{ dev_config_local_path }}"

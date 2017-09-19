@@ -1,6 +1,0 @@
----
-python_dependencies:
-  - make
-  - curl
-
-python_installation_flags: CPPFLAGS=-I/usr/include/openssl CFLAGS=-I/usr/include/openssl LDFLAGS=-L/usr/lib/x86_64-linux-gnu
