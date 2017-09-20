@@ -1,8 +1,15 @@
+.PHONY: requirements
+requirements:
+	pip install -r etc/requirements.txt
 
-.PHONY: up_dev_env
+.PHONY: requirements
+dev_requirements:
+	pip install -r etc/requirements.dev.txt
+
+.PHONY: dev_up
 dev_up:
-	ansible-playbook --ask-become-pass -i ansible/hosts ansible/playbook.yaml
+	ansible-playbook -i ansible/hosts ansible/playbook.yaml
 
-.PHONY: up_dev_env
+.PHONY: dev_down
 dev_down:
 	docker stop energynet_redis && docker stop energynet_postgres

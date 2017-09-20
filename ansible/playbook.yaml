@@ -5,8 +5,6 @@
 
 - hosts: localhost
   roles:
-    - role: docker
-      become: true
     - role: redis
     - role: postgres
     - role: app

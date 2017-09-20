@@ -2,7 +2,7 @@
 set -e
 
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
-    {% for key, db in databases.items() %}
-    CREATE DATABASE {{ db.name }};
+    {% for config in configs.values() %}
+    CREATE DATABASE {{ config.db }};
     {% endfor %}
 EOSQL

@@ -1,7 +1,7 @@
 [redis]
 host={{redis_container_ip}}
 port=6379
-db=0
+db={{configs[config_type].redis_db}}
 
 [app]
 debug=true
@@ -16,7 +16,7 @@ game_api=/game_api
 auth_api=/auth
 
 [logger]
-file=energynet.log
+file={{configs[config_type].log_file}}
 level=debug
 
 [db]

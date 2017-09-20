@@ -4,7 +4,6 @@ htmlcov/
 .coverage
 
 ansible/playbook.retry
-etc/config_local.ini
-etc/config_tests.ini
-energynet.log
-energynet_tests.log
+config_local.ini
+config_tests.ini
+logs/
