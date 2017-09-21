@@ -1,9 +1,9 @@
 __pycache__/
 htmlcov/
-.pyc
+.env_cache
 .coverage
 
-etc/config_local.ini
-etc/config_tests.ini
-energynet.log
-energynet_tests.log
+ansible/playbook.retry
+config_local.ini
+config_tests.ini
+logs/

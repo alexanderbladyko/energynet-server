@@ -1,0 +1,24 @@
+[redis]
+host={{redis_container_ip}}
+port=6379
+db={{configs[config_type].redis_db}}
+
+[app]
+debug=true
+
+[socketio]
+port=5000
+secret='energynet is the best game ever'
+expire_token=86400
+
+[urls]
+game_api=/game_api
+auth_api=/auth
+
+[logger]
+file={{configs[config_type].log_file}}
+level=debug
+
+[db]
+url=postgresql://postgres:postgres@{{ postgres_container_ip }}/{{ configs[config_type].db }}
+migrations=db/migrations

@@ -14,7 +14,6 @@ def _init_redis(db):
     return StrictRedis(host=host, port=port, db=db)
 
 redis = _init_redis(config.get('redis', 'db'))
-sessions_redis = _init_redis(config.get('redis', 'session_db'))
 
 
 class redis_session(ContextDecorator):

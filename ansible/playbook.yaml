@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  tasks:
+    - include_vars: settings.yaml
+
+- hosts: localhost
+  roles:
+    - role: redis
+    - role: postgres
+    - role: app

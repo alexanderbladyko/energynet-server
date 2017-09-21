@@ -1,0 +1,25 @@
+---
+- name: Create data directory
+  file:
+    path: "{{ env_cache_dir }}postgres/data"
+    state: directory
+
+- name: Initial script
+  template:
+    src: init_db.sql.j2
+    dest: "{{ env_cache_dir }}postgres/init_db.sql"
+
+- name: Install and run Postgres
+  docker_container:
+    name: energynet_postgres
+    image: "postgres:{{ postgres_version }}"
+    env:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+    volumes:
+      - "{{ env_cache_dir }}postgres/init_db.sql:/docker-entrypoint-initdb.d/init-user-db.sh"
+      - "{{ env_cache_dir }}postgres/data:/var/lib/postgres"
+    state: started
+    restart: yes
+    pull: yes
+    network_mode: "{{ energynet_network_name }}"
