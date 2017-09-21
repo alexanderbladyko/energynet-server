@@ -8,14 +8,17 @@
 [Generate field](docs/generate_field.md)
 
 #### How to run server:
-```ENERGYNET_CONFIG=etc/config_local.ini FLASK_APP=app.py flask run```
+```FLASK_APP=app.py flask run```
 
 #### How to run tests:
-```ENERGYNET_CONFIG=etc/config_tests.ini nose2```
+before running
+```TEST=true FLASK_APP=manage.py python manage.py sync_db```
+run tests
+```make test```
 
 #### How to run tests with coverage:
-```ENERGYNET_CONFIG=etc/config_tests.ini nose2  --with-coverage --coverage-report html```  
+```make test_coverage```  
 and look at `/htmlcov/index.html`
 
 #### How to get list of commands:
-```ENERGYNET_CONFIG=etc/config_local.ini FLASK_APP=manage.py python manage.py -?```
+```FLASK_APP=manage.py python manage.py -?```

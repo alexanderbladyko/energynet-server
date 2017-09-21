@@ -20,5 +20,5 @@ file={{configs[config_type].log_file}}
 level=debug
 
 [db]
-url=postgresql://postgres:postgres@{{postgres_container_ip}}/energynet_dev
+url=postgresql://postgres:postgres@{{ postgres_container_ip }}/{{ configs[config_type].db }}
 migrations=db/migrations

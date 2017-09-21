@@ -1,15 +1,27 @@
-> configure python 3 virtual environment  
+# Setup dev environment
 
-> Install requirements
-
+* configure python 3.6 virtual environment
 ```
-pip install -r etc/requirements.txt
+which python3.6
+mkvirtualenv nrg --python=<path to python3.6>
 ```
 
-> copy config.ini into config_local.ini
-> making [app] debug=True is highely recommended  
+* Install requirements
+```
+make requirements
+```
 
-> Add nginx config in /etc/nginx/sites-enabled/default
+* Install dev requirements
+```
+make dev_requirements
+```
+
+* Setup dev environment
+```
+make environment_up
+```
+
+* Add nginx config in /etc/nginx/sites-enabled/default
 
 ```
 server {
@@ -77,14 +89,12 @@ server {
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "Upgrade";
-
   }
 
 }
-
 ```
 
-> To run migrations
+* To run migrations
 ```
-ENERGYNET_CONFIG=etc/config_local.ini FLASK_APP=app.py python manage.py sync_db
+FLASK_APP=app.py python manage.py sync_db
 ```
