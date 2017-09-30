@@ -13,6 +13,11 @@ def login():
             User.Fields.PASSWORD,
             User.Fields.SALT,
         ])
+        if not user:
+            return jsonify({
+                'isAuthenticated': False,
+                'reason': 'No such user',
+            }), 409
         password = data['password']
         result_password = get_password(password, user.salt)
 

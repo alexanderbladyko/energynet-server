@@ -8,7 +8,7 @@ dev_requirements:
 
 .PHONY: environment_up
 environment_up:
-	ansible-playbook -i ansible/hosts ansible/playbook.yaml
+	ansible-playbook -i ansible/hosts ansible/playbook.yaml --ask-sudo-pass
 
 .PHONY: environment_down
 environment_down:

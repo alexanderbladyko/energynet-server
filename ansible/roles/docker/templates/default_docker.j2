@@ -1,0 +1,3 @@
+{% if docker_opts is defined %}		
+DOCKER_OPTS="{{ docker_opts | join(' ')}}"
+{% endif %}

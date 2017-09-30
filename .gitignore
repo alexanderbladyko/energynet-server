@@ -6,4 +6,4 @@ htmlcov/
 ansible/playbook.retry
 config_local.ini
 config_tests.ini
-logs/
+*.log

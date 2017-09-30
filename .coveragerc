@@ -5,6 +5,7 @@ omit =
     config/tasks.py
     test/base/__init__.py
     base/decorators.py
+    manage.py
 
 [html]
 directory = htmlcov

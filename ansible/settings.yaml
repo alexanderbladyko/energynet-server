@@ -17,13 +17,13 @@ configs:
     dev:
         db: energynet_dev
         path: "{{ project_root }}config_local.ini"
-        log_file: "logs/energynet.log"
+        log_file: "energynet.log"
         redis_db: 0
 
     tests:
         db: energynet_tests
         path: "{{ project_root }}config_tests.ini"
-        log_file: "logs/energynet_tests.log"
+        log_file: "energynet_tests.log"
         redis_db: 1
 
 # postgresql
