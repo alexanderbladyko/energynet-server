@@ -22,4 +22,5 @@ class ConfigData:
                 data.update(load(open(folder+'/steps.yaml', 'r')))
                 self.maps[map_name] = data
 
+
 config = ConfigData()

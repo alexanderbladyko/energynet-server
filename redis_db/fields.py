@@ -127,7 +127,11 @@ class BaseModel(metaclass=FieldNameResolverMetaClass):
     def get_by_id(cls, pipe, id, fields=None):
         instance = cls()
         instance.id = id
-        for name, field in cls.get_all_fields():
+        if fields == list():
+            setattr(instance, '_fields', set())
+            return instance
+        all_fields = cls.get_all_fields()
+        for name, field in all_fields.items():
             if fields:
                 if field in fields:
                     setattr(instance, name, field.read(pipe, id))
@@ -135,19 +139,36 @@ class BaseModel(metaclass=FieldNameResolverMetaClass):
                     setattr(instance, name, None)
             else:
                 setattr(instance, name, field.read(pipe, id))
+        setattr(instance, '_fields', set(all_fields.keys()))
+
         return instance
+
+    def fetch_fields(self, fields):
+        if not fields:
+            return
+        fields_to_fetch = set(f.name for f in fields)
+        self._fields = self._fields + new_fields
+        new_fields = fields_to_fetch.difference(self._fields)
+        for name, field in all_fields.items():
+            if fields:
+                if field in new_fields:
+                    setattr(self, name, field.read(pipe, id))
+                else:
+                    setattr(self, name, None)
+            else:
+                setattr(self, name, field.read(pipe, id))
 
     @classmethod
     def get_all_fields(cls, fields=None):
         if fields:
-            return [
+            return {
                 (name, value) for name, value in vars(cls).items()
                 if isinstance(value, BaseField) and value in fields
-            ]
-        return [
+            }
+        return {
             (name, value) for name, value in vars(cls).items()
             if isinstance(value, BaseField)
-        ]
+        }
 
     @classmethod
     def index(cls):

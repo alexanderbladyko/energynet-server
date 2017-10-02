@@ -1,5 +1,5 @@
 import json
-from unittest import skip, mock
+from unittest import mock
 
 from test.base import BaseTest
 
