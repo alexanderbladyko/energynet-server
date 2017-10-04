@@ -12,6 +12,10 @@ from test import factories
 
 class AuctionBidTestCase(BaseTest):
     def setUp(self):
+        with self.db.cursor() as cursor:
+            cursor.execute("delete from {0};".format(DbUser.DB_TABLE))
+            self.db.commit()
+
         self.db_user_1 = self.create_user(name='user_1')
         self.db_user_2 = self.create_user(name='user_2')
         self.db_user_3 = self.create_user(name='user_3')
@@ -44,7 +48,7 @@ class AuctionBidTestCase(BaseTest):
         )
         self.user_ids = [self.user_1.id, self.user_2.id, self.user_3.id]
 
-        self.notify_patcher = patch('game.api.auction.notify_game_players')
+        self.notify_patcher = patch('game.api.base.notify_game_players')
         self.map_config_patcher = patch('config.config', self.map_config_mock)
 
         self.notify_mock = self.notify_patcher.start()

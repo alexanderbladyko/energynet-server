@@ -2,6 +2,7 @@ import config
 
 from base.exceptions import EnergynetException
 from core.models import Game, Player, User
+from game.logic import notify_game_players
 from utils.redis import redis, redis_retry_transaction
 
 
@@ -9,17 +10,29 @@ class ApiStepRunner:
     def __init__(self, steps):
         self.steps = steps
 
-    @redis_retry_transaction
-    def run(self, user_id, data):
-        self.init_models(user_id)
-        for step in self.steps:
-            self._update_models(step)
-            step.before_action(**data)
+    def run(self, user_id, data, *args, **kwargs):
+        self._init_models(user_id)
+        pipe = redis.pipeline()
+        self._transaction(pipe, data)
 
-        for step in self.steps:
-            if step.apply_condition(**data):
-                step.action(pipe)
+        return {'success': True}
 
+    @redis_retry_transaction()
+    def _transaction(self, pipe, data):
+        for action_step in self.steps:
+            self._update_models(action_step)
+            action_step.init_models(
+                game=self.game, user=self.user, player=self.player,
+                players=self.players,
+            )
+            import pdb; pdb.set_trace()
+            action_step.before_action(**data)
+
+        for action_step in self.steps:
+            if action_step.apply_condition(**data):
+                action_step.action(pipe, data)
+
+        notify_game_players(self.game.id)
 
     def _init_models(self, user_id):
         self.user = User.get_by_id(redis, user_id, [User.current_game_id])
@@ -31,12 +44,12 @@ class ApiStepRunner:
             Player.get_by_id(redis, uid, []) for uid in self.game.user_ids
         ]
 
-    def _update_models(self, step):
-        self.game.fetch_fields(step.game_fields)
-        self.user.fetch_fields(step.user_fields)
-        self.player.fetch_fields(step.player_fields)
+    def _update_models(self, action_step):
+        self.game.fetch_fields(redis, action_step.game_fields)
+        self.user.fetch_fields(redis, action_step.user_fields)
+        self.player.fetch_fields(redis, action_step.player_fields)
         for player in self.players:
-            player.fetch_fields(step.all_player_fields)
+            player.fetch_fields(redis, action_step.all_player_fields)
 
 
 class BaseStep:
@@ -48,26 +61,27 @@ class BaseStep:
     def init_models(self, **kwargs):
         self.game = kwargs.get('game')
         self.user = kwargs.get('user')
+        self.player = kwargs.get('player')
         self.players = kwargs.get('players')
 
     @property
     def map_config(self):
         return config.config.maps.get(self.game.map)
 
-    def before_action(self):
+    def before_action(self, *args, **kwargs):
         pass
 
-    def apply_condition(self):
+    def apply_condition(self, *args, **kwargs):
         return True
 
-    def action(self, pipe):
+    def action(self, pipe, *args, **kwargs):
         pass
 
 
 class TurnCheckStep(BaseStep):
     game_fields = [Game.turn, Game.step]
 
-    def before_action(self):
+    def before_action(self, *args, **kwargs):
         if self.game.turn != self.user.id:
             raise EnergynetException('Its not your move')
         if self.game.step != self.step_type:
@@ -81,14 +95,3 @@ class StationCheckStep(BaseStep):
         active_count = self.map_config.get('activeStationsCount')
         if station not in self.game.stations[:active_count]:
             raise EnergynetException('Invalid station')
-
-
-class AuctionBetCheckStep(BaseStep):
-    game_fields = [Game.auction]
-
-    def before_action(self, station, bid, *args, **kwargs):
-        previous_bid = self.game.auction.get('bid')
-        if previous_bid and previous_bid >= bid:
-            raise EnergynetException('Bid is less than previous bid')
-        if bid < station:
-            raise EnergynetException('Bid is less than station price')

@@ -42,7 +42,7 @@ def auction_bid_transaction(pipe, user_id, bid, station):
     pipe.watch(Game.auction.key(game_id))
     pipe.watch(Game.auction_user_ids.key(game_id))
     pipe.watch(Game.step.key(game_id))
-    pipe.watch(Game.turn.key(game_id)
+    pipe.watch(Game.turn.key(game_id))
 
     game = Game.get_by_id(redis, game_id, [
         Game.map, Game.stations, Game.turn, Game.step, Game.auction,

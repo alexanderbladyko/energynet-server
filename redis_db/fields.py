@@ -130,7 +130,7 @@ class BaseModel(metaclass=FieldNameResolverMetaClass):
         if fields == list():
             setattr(instance, '_fields', set())
             return instance
-        all_fields = cls.get_all_fields()
+        all_fields = cls.get_all_fields(fields)
         for name, field in all_fields.items():
             if fields:
                 if field in fields:
@@ -143,32 +143,28 @@ class BaseModel(metaclass=FieldNameResolverMetaClass):
 
         return instance
 
-    def fetch_fields(self, fields):
+    def fetch_fields(self, pipe, fields):
         if not fields:
             return
         fields_to_fetch = set(f.name for f in fields)
-        self._fields = self._fields + new_fields
         new_fields = fields_to_fetch.difference(self._fields)
+        self._fields = self._fields.union(new_fields)
+        all_fields = self.get_all_fields()
         for name, field in all_fields.items():
-            if fields:
-                if field in new_fields:
-                    setattr(self, name, field.read(pipe, id))
-                else:
-                    setattr(self, name, None)
-            else:
-                setattr(self, name, field.read(pipe, id))
+            if name in new_fields:
+                setattr(self, name, field.read(pipe, self.id))
 
     @classmethod
     def get_all_fields(cls, fields=None):
         if fields:
-            return {
+            return dict(
                 (name, value) for name, value in vars(cls).items()
                 if isinstance(value, BaseField) and value in fields
-            }
-        return {
+            )
+        return dict(
             (name, value) for name, value in vars(cls).items()
             if isinstance(value, BaseField)
-        }
+        )
 
     @classmethod
     def index(cls):
@@ -176,18 +172,18 @@ class BaseModel(metaclass=FieldNameResolverMetaClass):
 
     @classmethod
     def delete(cls, pipe, id):
-        for _, field in cls.get_all_fields():
+        for field in cls.get_all_fields().values():
             field.delete(pipe, id)
 
     def remove(self, pipe):
-        for _, field in self.get_all_fields():
+        for field in self.get_all_fields().values():
             field.delete(pipe, self.id)
 
     def serialize(self, fields=None):
         obj = {
             'id': self.id,
         }
-        for name, field in self.get_all_fields(fields):
+        for name, field in self.get_all_fields(fields).items():
             value = getattr(self, name, None)
             key_name = field.mapping_name or name
             if isinstance(value, set):
