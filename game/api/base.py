@@ -25,12 +25,15 @@ class ApiStepRunner:
                 game=self.game, user=self.user, player=self.player,
                 players=self.players,
             )
-            import pdb; pdb.set_trace()
-            action_step.before_action(**data)
+            action_step.check_parameters(**data)
 
         for action_step in self.steps:
             if action_step.apply_condition(**data):
-                action_step.action(pipe, data)
+                action_step.action(pipe, **data)
+            else:
+                action_step.otherwise(pipe, **data)
+
+        pipe.execute()
 
         notify_game_players(self.game.id)
 
@@ -68,7 +71,7 @@ class BaseStep:
     def map_config(self):
         return config.config.maps.get(self.game.map)
 
-    def before_action(self, *args, **kwargs):
+    def check_parameters(self, *args, **kwargs):
         pass
 
     def apply_condition(self, *args, **kwargs):
@@ -77,11 +80,14 @@ class BaseStep:
     def action(self, pipe, *args, **kwargs):
         pass
 
+    def otherwise(self, pipe, *args, **kwargs):
+        pass
+
 
 class TurnCheckStep(BaseStep):
     game_fields = [Game.turn, Game.step]
 
-    def before_action(self, *args, **kwargs):
+    def check_parameters(self, *args, **kwargs):
         if self.game.turn != self.user.id:
             raise EnergynetException('Its not your move')
         if self.game.step != self.step_type:
@@ -91,7 +97,15 @@ class TurnCheckStep(BaseStep):
 class StationCheckStep(BaseStep):
     game_fields = [Game.map, Game.stations]
 
-    def before_action(self, station, *args, **kwargs):
+    def check_parameters(self, station, *args, **kwargs):
         active_count = self.map_config.get('activeStationsCount')
         if station not in self.game.stations[:active_count]:
             raise EnergynetException('Invalid station')
+
+
+class BaseNextStepUserStep(BaseStep):
+    game_fields = [Game.step]
+
+    def action(self, pipe, *args, **kwargs):
+        Game.step.write(pipe, self.next_step, self.game.id)
+        Game.turn.write(pipe, self.game.order[self.next_in], self.game.id)
