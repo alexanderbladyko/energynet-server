@@ -1,6 +1,4 @@
-from auth.helpers import authenticated_only
-from base.decorators import game_response
-from utils.server import register_url, socketio
+from utils.server import register_url
 from game.api.auction_old import get_auction, auction_pass
 from game.api import auction_bid
 from game.api.info import game_info
@@ -23,12 +21,7 @@ class GameRoutes(object):
 
         register_url('color_choose', choose_color, handle_response=True)
 
-        socketio.on_event(
-            'auction_bid', game_response('auction_bid')(
-                authenticated_only(auction_bid.run)
-            )
-        )
-
+        register_url('auction_bid', auction_bid.run, handle_response=True, auth_only=True)  # noqa
         # register_url('auction_bid', auction_bid, handle_response=True)
         register_url('auction_pass', auction_pass, handle_response=True)
 
