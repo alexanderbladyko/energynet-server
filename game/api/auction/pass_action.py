@@ -74,16 +74,13 @@ class RemoveStationOnPassStep(BaseAuctionStep):
     def action(self, pipe, *args, **kwargs):
         pipe.incr(Game.passed_count.key(self.game.id))
 
-        auction_config = self.map_config.get('auction')
+        config = self.map_config.get('auction')
         visible_stations = self.game.get_sorted_stations(self.map_config)
-        if (
-            auction_config.get('removeOnFirstPass')
-            and self.game.passed_count == 0
-        ):
+        if config.get('removeOnFirstPass') and self.game.passed_count == 0:
             pipe.lrem(Game.stations.key(self.game.id), 0, visible_stations[0])
 
         users_left = self.game.get_users_left_for_auction()
-        if auction_config.get('removeOnAnyonePass') and len(users_left) == 1:
+        if config.get('removeOnAnyonePass') and len(users_left) == 1:
             pipe.lrem(Game.stations.key(self.game.id), 0, visible_stations[0])
 
 

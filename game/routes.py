@@ -1,6 +1,6 @@
 from utils.server import register_url
-from game.api.auction_old import get_auction
-from game.api import auction_bid, auction_pass
+from game.api.auction import auction_bid, auction_pass
+from game.api.auction.get import get_auction
 from game.api.info import game_info
 from game.api.resources import get_resources, resource_buy
 from game.api.start import start_game

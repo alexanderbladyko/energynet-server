@@ -73,15 +73,9 @@ class LastBidNextUserStep(BaseAuctionStep):
                and not self.is_first_auction()
 
     def action(self, pipe, station, bid):
-        exclude_ids = self.game.auction_user_ids.union({self.player.id})
-        next_user_id = self.game.get_next_user_id(
-            self.player.id, exclude_ids=exclude_ids
-        )
-        if next_user_id:
-            Game.turn.write(pipe, next_user_id, self.game.id)
-        else:
-            Game.step.write(pipe, StepTypes.RESOURCES_BUY, self.game.id)
-            Game.turn.write(pipe, self.game.order[-1], self.game.id)
+        Game.step.write(pipe, StepTypes.RESOURCES_BUY, self.game.id)
+        next_id = self.game.next_player_turn(reverse=True, from_start=True)
+        Game.turn.write(pipe, next_id, self.game.id)
 
 
 class ActiveStationBidStep(BaseAuctionStep):

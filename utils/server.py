@@ -6,7 +6,7 @@ from auth.helpers import authenticated_only
 from base.decorators import game_response
 from utils.blueprint import blueprint
 from utils.config import config
-from utils.logger import handler
+from utils.structlog import config_logger
 
 socketio = SocketIO(engineio_logger=True)
 
@@ -19,7 +19,7 @@ def create_app():
     CORS(app, resources={r'/*': {'origins': '*'}})
 
     app.register_blueprint(blueprint)
-    app.logger.addHandler(handler)
+    config_logger()
 
     socketio.init_app(app)
 
