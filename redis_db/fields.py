@@ -130,16 +130,19 @@ class BaseModel(metaclass=FieldNameResolverMetaClass):
         if fields == list():
             setattr(instance, '_fields', set())
             return instance
-        all_fields = cls.get_all_fields(fields)
+        all_fields = cls.get_all_fields()
+        field_names = []
         for name, field in all_fields.items():
             if fields:
                 if field in fields:
                     setattr(instance, name, field.read(pipe, id))
+                    field_names.append(name)
                 else:
                     setattr(instance, name, None)
             else:
                 setattr(instance, name, field.read(pipe, id))
-        setattr(instance, '_fields', set(all_fields.keys()))
+                field_names.append(name)
+        setattr(instance, '_fields', set(field_names))
 
         return instance
 

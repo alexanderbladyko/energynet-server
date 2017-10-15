@@ -1,12 +1,22 @@
 from base.exceptions import EnergynetException
 from core.constants import StepTypes
 from core.models import Game, Player
-from game.api.base import BaseStep, TurnCheckStep, StationCheckStep
+from game.api.base import BaseStep, TurnCheckStep
+from game.api.auction.base import BaseAuctionStep
 from utils.redis import redis
 
 
 class AuctionTurnCheckStep(TurnCheckStep):
     step_type = StepTypes.AUCTION
+
+
+class StationCheckStep(BaseStep):
+    game_fields = [Game.map, Game.stations]
+
+    def check_parameters(self, station, *args, **kwargs):
+        active_count = self.map_config.get('activeStationsCount')
+        if station not in self.game.stations[:active_count]:
+            raise EnergynetException('Invalid station')
 
 
 class AuctionBidCheckStep(BaseStep):
@@ -20,28 +30,10 @@ class AuctionBidCheckStep(BaseStep):
             raise EnergynetException('Bid is less than station price')
 
 
-class BaseAuctionStep(BaseStep):
-    game_fields = [
-        Game.auction_user_ids, Game.auction_passed_user_ids, Game.phase
-    ]
-
-    def is_last_user_bid(self):
-        left_users = self.game.get_users_left_for_auction(with_passed=False)
-        return left_users == {self.player.id}
-
-    def is_first_auction(self):
-        return self.game.phase == 0
-
-    def is_stations_over_limit(self):
-        user_stations_count = self.map_config.get('userStationsCount')
-        stations_limit = user_stations_count[len(self.game.user_ids) + 1]
-        return len(self.player.stations) == stations_limit
-
-    def apply_condition(self, station, bid):
-        return self.is_last_user_bid()
-
-
 class AuctionLastUserStep(BaseAuctionStep):
+    def apply_condition(self, station, bid):
+        return self.is_last_user_for_auction()
+
     def action(self, pipe, station, bid):
         pipe.lrem(Game.stations.key(self.game.id), 0, station)
         pipe.sadd(Player.stations.key(self.player.id), station)
@@ -53,7 +45,8 @@ class StationRemoveStep(BaseAuctionStep):
     player_fields = [Player.stations]
 
     def apply_condition(self, *args, **kwargs):
-        return self.is_last_user_bid() and self.is_stations_over_limit()
+        return self.is_last_user_for_auction() \
+               and self.is_stations_over_limit()
 
     def action(self, pipe, station, bid):
         Game.step.write(pipe, StepTypes.STATION_REMOVE, self.game.id)
@@ -61,7 +54,7 @@ class StationRemoveStep(BaseAuctionStep):
 
 class FirstAuctionReorderStep(BaseAuctionStep):
     def apply_condition(self, *args, **kwargs):
-        return self.is_last_user_bid() \
+        return self.is_last_user_for_auction() \
                and not self.is_stations_over_limit() \
                and self.is_first_auction()
 
@@ -75,7 +68,7 @@ class FirstAuctionReorderStep(BaseAuctionStep):
 
 class LastBidNextUserStep(BaseAuctionStep):
     def apply_condition(self, *args, **kwargs):
-        return self.is_last_user_bid() \
+        return self.is_last_user_for_auction() \
                and not self.is_stations_over_limit() \
                and not self.is_first_auction()
 
@@ -93,7 +86,7 @@ class LastBidNextUserStep(BaseAuctionStep):
 
 class ActiveStationBidStep(BaseAuctionStep):
     def apply_condition(self, *args, **kwargs):
-        return not self.is_last_user_bid()
+        return not self.is_last_user_for_auction()
 
     def action(self, pipe, station, bid):
         Game.auction.write(pipe, {

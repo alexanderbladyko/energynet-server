@@ -46,6 +46,26 @@ class Game(BaseModel):
     def auction_off_user_ids(self):
         return self.auction_user_ids.union(self.auction_passed_user_ids)
 
+    def next_player_turn(
+        self, from_start=False, reverse=False, exclude=None, endless=False
+    ):
+        player_ids = self.order.copy()
+        if reverse:
+            player_ids.reverse()
+        exclude_ids = exclude or []
+
+        index = player_ids.index(self.turn) + 1
+        if from_start:
+            next_ids = player_ids[:index] + player_ids[index:]
+        else:
+            next_ids = player_ids[index:]
+            if endless:
+                next_ids += player_ids[:index]
+
+        for player_id in next_ids:
+            if player_id not in exclude_ids:
+                return player_id
+
     def get_next_user_id(self, user_id, exclude_ids=None):
         index = self.order.index(user_id) + 1
         next_ids = self.order[index:] + self.order[:index]
@@ -55,9 +75,6 @@ class Game(BaseModel):
                     return user_id
         else:
             return next_ids[0]
-
-    def has_active_station_in_auction(self):
-        return self.auction.get('station') is not None
 
     def get_users_left_for_auction(self, with_passed=True):
         left_users = self.user_ids - self.auction_user_ids

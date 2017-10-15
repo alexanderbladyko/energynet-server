@@ -28,7 +28,8 @@ class ApiStepRunner:
             action_step.check_parameters(**data)
 
         for action_step in self.steps:
-            if action_step.apply_condition(**data):
+            apply_condition = action_step.apply_condition(**data)
+            if apply_condition:
                 action_step.action(pipe, **data)
             else:
                 action_step.otherwise(pipe, **data)
@@ -92,15 +93,6 @@ class TurnCheckStep(BaseStep):
             raise EnergynetException('Its not your move')
         if self.game.step != self.step_type:
             raise EnergynetException('Step is not {}'.format(self.step_type))
-
-
-class StationCheckStep(BaseStep):
-    game_fields = [Game.map, Game.stations]
-
-    def check_parameters(self, station, *args, **kwargs):
-        active_count = self.map_config.get('activeStationsCount')
-        if station not in self.game.stations[:active_count]:
-            raise EnergynetException('Invalid station')
 
 
 class BaseNextStepUserStep(BaseStep):

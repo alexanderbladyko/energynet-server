@@ -1,6 +1,6 @@
 from utils.server import register_url
-from game.api.auction_old import get_auction, auction_pass
-from game.api import auction_bid
+from game.api.auction_old import get_auction
+from game.api import auction_bid, auction_pass
 from game.api.info import game_info
 from game.api.resources import get_resources, resource_buy
 from game.api.start import start_game
@@ -22,8 +22,7 @@ class GameRoutes(object):
         register_url('color_choose', choose_color, handle_response=True)
 
         register_url('auction_bid', auction_bid.run, handle_response=True, auth_only=True)  # noqa
-        # register_url('auction_bid', auction_bid, handle_response=True)
-        register_url('auction_pass', auction_pass, handle_response=True)
+        register_url('auction_pass', auction_pass.run, handle_response=True, auth_only=True)  # noqa
 
         register_url('resource_buy', resource_buy, handle_response=True)
 
