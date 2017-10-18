@@ -58,7 +58,7 @@ class CitiesBuyTestCase(BaseTest):
             'kazan': 10,
         }, self.user_3.id)
 
-        self.notify_patcher = patch('game.api.resources.notify_game_players')
+        self.notify_patcher = patch('game.api.cities.notify_game_players')
         self.map_config_patcher = patch('config.config', self.map_config_mock)
 
         self.notify_mock = self.notify_patcher.start()

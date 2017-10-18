@@ -93,3 +93,18 @@ class TurnCheckStep(BaseStep):
             raise EnergynetException('Its not your move')
         if self.game.step != self.step_type:
             raise EnergynetException('Step is not {}'.format(self.step_type))
+
+
+class NextTurnStep(BaseStep):
+    game_fields = [Game.step, Game.turn, Game.order]
+
+    def __init__(self, next_step_type):
+        self.next_step_type = next_step_type
+
+    def action(self, pipe, *args, **kwargs):
+        index = self.game.order.index(self.player.id)
+        if index <= 0:
+            Game.turn.write(pipe, self.game.order[-1], self.game.id)
+            Game.step.write(pipe, self.next_step_type, self.game.id)
+        else:
+            Game.turn.write(pipe, self.game.order[index - 1], self.game.id)

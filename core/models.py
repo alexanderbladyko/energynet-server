@@ -56,7 +56,7 @@ class Game(BaseModel):
 
         index = player_ids.index(self.turn) + 1
         if from_start:
-            next_ids = player_ids[:index] + player_ids[index:]
+            next_ids = player_ids
         else:
             next_ids = player_ids[index:]
             if endless:

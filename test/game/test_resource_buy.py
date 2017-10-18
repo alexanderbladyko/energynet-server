@@ -33,7 +33,7 @@ class ResourcesBuyTestCase(BaseTest):
             stations=self.stations,
             user_ids={self.db_user_1.id, self.db_user_2.id, self.db_user_3.id},
             order=[self.db_user_2.id, self.db_user_3.id, self.db_user_1.id],
-            step=StepTypes.STATION_REMOVE,
+            step=StepTypes.RESOURCES_BUY,
             phase=1,
             resources=self.initial_resources,
         )
@@ -59,7 +59,7 @@ class ResourcesBuyTestCase(BaseTest):
         # {'resources': ['oil'], 'cost': 7, 'capacity': 3, 'efficiency': 2},
         Player.stations.write(redis, {5.0, 7.0}, self.user_1.id)
 
-        self.notify_patcher = patch('game.api.resources.notify_game_players')
+        self.notify_patcher = patch('game.api.base.notify_game_players')
         self.map_config_patcher = patch('config.config', self.map_config_mock)
 
         self.notify_mock = self.notify_patcher.start()
@@ -92,7 +92,9 @@ class ResourcesBuyTestCase(BaseTest):
         client = self.create_test_client()
         client.get_received()
 
-        client.emit('resource_buy', resources)
+        client.emit('resource_buy', {
+            'resources': resources
+        })
         received = client.get_received()
         client.disconnect()
 
@@ -180,7 +182,7 @@ class ResourcesBuyTestCase(BaseTest):
         self.assertTrue(data['success'])
 
         game = Game.get_by_id(redis, self.game.id)
-        self.assertEqual(game.step, StepTypes.STATION_REMOVE)
+        self.assertEqual(game.step, StepTypes.RESOURCES_BUY)
         self.assertEqual(game.owner_id, self.user_1.id)
         self.assertEqual(game.turn, self.user_3.id)
         self.assertEqual(game.map, self.map)
