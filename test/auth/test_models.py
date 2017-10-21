@@ -24,6 +24,23 @@ class UserModelTestCase(BaseTest):
         self.assertEqual(user.id, self.user_id)
         self.assertEqual(user.name, self.user_name)
 
+    def test_get_by_name(self):
+        user = User.get_by_name(self.user_name, [
+            User.Fields.ID, User.Fields.NAME
+        ])
+        self.assertEqual(user.id, self.user_id)
+        self.assertEqual(user.name, self.user_name)
+
+    def test_cannot_find_by_id(self):
+        user = User.get_by_id(self.user_id + 1, [User.Fields.ID])
+        self.assertIsNone(user)
+
+    def test_cannot_find_by_name(self):
+        user = User.get_by_name('fake', [
+            User.Fields.ID, User.Fields.NAME
+        ])
+        self.assertIsNone(user)
+
     def test_create(self):
         self.assertUserExists(self.user_name)
 

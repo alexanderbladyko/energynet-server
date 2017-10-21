@@ -13,30 +13,52 @@ class ApiStepRunner:
     def run(self, user_id, data, *args, **kwargs):
         self._init_models(user_id)
         pipe = redis.pipeline()
+        self._pipe_watch
         self._transaction(pipe, data)
 
         return {'success': True}
 
     @redis_retry_transaction()
     def _transaction(self, pipe, data):
-        for action_step in self.steps:
-            self._update_models(action_step)
-            action_step.init_models(
-                game=self.game, user=self.user, player=self.player,
-                players=self.players,
-            )
-            action_step.check_parameters(**data)
+        try:
+            for action_step in self.steps:
+                self._pipe_watch(pipe, action_step)
 
-        for action_step in self.steps:
-            apply_condition = action_step.apply_condition(**data)
-            if apply_condition:
-                action_step.action(pipe, **data)
-            else:
-                action_step.otherwise(pipe, **data)
+            for action_step in self.steps:
+                self._update_models(action_step)
+                action_step.init_models(
+                    game=self.game, user=self.user, player=self.player,
+                    players=self.players,
+                )
+                action_step.check_parameters(**data)
 
-        pipe.execute()
+            for action_step in self.steps:
+                apply_condition = action_step.apply_condition(**data)
+                if apply_condition:
+                    action_step.action(pipe, **data)
+                else:
+                    action_step.otherwise(pipe, **data)
 
-        notify_game_players(self.game.id)
+            pipe.execute()
+
+            notify_game_players(self.game.id)
+        except EnergynetException:
+            pipe.unwatch()
+            raise
+
+    def _pipe_watch(self, pipe, action_step):
+        action_fields = (
+            [f.key(self.game.id) for f in action_step.game_fields] +
+            [f.key(self.user.id) for f in action_step.user_fields] +
+            [f.key(self.player.id) for f in action_step.player_fields]
+        )
+        if action_fields:
+            pipe.watch(*action_fields)
+        if action_step.all_player_fields:
+            for player in self.players:
+                pipe.watch(*(
+                    [f.key(player.id) for f in action_step.all_player_fields]
+                ))
 
     def _init_models(self, user_id):
         self.user = User.get_by_id(redis, user_id, [User.current_game_id])

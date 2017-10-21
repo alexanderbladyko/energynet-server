@@ -1,6 +1,5 @@
 import time
 
-from contextlib import ContextDecorator
 from redis import StrictRedis, exceptions
 
 from utils.config import config
@@ -15,16 +14,6 @@ def _init_redis(db):
 
 
 redis = _init_redis(config.get('redis', 'db'))
-
-
-class redis_session(ContextDecorator):
-    def __enter__(self):
-        self.pipeline = redis.pipeline()
-        return self.pipeline
-
-    def __exit__(self, *args):
-        self.pipeline.execute()
-        return False
 
 
 DEFAULT_TRANSACTION_TIMEOUT = 5
@@ -43,8 +32,3 @@ def redis_retry_transaction(timeout=DEFAULT_TRANSACTION_TIMEOUT):
             raise RedisTransactionException()
         return decorator
     return _redis_retry_transaction
-
-
-def redis_watch(pipe, id=None, *args):
-    fields = args
-    pipe.watch(*[f.key(id) for f in fields])
