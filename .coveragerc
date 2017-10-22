@@ -2,6 +2,7 @@
 [run]
 branch = True
 omit =
+    auth/helpers.py
     config/tasks.py
     test/base/__init__.py
     base/decorators.py

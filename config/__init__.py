@@ -12,8 +12,6 @@ class ConfigData:
         for map_name in os.listdir(root):
             if os.path.isdir(os.path.join(root, map_name)):
                 folder = os.path.join(root, map_name)
-                if not os.path.isfile(folder+'/common.yaml'):
-                    continue
 
                 data = {}
                 data.update(load(open(folder+'/common.yaml', 'r')))
@@ -21,5 +19,6 @@ class ConfigData:
                 data.update(load(open(folder+'/stations.yaml', 'r')))
                 data.update(load(open(folder+'/steps.yaml', 'r')))
                 self.maps[map_name] = data
+
 
 config = ConfigData()

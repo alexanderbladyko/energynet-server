@@ -58,7 +58,7 @@ class CitiesBuyTestCase(BaseTest):
             'kazan': 10,
         }, self.user_3.id)
 
-        self.notify_patcher = patch('game.api.resources.notify_game_players')
+        self.notify_patcher = patch('game.api.base.notify_game_players')
         self.map_config_patcher = patch('config.config', self.map_config_mock)
 
         self.notify_mock = self.notify_patcher.start()
@@ -127,8 +127,8 @@ class CitiesBuyTestCase(BaseTest):
         self.assertFalse(data['success'])
 
     def test_no_slots_for_ulyanovsk(self):
-        redis.hmset(Player.cities.key(self.user_2.id), {'ulyanovsk': 10})
-        redis.hmset(Player.cities.key(self.user_3.id), {'ulyanovsk': 15})
+        # redis.hmset(Player.cities.key(self.user_2.id), {'ulyanovsk': 10})
+        # redis.hmset(Player.cities.key(self.user_3.id), {'ulyanovsk': 15})
         with self.user_logged_in(self.user_1.id):
             received = self._send_cities_buy(['ulyanovsk', 'nizhnekamsk'])
 

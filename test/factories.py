@@ -8,7 +8,7 @@ class BaseFactory:
         instance = cls.model()
         instance.id = redis.incr(cls.model.index())
 
-        for name, field in cls.model.get_all_fields():
+        for name, field in cls.model.get_all_fields().items():
             if name in kwargs:
                 value = kwargs.get(name)
             else:
@@ -36,7 +36,7 @@ class UserFactory(BaseFactory):
 
         instance.id = db_user.id
 
-        for name, field in cls.model.get_all_fields():
+        for name, field in cls.model.get_all_fields().items():
             if name == 'data':
                 field.write(redis, {
                     'name': db_user.name,

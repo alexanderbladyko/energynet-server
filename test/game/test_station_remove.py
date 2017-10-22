@@ -46,9 +46,7 @@ class StationRemoveTestCase(BaseTest):
         )
         self.user_ids = [self.user_1.id, self.user_2.id, self.user_3.id]
 
-        self.notify_patcher = patch(
-            'game.api.stations.notify_game_players'
-        )
+        self.notify_patcher = patch('game.api.base.notify_game_players')
         self.map_config_patcher = patch('config.config', self.map_config_mock)
 
         self.notify_mock = self.notify_patcher.start()
@@ -113,6 +111,7 @@ class StationRemoveTestCase(BaseTest):
 
     def test_station_remove_return_back_to_auction(self):
         Game.auction_user_ids.delete(redis, self.game.id)
+        Game.auction_user_ids.write(redis, {self.user_1.id}, self.game.id)
 
         with self.user_logged_in(self.db_user_1.id):
             received = self._send_remove_station({
@@ -127,7 +126,7 @@ class StationRemoveTestCase(BaseTest):
             'station': None,
             'user_id': None,
         })
-        self.assertEqual(game.auction_user_ids, set())
+        self.assertEqual(game.auction_user_ids, {self.user_1.id})
         self.assertEqual(game.step, StepTypes.AUCTION)
         self.assertEqual(game.turn, self.user_2.id)
 

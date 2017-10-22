@@ -2,10 +2,11 @@ from flask import Flask
 from flask_socketio import SocketIO
 from flask_cors import CORS
 
+from auth.helpers import authenticated_only
 from base.decorators import game_response
 from utils.blueprint import blueprint
 from utils.config import config
-from utils.logger import handler
+from utils.structlog import config_logger
 
 socketio = SocketIO(engineio_logger=True)
 
@@ -18,15 +19,17 @@ def create_app():
     CORS(app, resources={r'/*': {'origins': '*'}})
 
     app.register_blueprint(blueprint)
-    app.logger.addHandler(handler)
+    config_logger()
 
     socketio.init_app(app)
 
     return app
 
 
-def register_url(url, handler, handle_response=False):
+def register_url(url, handler, handle_response=False, auth_only=False):
+    func = handler
     if handle_response:
-        socketio.on_event(url, game_response(url)(handler))
-    else:
-        socketio.on_event(url, handler)
+        func = game_response(url)(func)
+    if auth_only:
+        func = authenticated_only(func)
+    socketio.on_event(url, func)

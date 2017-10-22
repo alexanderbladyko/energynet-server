@@ -26,6 +26,10 @@ class BaseTest(TestCase):
         super(BaseTest, cls).setUpClass()
         cls.db = connect_to_db()
 
+        with cls.db.cursor() as cursor:
+            cursor.execute("delete from {0};".format(User.DB_TABLE))
+            cls.db.commit()
+
         cls.map = 'test_map'
         cls.test_map_config = FAKE_MAP_CONFIG
         cls.map_config = {

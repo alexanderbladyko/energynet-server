@@ -46,6 +46,26 @@ class Game(BaseModel):
     def auction_off_user_ids(self):
         return self.auction_user_ids.union(self.auction_passed_user_ids)
 
+    def next_player_turn(
+        self, from_start=False, reverse=False, exclude=None, endless=False
+    ):
+        player_ids = self.order.copy()
+        if reverse:
+            player_ids.reverse()
+        exclude_ids = exclude or []
+
+        index = player_ids.index(self.turn) + 1
+        if from_start:
+            next_ids = player_ids
+        else:
+            next_ids = player_ids[index:]
+            if endless:
+                next_ids += player_ids[:index]
+
+        for player_id in next_ids:
+            if player_id not in exclude_ids:
+                return player_id
+
     def get_next_user_id(self, user_id, exclude_ids=None):
         index = self.order.index(user_id) + 1
         next_ids = self.order[index:] + self.order[:index]
@@ -56,20 +76,27 @@ class Game(BaseModel):
         else:
             return next_ids[0]
 
-    def has_active_station_in_auction(self):
-        return self.auction.get('station') is not None
-
-    def get_users_left_for_auction(self):
-        return (
-            self.user_ids -
-            self.auction_user_ids -
-            self.auction_passed_user_ids
-        )
+    def get_users_left_for_auction(self, with_passed=True):
+        left_users = self.user_ids - self.auction_user_ids
+        if with_passed:
+            return left_users - self.auction_passed_user_ids
+        return left_users
 
     def get_sorted_stations(self, map_config):
         visible_count = map_config.get('visibleStationsCount')
 
         return sorted(self.stations[i] for i in range(visible_count))
+
+    def get_new_order(self, redis, player_id=None, station=None):
+        data_by_users = self.get_order_data_by_users(redis)
+        if player_id and station:
+            data_by_users[player_id] = (
+                data_by_users[player_id][0],
+                max(data_by_users[player_id][1], station)
+            )
+        return [u_id for u_id, _ in sorted(
+            data_by_users.items(), key=lambda d: d[1], reverse=True
+        )]
 
     def get_order_data_by_users(self, redis):
         return {
@@ -168,5 +195,5 @@ class Player(BaseModel):
     @classmethod
     def get_order_data(cls, redis, player_id):
         cities_count = redis.scard(cls.cities.key(player_id))
-        stations_count = min(cls.stations.read(redis, player_id))
-        return (cities_count, stations_count)
+        max_stations_count = max(cls.stations.read(redis, player_id))
+        return (cities_count, max_stations_count)
