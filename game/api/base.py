@@ -22,7 +22,7 @@ class ApiStepRunner:
     def _transaction(self, pipe, data):
         try:
             for action_step in self.steps:
-                self._pipe_watch(pipe, action_step)
+                self._pipe_watch(pipe, action_step, **data)
 
             for action_step in self.steps:
                 self._update_models(action_step)
@@ -46,12 +46,15 @@ class ApiStepRunner:
             pipe.unwatch()
             raise
 
-    def _pipe_watch(self, pipe, action_step):
+    def _pipe_watch(self, pipe, action_step, **kwargs):
         action_fields = (
             [f.key(self.game.id) for f in action_step.game_fields] +
             [f.key(self.user.id) for f in action_step.user_fields] +
             [f.key(self.player.id) for f in action_step.player_fields]
         )
+        additional_keys = action_step.watch_keys(**kwargs)
+        if additional_keys:
+            action_fields += additional_keys
         if action_fields:
             pipe.watch(*action_fields)
         if action_step.all_player_fields:
@@ -66,9 +69,12 @@ class ApiStepRunner:
         game_id = self.user.current_game_id
         self.game = Game.get_by_id(redis, game_id, [Game.user_ids])
 
-        self.players = [
-            Player.get_by_id(redis, uid, []) for uid in self.game.user_ids
-        ]
+        self.players = []
+        for game_user_id in self.game.user_ids:
+            if game_user_id == user_id:
+                self.players.append(self.player)
+            else:
+                self.players.append(Player.get_by_id(redis, game_user_id, []))
 
     def _update_models(self, action_step):
         self.game.fetch_fields(redis, action_step.game_fields)
@@ -94,6 +100,9 @@ class BaseStep:
     def map_config(self):
         return config.config.maps.get(self.game.map)
 
+    def watch_keys(self, *args, **kwargs):
+        pass
+
     def check_parameters(self, *args, **kwargs):
         pass
 
@@ -110,8 +119,11 @@ class BaseStep:
 class TurnCheckStep(BaseStep):
     game_fields = [Game.turn, Game.step]
 
+    def __init__(self):
+        self.check_turn = True
+
     def check_parameters(self, *args, **kwargs):
-        if self.game.turn != self.user.id:
+        if self.check_turn and self.game.turn != self.user.id:
             raise EnergynetException('Its not your move')
         if self.game.step != self.step_type:
             raise EnergynetException('Step is not {}'.format(self.step_type))

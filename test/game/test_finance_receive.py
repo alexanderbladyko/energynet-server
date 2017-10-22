@@ -67,7 +67,7 @@ class FinanceReceiveTestCase(BaseTest):
         }, self.user_1.id)
 
         self.notify_patcher = patch(
-            'game.api.finance.notify_game_players'
+            'game.api.base.notify_game_players'
         )
         self.map_config_patcher = patch('config.config', self.map_config_mock)
 

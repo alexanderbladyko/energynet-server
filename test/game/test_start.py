@@ -65,7 +65,9 @@ class StartGameTestCase(BaseTest):
 
     def test_start(self):
         stations = [1.0, 2.0, 3.0, 4.0]
-        with patch('game.api.start.get_start_stations', return_value=stations):
+        with patch(
+            'game.api.game.start.get_start_stations', return_value=stations
+        ):
             with patch('game.logic.emit') as emit_mock:
                 with self.user_logged_in(self.db_user_1.id):
                     with patch('config.config', self.map_config_mock):

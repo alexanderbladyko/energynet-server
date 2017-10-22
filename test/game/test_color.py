@@ -46,7 +46,7 @@ class TestColorChooseTestCase(BaseTest):
         )
         self.user_ids = [self.user_1.id, self.user_2.id, self.user_3.id]
 
-        self.notify_patcher = patch('game.api.color.notify_game_players')
+        self.notify_patcher = patch('game.api.base.notify_game_players')
         self.map_config_patcher = patch('config.config', self.map_config_mock)
 
         self.notify_mock = self.notify_patcher.start()
