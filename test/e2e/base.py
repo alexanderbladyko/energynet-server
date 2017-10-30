@@ -90,6 +90,7 @@ class BaseScenariosTestCase(BaseTest):
             assert_section = game_step['assert']
             self.assert_game(assert_section.get('game'), game_step)
             self.assert_users(assert_section.get('users'), game_step)
+            self.assert_players(assert_section.get('players'), game_step)
 
     def assert_users(self, users_data, game_step):
         if not users_data:
@@ -123,6 +124,20 @@ class BaseScenariosTestCase(BaseTest):
                     game_step, key
                 )
             )
+
+    def assert_players(self, players_data, game_step):
+        if not players_data:
+            return
+        for user_id, assert_data in players_data.items():
+            player = Player.get_by_id(redis, user_id)
+            for key, value in assert_data.items():
+                actual_data = getattr(player, key)
+                expected_data = value
+                self.assertEqual(
+                    actual_data, expected_data, self._get_error_message(
+                        game_step, key
+                    )
+                )
 
     def _get_error_message(self, game_step, field):
         return 'Action {} with data {} has error in {} field'.format(

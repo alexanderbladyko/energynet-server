@@ -117,7 +117,7 @@ class StartGameTestCase(BaseTest):
             {
                 'color': None,
                 'cities': {},
-                'cash': 33,
+                'cash': 50,
                 'data': {
                     'name': 'user_1',
                     'avatar': None,
@@ -134,7 +134,7 @@ class StartGameTestCase(BaseTest):
             {
                 'color': None,
                 'cities': {},
-                'cash': 33,
+                'cash': 50,
                 'data': {
                     'name': 'user_2',
                     'avatar': None,
@@ -150,7 +150,7 @@ class StartGameTestCase(BaseTest):
             }, {
                 'color': None,
                 'cities': {},
-                'cash': 33,
+                'cash': 50,
                 'data': {
                     'name': 'user_3',
                     'avatar': None,
