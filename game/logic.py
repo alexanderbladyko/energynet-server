@@ -56,7 +56,7 @@ def get_start_stations(map_config):
     for rule in initial_rules:
         new_index = rule.get('place')
         if 'delta' in rule:
-            new_index += random.randint(0, rule.get('delta'))
+                new_index += random.randint(0, rule.get('delta'))
         if new_index == -1:
             result_list.append(rule.get('cost'))
         else:

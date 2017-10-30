@@ -39,6 +39,7 @@ class CreateNewTestCase(BaseTest):
                     client.emit('games_new', {
                         'name': 'new_game',
                         'playersLimit': 4,
+                        'map': self.map,
                     })
 
                     received = client.get_received()
@@ -61,6 +62,7 @@ class CreateNewTestCase(BaseTest):
         join_game_mock.assert_called_once_with(index)
         unsub_mock.assert_called_once_with()
 
+        redis.delete(Game.map.key(index))
         redis.delete(Game.owner_id.key(index))
         redis.delete(Game.data.key(index))
         redis.delete(Game.user_ids.key(index))

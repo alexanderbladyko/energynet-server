@@ -1,5 +1,5 @@
 from flask_socketio import emit
-from random import shuffle
+import random
 
 import config
 
@@ -58,7 +58,8 @@ def start_game_transaction(pipe, game_id, user_id):
     Game.stations.write(pipe, stations, game_id)
 
     users_order = list(game.user_ids)
-    shuffle(users_order)
+
+    random.shuffle(users_order)
     Game.order.write(pipe, users_order, game_id)
 
     Game.turn.write(pipe, users_order[0], game_id)

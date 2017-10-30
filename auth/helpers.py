@@ -4,6 +4,7 @@ from flask import request
 from flask_socketio import disconnect
 
 from auth.models import User
+from utils.config import config
 
 
 def get_token():
@@ -11,6 +12,11 @@ def get_token():
 
 
 def get_current_user_id():
+    if config.get('app', 'debug'):
+        user_id = request.args.get('uid')
+        if user_id:
+            return user_id
+
     auth_token = get_token()
     return User.decode_auth_token(auth_token)
 

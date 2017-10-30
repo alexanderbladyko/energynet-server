@@ -5,6 +5,7 @@ from base.exceptions import EnergynetException
 from core.models import User, Game, Lobby
 from core.logic import join_game
 from games.logic import notify_user_finding_game, unsubscribe_from_games
+from utils.config import config
 from utils.redis import (
     redis, redis_retry_transaction, RedisTransactionException
 )
@@ -14,6 +15,10 @@ from utils.redis import (
 def create_new(user_id, data):
     name = data['name']
     players_limit = data['playersLimit']
+    game_map = data['map']
+    game_id = None
+    if config.get('app', 'debug'):
+        game_id = data.get('id')
 
     # app.logger.info('New game creating (%s, %s)' % (name, players_limit))
 
@@ -23,7 +28,9 @@ def create_new(user_id, data):
 
     pipe = redis.pipeline()
     try:
-        game_id = create_new_game(pipe, name, players_limit, user.id)
+        game_id = create_new_game(
+            pipe, name, players_limit, user.id, game_map, game_id=game_id
+        )
     except RedisTransactionException:
         raise EnergynetException(message='Failed to add user to game')
     except:
@@ -39,18 +46,19 @@ def create_new(user_id, data):
 
 
 @redis_retry_transaction()
-def create_new_game(pipe, name, players_limit, user_id):
+def create_new_game(pipe, name, players_limit, user_id, game_map, game_id=None):
     pipe.watch([
         Game.index(), User.current_lobby_id.key(user_id), Game.key, Lobby.key,
     ])
 
-    game_id = pipe.incr(Game.index())
+    game_id = game_id or pipe.incr(Game.index())
     Game.data.write(pipe, {
         'name': name,
         'players_limit': players_limit,
     }, game_id)
     Game.owner_id.write(pipe, user_id, game_id)
     Game.user_ids.write(pipe, [user_id], game_id)
+    Game.map.write(pipe, game_map, game_id)
 
     pipe.sadd(Lobby.key, game_id)
 

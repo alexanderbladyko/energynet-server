@@ -28,7 +28,7 @@ FAKE_MAP_CONFIG = {
         'uranium': 1, 'coal': 3, 'oil': 3, 'waste': 3
     },
     'resourceInitials': {
-        'uranium': 13, 'coal': 11, 'oil': 5, 'waste': 0
+        'uranium': 7, 'coal': 18, 'oil': 24, 'waste': 0
     },
     'initialStationRules': [
         {'cost': 10, 'place': 0, 'delta': 3},

@@ -194,6 +194,6 @@ class Player(BaseModel):
 
     @classmethod
     def get_order_data(cls, redis, player_id):
-        cities_count = redis.scard(cls.cities.key(player_id))
+        cities_count = redis.hlen(cls.cities.key(player_id))
         max_stations_count = max(cls.stations.read(redis, player_id))
         return (cities_count, max_stations_count)

@@ -94,6 +94,20 @@ class BaseTest(TestCase):
         if user_data:
             return User(user_data)
 
+    def create_user_with_id(self, id, name='us', password='pass'):
+        salt = 'test_salt'
+        generated_password = get_password(password, salt)
+        with self.db.cursor(cursor_factory=DictCursor) as cursor:
+            cursor.execute("""
+                insert into public.{0}(id, name, password, salt)
+                values('{1}', '{2}', '{3}', '{4}')
+                returning id, name, password, salt, created, updated;
+            """.format(User.DB_TABLE, id, name, generated_password, salt))
+            user_data = cursor.fetchone()
+            self.db.commit()
+        if user_data:
+            return User(user_data)
+
     def assertUserExists(self, user_name):
         with self.db.cursor() as cursor:
             cursor.execute(

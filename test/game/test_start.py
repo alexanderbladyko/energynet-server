@@ -109,7 +109,7 @@ class StartGameTestCase(BaseTest):
             'areas': [],
             'userIds': self.user_ids,
             'resources': {
-                'uranium': 13, 'coal': 11, 'oil': 5, 'waste': 0
+                'uranium': 7, 'coal': 18, 'oil': 24, 'waste': 0
             },
             'order': ordered_user_ids,
         })

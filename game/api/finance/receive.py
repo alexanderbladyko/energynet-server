@@ -1,7 +1,8 @@
 from base.exceptions import EnergynetException
 from core.constants import StepTypes
 from core.models import Game, Player
-from game.api.base import BaseStep, TurnCheckStep, NextTurnStep
+from game.api.base import BaseStep, TurnCheckStep
+from utils.redis import redis
 
 
 class StationsMatchCheckStep(BaseStep):
@@ -82,11 +83,37 @@ class DecreasePlayerResourcesStep(BaseStep):
         Player.resources.write(pipe, next_resources, self.player.id)
 
 
+class NextUserTurnStep(BaseStep):
+    game_fields = [Game.step, Game.turn, Game.order]
+
+    def apply_condition(self, *args, **kwargs):
+        return self.game.order.index(self.player.id) != 0
+
+    def action(self, pipe, *args, **kwargs):
+        next_id = self.game.next_player_turn(reverse=True)
+        Game.turn.write(pipe, next_id, self.game.id)
+
+
+class StartAuctionReorderStep(BaseStep):
+    game_fields = [Game.step, Game.turn, Game.order]
+
+    def apply_condition(self, *args, **kwargs):
+        return self.game.order.index(self.player.id) == 0
+
+    def action(self, pipe, *args, **kwargs):
+        new_order = self.game.get_new_order(redis)
+        Game.order.delete(pipe, self.game.id)
+        Game.order.write(pipe, new_order, self.game.id)
+        Game.turn.write(pipe, new_order[0], self.game.id)
+        Game.step.write(pipe, StepTypes.AUCTION, self.game.id)
+
+
 steps = [
     StationsMatchCheckStep(),
     FinanceReceiveTurnCheckStep(),
     EnoughResourcesCheckStep(),
     RefundStep(),
     DecreasePlayerResourcesStep(),
-    NextTurnStep(StepTypes.AUCTION),
+    NextUserTurnStep(),
+    StartAuctionReorderStep(),
 ]

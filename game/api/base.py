@@ -138,7 +138,9 @@ class NextTurnStep(BaseStep):
     def action(self, pipe, *args, **kwargs):
         index = self.game.order.index(self.player.id)
         if index <= 0:
-            Game.turn.write(pipe, self.game.order[-1], self.game.id)
+            n_id = self.game.next_player_turn(reverse=True, from_start=True)
+            Game.turn.write(pipe, n_id, self.game.id)
             Game.step.write(pipe, self.next_step_type, self.game.id)
         else:
-            Game.turn.write(pipe, self.game.order[index - 1], self.game.id)
+            n_id = self.game.next_player_turn(reverse=True, from_start=False)
+            Game.turn.write(pipe, n_id, self.game.id)
