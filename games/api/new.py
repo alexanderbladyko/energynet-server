@@ -46,7 +46,9 @@ def create_new(user_id, data):
 
 
 @redis_retry_transaction()
-def create_new_game(pipe, name, players_limit, user_id, game_map, game_id=None):
+def create_new_game(
+    pipe, name, players_limit, user_id, game_map, game_id=None
+):
     pipe.watch([
         Game.index(), User.current_lobby_id.key(user_id), Game.key, Lobby.key,
     ])
@@ -59,9 +61,11 @@ def create_new_game(pipe, name, players_limit, user_id, game_map, game_id=None):
     Game.owner_id.write(pipe, user_id, game_id)
     Game.user_ids.write(pipe, [user_id], game_id)
     Game.map.write(pipe, game_map, game_id)
+    Game.phase.write(pipe, 0, game_id)
 
     pipe.sadd(Lobby.key, game_id)
 
+    User.current_game_id.write(pipe, game_id, user_id)
     User.current_lobby_id.write(pipe, game_id, user_id)
 
     pipe.execute()

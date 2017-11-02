@@ -43,6 +43,7 @@ def add_user_to_game(pipe, game_id, user_id):
         pipe.unwatch()
         raise EnergynetException(message='Players limit of game exceeded')
 
+    pipe.set(User.current_game_id.key(user_id), game_id)
     pipe.set(User.current_lobby_id.key(user_id), game_id)
     pipe.sadd(Game.user_ids.key(game_id), user_id)
 

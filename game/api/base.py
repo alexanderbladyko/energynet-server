@@ -13,7 +13,6 @@ class ApiStepRunner:
     def run(self, user_id, data, *args, **kwargs):
         self._init_models(user_id)
         pipe = redis.pipeline()
-        self._pipe_watch
         self._transaction(pipe, data)
 
         return {'success': True}
@@ -21,6 +20,7 @@ class ApiStepRunner:
     @redis_retry_transaction()
     def _transaction(self, pipe, data):
         try:
+            data = data or {}
             for action_step in self.steps:
                 self._pipe_watch(pipe, action_step, **data)
 

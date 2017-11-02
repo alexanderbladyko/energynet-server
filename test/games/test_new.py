@@ -66,3 +66,4 @@ class CreateNewTestCase(BaseTest):
         redis.delete(Game.owner_id.key(index))
         redis.delete(Game.data.key(index))
         redis.delete(Game.user_ids.key(index))
+        redis.delete(Game.phase.key(index))

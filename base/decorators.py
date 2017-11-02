@@ -1,3 +1,5 @@
+import traceback
+
 from flask_socketio import emit
 
 from base.exceptions import EnergynetException
@@ -29,7 +31,9 @@ def game_response(topic):
                     'message': 'Failed to execute transaction'
                 })
             except Exception as e:
-                logger.error('ResponseError', exception=e)
+                logger.critical(
+                    'ResponseError', exception=traceback.format_exc()
+                )
                 emit(topic, {
                     'success': False,
                     'message': 'Unknown exception'

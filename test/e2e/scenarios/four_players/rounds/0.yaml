@@ -1,0 +1,374 @@
+aliases:
+  - &game_id 99
+  - &game_map test_map
+steps:
+  - user: 1
+    action: games_new
+    data: { id: *game_id, name: game_1, playersLimit: 4, map: *game_map }
+    assert:
+      game:
+        user_ids: [1]
+        owner_id: 1
+        phase: 0
+      users:
+        1:
+          current_lobby_id: *game_id
+  - user: 2
+    action: game_join
+    data: { id: *game_id }
+    assert:
+      game:
+        user_ids: [1, 2]
+        owner_id: 1
+      users:
+        1:
+          current_lobby_id: *game_id
+        2:
+          current_lobby_id: *game_id
+  - user: 3
+    action: game_join
+    data: { id: *game_id }
+    assert:
+      game:
+        user_ids: [1, 2, 3]
+        owner_id: 1
+      users:
+        1:
+          current_lobby_id: *game_id
+        2:
+          current_lobby_id: *game_id
+        3:
+          current_lobby_id: *game_id
+  - user: 4
+    action: game_join
+    data: { id: *game_id }
+    assert:
+      game:
+        user_ids: [1, 2, 3, 4]
+        owner_id: 1
+      users:
+        1:
+          current_lobby_id: *game_id
+        2:
+          current_lobby_id: *game_id
+        3:
+          current_lobby_id: *game_id
+        4:
+          current_lobby_id: *game_id
+  - user: 1
+    action: game_start
+    assert:
+      game:
+        step: colors
+        order: [2, 4, 1, 3]
+        stations:
+          from: 0
+          to: 6
+          data: [3.0, 4.0, 5.0, 7.0, 8.0, 9.0]
+        resources: {'uranium': 7, 'coal': 18, 'oil': 24, 'waste': 0}
+        turn: 2
+      users:
+        1:
+          current_game_id: *game_id
+        2:
+          current_game_id: *game_id
+        3:
+          current_game_id: *game_id
+        4:
+          current_game_id: *game_id
+      players:
+        1:
+          cash: 50
+        2:
+          cash: 50
+        3:
+          cash: 50
+        4:
+          cash: 50
+  - user: 2
+    action: color_choose
+    data: { color: '#48d635'}
+    assert:
+      game:
+        step: colors
+      players:
+        2:
+          color: '#48d635'
+  - user: 3
+    action: color_choose
+    data: { color: '#2c97c1'}
+    assert:
+      game:
+        step: colors
+      players:
+        2:
+          color: '#48d635'
+        3:
+          color: '#2c97c1'
+  - user: 1
+    action: color_choose
+    data: { color: '#c66ad8'}
+    assert:
+      game:
+        step: colors
+        turn: 2
+      players:
+        2:
+          color: '#48d635'
+        3:
+          color: '#2c97c1'
+        1:
+          color: '#c66ad8'
+  - user: 4
+    action: color_choose
+    data: { color: '#bc3029'}
+    assert:
+      game:
+        step: auction
+        turn: 2
+      players:
+        2:
+          color: '#48d635'
+        3:
+          color: '#2c97c1'
+        1:
+          color: '#c66ad8'
+        4:
+          color: '#bc3029'
+
+# AUCTION 1st round
+  - user: 2
+    action: auction_bid
+    data: { station: 5, bid: 5 }
+    assert:
+      game:
+        step: auction
+        turn: 4
+        auction: { station: 5, bid: 5, user_id: 2 }
+  - user: 4
+    action: auction_pass
+    assert:
+      game:
+        step: auction
+        turn: 1
+        auction: { station: 5, bid: 5, user_id: 2 }
+  - user: 1
+    action: auction_bid
+    data: { station: 5, bid: 6 }
+    assert:
+      game:
+        step: auction
+        turn: 3
+        auction: { station: 5, bid: 6, user_id: 1 }
+  - user: 3
+    action: auction_pass
+    assert:
+      game:
+        step: auction
+        turn: 2
+        auction: { station: 5, bid: 6, user_id: 1 }
+  - user: 2
+    action: auction_bid
+    data: { station: 5, bid: 7 }
+    assert:
+      game:
+        step: auction
+        turn: 1
+        auction: { station: 5, bid: 7, user_id: 2 }
+  - user: 1
+    action: auction_pass
+    assert:
+      game:
+        step: auction
+        stations:
+          from: 0
+          to: 6
+          data: [3.0, 4.0, 7.0, 8.0, 9.0, 13.0]
+        turn: 4
+        auction: { station: null, bid: null, user_id: null }
+      players:
+        2:
+          stations: [5.0]
+  - user: 4
+    action: auction_bid
+    data: { station: 3, bid: 3 }
+    assert:
+      game:
+        step: auction
+        turn: 1
+        auction: { station: 3, bid: 3, user_id: 4 }
+  - user: 1
+    action: auction_bid
+    data: { station: 3, bid: 4 }
+    assert:
+      game:
+        step: auction
+        turn: 3
+        auction: { station: 3, bid: 4, user_id: 1 }
+  - user: 3
+    action: auction_pass
+    assert:
+      game:
+        step: auction
+        turn: 4
+        auction: { station: 3, bid: 4, user_id: 1 }
+  - user: 4
+    action: auction_pass
+    assert:
+      game:
+        step: auction
+        turn: 4
+        auction: { station: null, bid: null, user_id: null }
+        stations:
+          from: 0
+          to: 6
+          data: [4.0, 7.0, 8.0, 9.0, 13.0, 10.0]
+      players:
+        1:
+          stations: [3.0]
+  - user: 4
+    action: auction_bid
+    data: { station: 7, bid: 7 }
+    assert:
+      game:
+        step: auction
+        turn: 3
+        auction: { station: 7, bid: 7, user_id: 4 }
+  - user: 3
+    action: auction_pass
+    assert:
+      game:
+        step: auction
+        turn: 3
+        auction: { station: null, bid: null, user_id: null }
+        stations:
+          from: 0
+          to: 6
+          data: [4.0, 8.0, 9.0, 13.0, 10.0, 12.0]
+      players:
+        4:
+          stations: [7.0]
+  - user: 3
+    action: auction_bid
+    data: { station: 8, bid: 8 }
+    assert:
+      game:
+        step: resources_buy
+        order: [3, 4, 2, 1]
+        turn: 1
+        phase: 1
+        stations:
+          from: 0
+          to: 6
+          data: [4.0, 9.0, 13.0, 10.0, 12.0, 11.0]
+      players:
+        1:
+          stations: [3.0]
+        2:
+          stations: [5.0]
+        3:
+          stations: [8.0]
+        4:
+          stations: [7.0]
+
+# RESOURCES_BUY 1st round
+  - user: 1
+    action: resource_buy
+    data:
+      resources:
+        oil: 2
+    assert:
+      game:
+        step: resources_buy
+        order: [3, 4, 2, 1]
+        turn: 2
+        resources: {'uranium': 7, 'coal': 18, 'oil': 22, 'waste': 0}
+      players:
+        1:
+          stations: [3.0]
+          cash: 48
+          resources: {oil: 2, coal: 0, uranium: 0, waste: 0}
+        2:
+          stations: [5.0]
+        3:
+          stations: [8.0]
+        4:
+          stations: [7.0]
+  - user: 2
+    action: resource_buy
+    data:
+      resources:
+        oil: 2
+    assert:
+      game:
+        step: resources_buy
+        order: [3, 4, 2, 1]
+        turn: 4
+        resources: {'uranium': 7, 'coal': 18, 'oil': 20, 'waste': 0}
+      players:
+        1:
+          stations: [3.0]
+          cash: 48
+          resources: {oil: 2, coal: 0, uranium: 0, waste: 0}
+        2:
+          stations: [5.0]
+          cash: 47
+          resources: {oil: 2, coal: 0, uranium: 0, waste: 0}
+        3:
+          stations: [8.0]
+        4:
+          stations: [7.0]
+  - user: 4
+    action: resource_buy
+    data:
+      resources:
+        oil: 3
+    assert:
+      game:
+        step: resources_buy
+        order: [3, 4, 2, 1]
+        turn: 3
+        resources: {'uranium': 7, 'coal': 18, 'oil': 17, 'waste': 0}
+      players:
+        1:
+          stations: [3.0]
+          cash: 48
+          resources: {oil: 2, coal: 0, uranium: 0, waste: 0}
+        2:
+          stations: [5.0]
+          cash: 47
+          resources: {oil: 2, coal: 0, uranium: 0, waste: 0}
+        3:
+          stations: [8.0]
+        4:
+          stations: [7.0]
+          cash: 43
+          resources: {oil: 3, coal: 0, uranium: 0, waste: 0}
+  - user: 3
+    action: resource_buy
+    data:
+      resources:
+        coal: 3
+    assert:
+      game:
+        step: cities_buy
+        order: [3, 4, 2, 1]
+        turn: 1
+        resources: {'uranium': 7, 'coal': 15, 'oil': 17, 'waste': 0}
+      players:
+        1:
+          stations: [3.0]
+          cash: 48
+          resources: {oil: 2, coal: 0, uranium: 0, waste: 0}
+        2:
+          stations: [5.0]
+          cash: 47
+          resources: {oil: 2, coal: 0, uranium: 0, waste: 0}
+        3:
+          stations: [8.0]
+          cash: 41
+          resources: {oil: 0, coal: 3, uranium: 0, waste: 0}
+        4:
+          stations: [7.0]
+          cash: 43
+          resources: {oil: 3, coal: 0, uranium: 0, waste: 0}

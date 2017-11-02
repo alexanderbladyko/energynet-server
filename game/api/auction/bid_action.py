@@ -35,7 +35,7 @@ class AuctionLastUserStep(BaseAuctionStep):
         return self.is_last_user_for_auction()
 
     def action(self, pipe, station, bid):
-        pipe.lrem(Game.stations.key(self.game.id), 0, station)
+        pipe.lrem(Game.stations.key(self.game.id), 0, float(station))
         pipe.sadd(Player.stations.key(self.player.id), station)
         Game.auction_user_ids.delete(pipe, self.game.id)
 
@@ -64,6 +64,7 @@ class FirstAuctionReorderStep(BaseAuctionStep):
         Game.order.write(pipe, new_order, self.game.id)
         Game.turn.write(pipe, new_order[-1], self.game.id)
         Game.step.write(pipe, StepTypes.RESOURCES_BUY, self.game.id)
+        Game.phase.write(pipe, 1, self.game.id)
 
 
 class LastBidNextUserStep(BaseAuctionStep):

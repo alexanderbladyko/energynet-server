@@ -110,8 +110,8 @@ class Game(BaseModel):
         for resource in Resources.ALL:
             group = groups.get(resource)
             limit = limits.get(resource)
-            exists = self.resources.get(resource)
-            desired = new_resources.get(resource)
+            exists = self.resources.get(resource, 0)
+            desired = new_resources.get(resource, 0)
             if exists < desired:
                 return False, 0
             for i in range(desired):
@@ -175,7 +175,7 @@ class Player(BaseModel):
         for resource in sorted(Resources.ALL):
             player_resources = self.resources.get(resource, 0) or 0
             total = (
-                player_resources + new_resources.get(resource)
+                player_resources + new_resources.get(resource, 0)
             )
             for resource_count in range(len(Resources.ALL)):
                 i = 0

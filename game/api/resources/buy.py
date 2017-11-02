@@ -20,7 +20,7 @@ class PlayerCanHoldSuchResourcesCheckStep(BaseStep):
             raise EnergynetException(reason)
 
 
-class ResourcePriceCheckStep(BaseStep):
+class ResourcePriceStep(BaseStep):
     game_fields = [Game.resources]
     player_fields = [Player.cash]
 
@@ -34,11 +34,17 @@ class ResourcePriceCheckStep(BaseStep):
         if self.player.cash < price:
             raise EnergynetException('Not enough cash')
 
+    def action(self, pipe, resources, *args, **kwargs):
+        _, price = self.game.get_resource_price(
+            self.map_config, resources
+        )
+        Player.cash.write(pipe, self.player.cash - price, self.player.id)
+
 
 class DecreaseGameResourcesStep(BaseStep):
     def action(self, pipe, resources, *args, **kwargs):
         game_resources_left = dict(
-            (resource, count - resources.get(resource))
+            (resource, count - resources.get(resource, 0))
             for resource, count in self.game.resources.items()
         )
         Game.resources.write(pipe, game_resources_left, self.game.id)
@@ -47,7 +53,7 @@ class DecreaseGameResourcesStep(BaseStep):
 class DecreasePlayerResourcesStep(BaseStep):
     def action(self, pipe, resources, *args, **kwargs):
         player_resources_now = dict(
-            (resource, (count or 0) + resources.get(resource))
+            (resource, (count or 0) + resources.get(resource, 0))
             for resource, count in self.player.resources.items()
         )
         Player.resources.write(pipe, player_resources_now, self.player.id)
@@ -56,8 +62,8 @@ class DecreasePlayerResourcesStep(BaseStep):
 steps = [
     ResourcesBuyTurnCheckStep(),
     PlayerCanHoldSuchResourcesCheckStep(),
-    ResourcePriceCheckStep(),
-    NextTurnStep(StepTypes.CITIES_BUY),
+    ResourcePriceStep(),
     DecreaseGameResourcesStep(),
     DecreasePlayerResourcesStep(),
+    NextTurnStep(StepTypes.CITIES_BUY),
 ]

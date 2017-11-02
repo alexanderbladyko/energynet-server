@@ -18,7 +18,7 @@ class BaseAuctionStep(BaseStep):
     def is_stations_over_limit(self, player=None):
         player = player or self.player
         user_stations_count = self.map_config.get('userStationsCount')
-        stations_limit = user_stations_count[len(self.game.user_ids) + 1]
+        stations_limit = user_stations_count[len(self.game.user_ids) - 1]
         return len(player.stations) == stations_limit
 
     def game_has_active_auction(self):

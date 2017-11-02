@@ -33,7 +33,7 @@ class AuctionWinnerStep(BaseAuctionStep):
 
         station = self.game.auction.get('station')
 
-        pipe.lrem(Game.stations.key(self.game.id), 0, station)
+        pipe.lrem(Game.stations.key(self.game.id), 1, station)
         pipe.sadd(Player.stations.key(winner_id), station)
 
         if self.is_stations_over_limit(winner):
@@ -44,6 +44,7 @@ class AuctionWinnerStep(BaseAuctionStep):
             next_user_id = self.game.next_player_turn(
                 from_start=True, exclude=exclude
             )
+            pipe.sadd(Game.auction_user_ids.key(self.game.id), winner_id)
             Game.turn.write(pipe, next_user_id, self.game.id)
 
         Game.auction_passed_user_ids.delete(pipe, self.game.id)

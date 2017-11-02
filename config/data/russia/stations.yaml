@@ -24,119 +24,119 @@ initialStationRules:
 activeStationsCount: 3
 visibleStationsCount: 6
 stations:
-  - cost: 3
+  - cost: 3.0
     capacity: 2
     efficiency: 1
     resources: [oil]
-  - cost: 4
+  - cost: 4.0
     capacity: 2
     efficiency: 1
     resources: [coal]
-  - cost: 5
+  - cost: 5.0
     capacity: 2
     efficiency: 1
     resources: [coal, oil]
-  - cost: 7
+  - cost: 7.0
     capacity: 3
     efficiency: 2
     resources: [oil]
-  - cost: 8
+  - cost: 8.0
     capacity: 3
     efficiency: 2
     resources: [coal]
-  - cost: 9
+  - cost: 9.0
     capacity: 1
     efficiency: 1
     resources: [oil]
-  - cost: 10
+  - cost: 10.0
     capacity: 2
     efficiency: 2
     resources: [coal]
-  - cost: 11
+  - cost: 11.0
     capacity: 1
     efficiency: 2
     resources: [uranium]
-  - cost: 12
+  - cost: 12.0
     capacity: 2
     efficiency: 2
     resources: [coal, oil]
-  - cost: 13
+  - cost: 13.0
     capacity: 0
     efficiency: 1
     resources: []
-  - cost: 15
+  - cost: 15.0
     capacity: 2
     efficiency: 3
     resources: [coal]
-  - cost: 16
+  - cost: 16.0
     capacity: 2
     efficiency: 3
     resources: [oil]
-  - cost: 17
+  - cost: 17.0
     capacity: 1
     efficiency: 2
     resources: [uranium]
-  - cost: 18
+  - cost: 18.0
     capacity: 0
     efficiency: 2
     resources: []
-  - cost: 19
+  - cost: 19.0
     capacity: 2
     efficiency: 3
     resources: [waste]
-  - cost: 20
+  - cost: 20.0
     capacity: 3
     efficiency: 5
     resources: [coal]
-  - cost: 21
+  - cost: 21.0
     capacity: 2
     efficiency: 4
     resources: [coal, oil]
-  - cost: 22
+  - cost: 22.0
     capacity: 0
     efficiency: 2
     resources: []
-  - cost: 23
+  - cost: 23.0
     capacity: 1
     efficiency: 3
     resources: [uranium]
-  - cost: 24
+  - cost: 24.0
     capacity: 2
     efficiency: 4
     resources: [waste]
-  - cost: 25
+  - cost: 25.0
     capacity: 2
     efficiency: 5
     resources: [coal]
-  - cost: 26
+  - cost: 26.0
     capacity: 2
     efficiency: 5
     resources: [oil]
-  - cost: 27
+  - cost: 27.0
     capacity: 0
     efficiency: 3
     resources: []
-  - cost: 28
+  - cost: 28.0
     capacity: 1
     efficiency: 4
     resources: [uranium]
-  - cost: 29
+  - cost: 29.0
     capacity: 1
     efficiency: 4
     resources: [coal, oil]
-  - cost: 30
+  - cost: 30.0
     capacity: 3
     efficiency: 6
     resources: [waste]
-  - cost: 31
+  - cost: 31.0
     capacity: 3
     efficiency: 6
     resources: [coal]
-  - cost: 32
+  - cost: 32.0
     capacity: 3
     efficiency: 6
     resources: [oil]
-  - cost: 33
+  - cost: 33.0
     capacity: 0
     efficiency: 4
     resources: []
@@ -144,47 +144,47 @@ stations:
     capacity: 3
     efficiency: 6
     resources: [coal, oil, waste, uranium]
-  - cost: 34
+  - cost: 34.0
     capacity: 1
     efficiency: 5
     resources: [uranium]
-  - cost: 35
+  - cost: 35.0
     capacity: 1
     efficiency: 5
     resources: [oil]
-  - cost: 36
+  - cost: 36.0
     capacity: 3
     efficiency: 7
     resources: [coal]
-  - cost: 37
+  - cost: 37.0
     capacity: 0
     efficiency: 4
     resources: []
-  - cost: 38
+  - cost: 38.0
     capacity: 3
     efficiency: 7
     resources: [waste]
-  - cost: 39
+  - cost: 39.0
     capacity: 1
     efficiency: 6
     resources: [uranium]
-  - cost: 40
+  - cost: 40.0
     capacity: 2
     efficiency: 6
     resources: [oil]
-  - cost: 42
+  - cost: 42.0
     capacity: 2
     efficiency: 6
     resources: [coal]
-  - cost: 44
+  - cost: 44.0
     capacity: 0
     efficiency: 5
     resources: []
-  - cost: 46
+  - cost: 46.0
     capacity: 3
     efficiency: 7
     resources: [coal, oil]
-  - cost: 50
+  - cost: 50.0
     capacity: 0
     efficiency: 6
     resources: []

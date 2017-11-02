@@ -1,3 +1,5 @@
+import os
+
 from yaml import load
 from unittest.mock import patch
 
@@ -35,7 +37,7 @@ class BaseScenariosTestCase(BaseTest):
         game = self.scenario.get('game')
         self.patchers = [
             patch(
-                'game.logic.get_start_stations',
+                'game.api.game.start.get_start_stations',
                 return_value=game.get('first_station_order')
             ),
             patch(
@@ -60,9 +62,24 @@ class BaseScenariosTestCase(BaseTest):
         super().tearDown()
 
     def _load_scenario(self, scenario_name):
-        self.scenario = load(
-            open('test/e2e/scenarios/' + scenario_name + '/moves.yaml', 'r')
-        )
+        directory = 'test/e2e/scenarios/' + scenario_name
+        files = []
+        for filename in os.listdir(directory + '/rounds'):
+            if filename.endswith(".yaml"):
+                files.append(int(filename[:-5]))
+
+        files.sort()
+
+        scenario = load(open(os.path.join(directory, 'base.yaml')))
+        scenario['steps'] = []
+        for file_index in files:
+            file_path = os.path.join(
+                directory, 'rounds/{}.yaml'.format(file_index)
+            )
+            step_data = load(open(file_path, 'r'))
+            scenario['steps'] = scenario['steps'] + step_data['steps']
+
+        self.scenario = scenario
 
     def _init_users(self):
         for user in self.scenario.get('users'):
@@ -84,6 +101,10 @@ class BaseScenariosTestCase(BaseTest):
             for received_message in received:
                 if received_message['name'] == game_step['action']:
                     break
+            if received_message['name'] != game_step['action']:
+                self.fail('Could not find action for {} step'.format(
+                    game_step
+                ))
             self.assertTrue(
                 received_message['args'][0]['success'], game_step
             )
@@ -98,10 +119,11 @@ class BaseScenariosTestCase(BaseTest):
         for user_id, assert_data in users_data.items():
             user = User.get_by_id(redis, user_id)
             for key, value in assert_data.items():
+                actual, expected = self._transform_to_comparable(
+                    value, getattr(user, key)
+                )
                 self.assertEqual(
-                    getattr(user, key), value, self._get_error_message(
-                        game_step, key
-                    )
+                    actual, expected, self._get_error_message(game_step, key)
                 )
 
     def assert_game(self, game_data, game_step):
@@ -109,20 +131,12 @@ class BaseScenariosTestCase(BaseTest):
             return
         game = Game.get_by_id(redis, self.game_info['id'])
         for key, value in game_data.items():
-            actual_data = getattr(game, key)
-            expected_data = value
-            if isinstance(actual_data, set):
-                actual_data = list(actual_data)
-            if isinstance(expected_data, dict):
-                if 'from' in expected_data or 'to' in expected_data:
-                    actual_data = actual_data[
-                        expected_data.get('from'): expected_data.get('to')
-                    ]
-                    expected_data = expected_data.get('data')
+            actual, expected = self._transform_to_comparable(
+                value, getattr(game, key)
+            )
+
             self.assertEqual(
-                actual_data, expected_data, self._get_error_message(
-                    game_step, key
-                )
+                actual, expected, self._get_error_message(game_step, key)
             )
 
     def assert_players(self, players_data, game_step):
@@ -131,16 +145,29 @@ class BaseScenariosTestCase(BaseTest):
         for user_id, assert_data in players_data.items():
             player = Player.get_by_id(redis, user_id)
             for key, value in assert_data.items():
-                actual_data = getattr(player, key)
-                expected_data = value
+                actual, expected = self._transform_to_comparable(
+                    value, getattr(player, key)
+                )
                 self.assertEqual(
-                    actual_data, expected_data, self._get_error_message(
-                        game_step, key
-                    )
+                    actual, expected, self._get_error_message(game_step, key)
                 )
 
+    def _transform_to_comparable(self, expected, actual):
+        actual_result = actual
+        expected_result = expected
+        if isinstance(actual, set):
+            actual_result = list(actual)
+        if isinstance(expected, dict):
+            if 'from' in expected or 'to' in expected:
+                actual_result = actual[
+                    expected.get('from'): expected.get('to')
+                ]
+                expected_result = expected.get('data')
+        return actual_result, expected_result
+
     def _get_error_message(self, game_step, field):
-        return 'Action {} with data {} has error in {} field'.format(
+        return 'User {} action {} with data {} has error in "{}" field'.format(
+            game_step['user'],
             game_step['action'],
             game_step.get('data'),
             field,
