@@ -20,8 +20,17 @@ class FinanceReceiveTestCase(BaseTest):
             'coal': 20,
             'oil': 17,
             'uranium': 10,
-            'waste': 22,
+            'waste': 23,
         }
+        self.result_resources = {
+            'coal': 22,
+            'oil': 20,
+            'uranium': 11,
+            'waste': 24,
+        }
+        self.stations = [
+            2.0, 4.0, 3.0, 5.0, 8.0, 6.0, 9.0
+        ]
 
         self.game = factories.GameFactory.create(
             data={'name': 'game1', 'players_limit': 3},
@@ -32,6 +41,8 @@ class FinanceReceiveTestCase(BaseTest):
             order=[self.db_user_3.id, self.db_user_2.id, self.db_user_1.id],
             step=StepTypes.FINANCE_RECEIVE,
             resources=self.initial_resources,
+            stations=self.stations,
+            phase=1,
         )
 
         self.user_1 = factories.UserFactory.ensure_from_db(
@@ -177,6 +188,7 @@ class FinanceReceiveTestCase(BaseTest):
             self.user_3.id, self.user_1.id, self.user_2.id
         ])
         self.assertEqual(game.turn, self.user_3.id)
+        self.assertEqual(game.resources, self.result_resources)
 
         player = Player.get_by_id(redis, self.user_1.id)
         self.assertEqual(player.resources, {

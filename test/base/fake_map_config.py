@@ -17,7 +17,7 @@ FAKE_MAP_CONFIG = {
         {'name': 'area6', 'color': '#ec6c18'}
     ],
     'auction': {
-        'removeOnFirstPass': False,
+        'removeOnFirstPass': True,
         'removeOnAnyonePass': False,
         'removeStationsLowNetworkSize': False,
     },
@@ -174,7 +174,7 @@ FAKE_MAP_CONFIG = {
         {'area': 'area1', 'name': 'kirov', 'slots': [10, 15, 20]},
         {'area': 'area1', 'name': 'syktyvkar', 'slots': [10, 15, 20]},
         {'area': 'area5', 'name': 'tyumen', 'slots': [10, 15, 20]},
-        {'area': 'area4', 'name': 'ekaterinbur', 'slots': [10, 15, 20]},
+        {'area': 'area4', 'name': 'ekaterinburg', 'slots': [10, 15, 20]},
         {'area': 'area1', 'name': 'ulyanovsk', 'slots': [10, 15]},
         {'area': 'area3', 'name': 'rostov', 'slots': [10, 15, 20]},
         {'area': 'area6', 'name': 'novokuznets', 'slots': [10, 15, 20]},

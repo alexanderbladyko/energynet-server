@@ -1,0 +1,368 @@
+aliases:
+  - &game_id 99
+  - &game_map test_map
+steps:
+  - user: 3
+    action: auction_bid
+    data: { station: 9, bid: 9 }
+    assert:
+      game:
+        step: auction
+        order: [3, 4, 2, 1]
+        turn: 4
+        resources: {'uranium': 8, 'coal': 18, 'oil': 22, 'waste': 3}
+        auction: { station: 9, bid: 9, user_id: 3 }
+        stations:
+          from: 0
+          to: 6
+          data: [4.0, 9.0, 10.0, 12.0, 11.0, 22.0]
+      players:
+        1:
+          stations: [3.0]
+          cash: 60
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            kazan: 10
+        2:
+          stations: [5.0]
+          cash: 59
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            ryazan: 10
+        3:
+          stations: [8.0]
+          cash: 48
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            saratov: 10
+            ulyanovsk: 10
+        4:
+          stations: [7.0]
+          cash: 51
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            ekaterinburg: 10
+            perm: 10
+  - user: 4
+    action: auction_pass
+    assert:
+      game:
+        step: auction
+        order: [3, 4, 2, 1]
+        turn: 2
+        resources: {'uranium': 8, 'coal': 18, 'oil': 22, 'waste': 3}
+        auction: { station: 9, bid: 9, user_id: 3 }
+        stations:
+          from: 0
+          to: 6
+          data: [4.0, 9.0, 10.0, 12.0, 11.0, 22.0]
+      players:
+        1:
+          stations: [3.0]
+          cash: 60
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            kazan: 10
+        2:
+          stations: [5.0]
+          cash: 59
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            ryazan: 10
+        3:
+          stations: [8.0]
+          cash: 48
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            saratov: 10
+            ulyanovsk: 10
+        4:
+          stations: [7.0]
+          cash: 51
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            ekaterinburg: 10
+            perm: 10
+  - user: 2
+    action: auction_pass
+    assert:
+      game:
+        step: auction
+        order: [3, 4, 2, 1]
+        turn: 1
+        resources: {'uranium': 8, 'coal': 18, 'oil': 22, 'waste': 3}
+        auction: { station: 9, bid: 9, user_id: 3 }
+        stations:
+          from: 0
+          to: 6
+          data: [4.0, 9.0, 10.0, 12.0, 11.0, 22.0]
+      players:
+        1:
+          stations: [3.0]
+          cash: 60
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            kazan: 10
+        2:
+          stations: [5.0]
+          cash: 59
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            ryazan: 10
+        3:
+          stations: [8.0]
+          cash: 48
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            saratov: 10
+            ulyanovsk: 10
+        4:
+          stations: [7.0]
+          cash: 51
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            ekaterinburg: 10
+            perm: 10
+  - user: 1
+    action: auction_pass
+    assert:
+      game:
+        step: auction
+        order: [3, 4, 2, 1]
+        turn: 4
+        resources: {'uranium': 8, 'coal': 18, 'oil': 22, 'waste': 3}
+        auction: { station: null, bid: null, user_id: null }
+        stations:
+          from: 0
+          to: 6
+          data: [4.0, 10.0, 12.0, 11.0, 22.0, 40.0]
+      players:
+        1:
+          stations: [3.0]
+          cash: 60
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            kazan: 10
+        2:
+          stations: [5.0]
+          cash: 59
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            ryazan: 10
+        3:
+          stations: [8.0, 9.0]
+          cash: 48
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            saratov: 10
+            ulyanovsk: 10
+        4:
+          stations: [7.0]
+          cash: 51
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            ekaterinburg: 10
+            perm: 10
+  - user: 4
+    action: auction_pass
+    assert:
+      game:
+        step: auction
+        order: [3, 4, 2, 1]
+        turn: 2
+        resources: {'uranium': 8, 'coal': 18, 'oil': 22, 'waste': 3}
+        auction: { station: null, bid: null, user_id: null }
+        stations:
+          from: 0
+          to: 6
+          data: [10.0, 12.0, 11.0, 22.0, 40.0, 30.0]
+      players:
+        1:
+          stations: [3.0]
+          cash: 60
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            kazan: 10
+        2:
+          stations: [5.0]
+          cash: 59
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            ryazan: 10
+        3:
+          stations: [8.0, 9.0]
+          cash: 48
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            saratov: 10
+            ulyanovsk: 10
+        4:
+          stations: [7.0]
+          cash: 51
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            ekaterinburg: 10
+            perm: 10
+  - user: 2
+    action: auction_bid
+    data: { station: 11, bid: 11 }
+    assert:
+      game:
+        step: auction
+        order: [3, 4, 2, 1]
+        turn: 1
+        resources: {'uranium': 8, 'coal': 18, 'oil': 22, 'waste': 3}
+        auction: { station: 11, bid: 11, user_id: 2 }
+        stations:
+          from: 0
+          to: 6
+          data: [10.0, 12.0, 11.0, 22.0, 40.0, 30.0]
+      players:
+        1:
+          stations: [3.0]
+          cash: 60
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            kazan: 10
+        2:
+          stations: [5.0]
+          cash: 59
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            ryazan: 10
+        3:
+          stations: [8.0, 9.0]
+          cash: 48
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            saratov: 10
+            ulyanovsk: 10
+        4:
+          stations: [7.0]
+          cash: 51
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            ekaterinburg: 10
+            perm: 10
+  - user: 1
+    action: auction_bid
+    data: { station: 11, bid: 12 }
+    assert:
+      game:
+        step: auction
+        order: [3, 4, 2, 1]
+        turn: 2
+        resources: {'uranium': 8, 'coal': 18, 'oil': 22, 'waste': 3}
+        auction: { station: 11, bid: 12, user_id: 1 }
+        stations:
+          from: 0
+          to: 6
+          data: [10.0, 12.0, 11.0, 22.0, 40.0, 30.0]
+      players:
+        1:
+          stations: [3.0]
+          cash: 60
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            kazan: 10
+        2:
+          stations: [5.0]
+          cash: 59
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            ryazan: 10
+        3:
+          stations: [8.0, 9.0]
+          cash: 48
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            saratov: 10
+            ulyanovsk: 10
+        4:
+          stations: [7.0]
+          cash: 51
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            ekaterinburg: 10
+            perm: 10
+  - user: 2
+    action: auction_pass
+    assert:
+      game:
+        step: auction
+        order: [3, 4, 2, 1]
+        turn: 2
+        resources: {'uranium': 8, 'coal': 18, 'oil': 22, 'waste': 3}
+        auction: { station: null, bid: null, user_id: null }
+        stations:
+          from: 0
+          to: 6
+          data: [10.0, 12.0, 22.0, 40.0, 30.0, 20.0]
+      players:
+        1:
+          stations: [3.0, 11.0]
+          cash: 60
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            kazan: 10
+        2:
+          stations: [5.0]
+          cash: 59
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            ryazan: 10
+        3:
+          stations: [8.0, 9.0]
+          cash: 48
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            saratov: 10
+            ulyanovsk: 10
+        4:
+          stations: [7.0]
+          cash: 51
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            ekaterinburg: 10
+            perm: 10
+  - user: 2
+    action: auction_bid
+    data: { station: 12, bid: 12 }
+    assert:
+      game:
+        step: resources_buy
+        order: [3, 4, 2, 1]
+        turn: 1
+        resources: {'uranium': 8, 'coal': 18, 'oil': 22, 'waste': 3}
+        auction: { station: null, bid: null, user_id: null }
+        stations:
+          from: 0
+          to: 6
+          data: [10.0, 22.0, 40.0, 30.0, 20.0, 25.0]
+      players:
+        1:
+          stations: [3.0, 11.0]
+          cash: 60
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            kazan: 10
+        2:
+          stations: [5.0, 12.0]
+          cash: 59
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            ryazan: 10
+        3:
+          stations: [8.0, 9.0]
+          cash: 48
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            saratov: 10
+            ulyanovsk: 10
+        4:
+          stations: [7.0]
+          cash: 51
+          resources: {oil: 0, coal: 0, uranium: 0, waste: 0}
+          cities:
+            ekaterinburg: 10
+            perm: 10

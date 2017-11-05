@@ -108,6 +108,54 @@ class StartAuctionReorderStep(BaseStep):
         Game.step.write(pipe, StepTypes.AUCTION, self.game.id)
 
 
+class MaxStationToBackStep(BaseStep):
+    game_fields = [Game.stations, Game.phase]
+
+    def apply_condition(self, *args, **kwargs):
+        return self.game.order.index(self.player.id) == 0 \
+               and self.game.phase in [1, 2]
+
+    def action(self, pipe, *args, **kwargs):
+        active_stations = self.map_config.get('activeStationsCount')
+        max_station = max(self.game.stations[:active_stations])
+        pipe.lrem(Game.stations.key(self.game.id), 1, max_station)
+        pipe.rpush(Game.stations.key(self.game.id), max_station)
+
+
+class ResourcesRefillStep(BaseStep):
+    game_fields = [Game.resources, Game.phase]
+
+    def apply_condition(self, *args, **kwargs):
+        return self.game.order.index(self.player.id) == 0
+
+    def action(self, pipe, *args, **kwargs):
+        game_resources_left = dict(
+            (resource, self._get_resource_count(resource, count))
+            for resource, count in self.game.resources.items()
+        )
+        Game.resources.write(pipe, game_resources_left, self.game.id)
+
+    def _get_resource_count(self, resource, count):
+        limit = self.map_config.get('resourceLimits').get(resource)
+        refill = self.map_config.get('refill')
+        phase_refill = refill[self.game.phase - 1]
+        users_count = len(self.game.user_ids)
+        result_count = count + phase_refill.get(resource)[users_count - 1]
+        if result_count > limit:
+            return limit
+        return result_count
+
+
+class ReorderStep(BaseStep):
+    def apply_condition(self, *args, **kwargs):
+        return self.game.order.index(self.player.id) == 0
+
+    def action(self, pipe, *args, **kwargs):
+        new_order = self.game.get_new_order(redis, self.player.id)
+        Game.order.delete(pipe, self.game.id)
+        Game.order.write(pipe, new_order, self.game.id)
+
+
 steps = [
     StationsMatchCheckStep(),
     FinanceReceiveTurnCheckStep(),
@@ -116,4 +164,7 @@ steps = [
     DecreasePlayerResourcesStep(),
     NextUserTurnStep(),
     StartAuctionReorderStep(),
+    MaxStationToBackStep(),
+    ResourcesRefillStep(),
+    ReorderStep(),
 ]

@@ -40,6 +40,7 @@ class CreateNewTestCase(BaseTest):
                         'name': 'new_game',
                         'playersLimit': 4,
                         'map': self.map,
+                        'areas': ['area1', 'area2', 'area3'],
                     })
 
                     received = client.get_received()
@@ -52,16 +53,19 @@ class CreateNewTestCase(BaseTest):
         # }]])
 
         index = int(redis.get(Game.index()))
-        self.assertEqual(Game.owner_id.read(redis, index), self.user.id)
-        self.assertEqual(Game.data.read(redis, index), {
+        game = Game.get_by_id(redis, index)
+        self.assertEqual(game.owner_id, self.user.id)
+        self.assertEqual(game.data, {
             'name': 'new_game',
             'players_limit': 4,
         })
-        self.assertEqual(Game.user_ids.read(redis, index), {self.user.id})
+        self.assertEqual(game.areas, {'area1', 'area2', 'area3'})
+        self.assertEqual(game.user_ids, {self.user.id})
 
         join_game_mock.assert_called_once_with(index)
         unsub_mock.assert_called_once_with()
 
+        redis.delete(Game.areas.key(index))
         redis.delete(Game.map.key(index))
         redis.delete(Game.owner_id.key(index))
         redis.delete(Game.data.key(index))

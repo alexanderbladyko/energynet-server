@@ -46,9 +46,10 @@ class CitiesBuyStep(BaseStep):
             else:
                 raise EnergynetException('No slots for {}'.format(name))
 
-        paths = get_closest_paths(
-            self.map_config, self.player.cities.keys(), cities
-        )
+        start_cities = self.player.cities.keys()
+        if not start_cities:
+            start_cities = cities[0]
+        paths = get_closest_paths(self.map_config, start_cities, cities)
         price = sum(list(paths.values()) + list(request_cities.values()))
         if self.player.cash < price:
             raise EnergynetException('Not enough cash to buy cities')

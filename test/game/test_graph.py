@@ -124,16 +124,16 @@ class TestGraphClosestPathTestCase(BaseTest):
                 },
             ],
         }
-        # result = get_closest_paths(map_config, ['A', 'D'], ['C', 'F'])
-        # self.assertEqual(result, {
-        #     'C': 10,
-        #     'F': 10,
-        # })
-        # result = get_closest_paths(map_config, ['A', 'D'], ['B', 'F'])
-        # self.assertEqual(result, {
-        #     'B': 3,
-        #     'F': 7,
-        # })
+        result = get_closest_paths(map_config, ['A', 'D'], ['C', 'F'])
+        self.assertEqual(result, {
+            'C': 10,
+            'F': 10,
+        })
+        result = get_closest_paths(map_config, ['A', 'D'], ['B', 'F'])
+        self.assertEqual(result, {
+            'B': 3,
+            'F': 7,
+        })
         result = get_closest_paths(map_config, ['B', 'C'], ['G', 'D'])
         self.assertEqual(result, {
             'G': 6,

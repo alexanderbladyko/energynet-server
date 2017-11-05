@@ -247,7 +247,14 @@ class AuctionPassTestCase(BaseTest):
         }, self.game.id)
         Player.stations.write(redis, [9], self.user_1.id)
 
-        with self.fake_map_config():
+        map_config_change = {
+            'auction': {
+                'removeOnFirstPass': False,
+                'removeOnAnyonePass': False,
+                'removeStationsLowNetworkSize': False,
+            }
+        }
+        with self.fake_map_config(map_config_change):
             with self.user_logged_in(self.user_1.id):
                 received = self._create_auction_pass()
 

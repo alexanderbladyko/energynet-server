@@ -155,8 +155,13 @@ class BaseScenariosTestCase(BaseTest):
     def _transform_to_comparable(self, expected, actual):
         actual_result = actual
         expected_result = expected
-        if isinstance(actual, set):
-            actual_result = list(actual)
+        if isinstance(actual, set) and isinstance(expected, list):
+            expected_result = set(expected)
+            if len(expected) != len(expected_result):
+                self.fail('Set "{}" is supposed to have unique values'.format(
+                    expected,
+                ))
+
         if isinstance(expected, dict):
             if 'from' in expected or 'to' in expected:
                 actual_result = actual[

@@ -16,6 +16,7 @@ def create_new(user_id, data):
     name = data['name']
     players_limit = data['playersLimit']
     game_map = data['map']
+    areas = data['areas']
     game_id = None
     if config.get('app', 'debug'):
         game_id = data.get('id')
@@ -29,7 +30,8 @@ def create_new(user_id, data):
     pipe = redis.pipeline()
     try:
         game_id = create_new_game(
-            pipe, name, players_limit, user.id, game_map, game_id=game_id
+            pipe, name, players_limit, user.id, game_map, areas,
+            game_id=game_id,
         )
     except RedisTransactionException:
         raise EnergynetException(message='Failed to add user to game')
@@ -47,7 +49,7 @@ def create_new(user_id, data):
 
 @redis_retry_transaction()
 def create_new_game(
-    pipe, name, players_limit, user_id, game_map, game_id=None
+    pipe, name, players_limit, user_id, game_map, areas, game_id=None
 ):
     pipe.watch([
         Game.index(), User.current_lobby_id.key(user_id), Game.key, Lobby.key,
@@ -62,6 +64,7 @@ def create_new_game(
     Game.user_ids.write(pipe, [user_id], game_id)
     Game.map.write(pipe, game_map, game_id)
     Game.phase.write(pipe, 0, game_id)
+    Game.areas.write(pipe, areas, game_id)
 
     pipe.sadd(Lobby.key, game_id)
 
