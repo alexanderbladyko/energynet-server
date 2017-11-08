@@ -55,7 +55,8 @@ class CitiesBuyStep(BaseStep):
             raise EnergynetException('Not enough cash to buy cities')
 
         Player.cash.write(pipe, self.player.cash - price, self.player.id)
-        pipe.hmset(Player.cities.key(self.player.id), request_cities)
+        if request_cities:
+            pipe.hmset(Player.cities.key(self.player.id), request_cities)
 
 
 steps = [
