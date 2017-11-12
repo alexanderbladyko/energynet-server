@@ -123,7 +123,7 @@ class BaseScenariosTestCase(BaseTest):
                     value, getattr(user, key)
                 )
                 self.assertEqual(
-                    actual, expected, self._get_error_message(game_step, key)
+                    actual, expected, self._get_error_message(game_step, key, user)
                 )
 
     def assert_game(self, game_data, game_step):
@@ -136,7 +136,7 @@ class BaseScenariosTestCase(BaseTest):
             )
 
             self.assertEqual(
-                actual, expected, self._get_error_message(game_step, key)
+                actual, expected, self._get_error_message(game_step, key, game)
             )
 
     def assert_players(self, players_data, game_step):
@@ -149,7 +149,8 @@ class BaseScenariosTestCase(BaseTest):
                     value, getattr(player, key)
                 )
                 self.assertEqual(
-                    actual, expected, self._get_error_message(game_step, key)
+                    actual, expected,
+                    self._get_error_message(game_step, key, player)
                 )
 
     def _transform_to_comparable(self, expected, actual):
@@ -170,10 +171,13 @@ class BaseScenariosTestCase(BaseTest):
                 expected_result = expected.get('data')
         return actual_result, expected_result
 
-    def _get_error_message(self, game_step, field):
-        return 'User {} action {} with data {} has error in "{}" field'.format(
+    def _get_error_message(self, game_step, field, obj):
+        return 'User {} action {} with data {} has error \
+in {} object {} with "{}" field'.format(
             game_step['user'],
             game_step['action'],
             game_step.get('data'),
+            obj.__class__.__name__,
+            obj.id,
             field,
         )

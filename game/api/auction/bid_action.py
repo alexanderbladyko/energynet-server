@@ -14,8 +14,10 @@ class StationCheckStep(BaseStep):
     game_fields = [Game.map, Game.stations]
 
     def check_parameters(self, station, *args, **kwargs):
+        visible_count = self.map_config.get('visibleStationsCount')
         active_count = self.map_config.get('activeStationsCount')
-        if station not in self.game.stations[:active_count]:
+        visible_stations = self.game.stations[:visible_count]
+        if station not in sorted(visible_stations)[:active_count]:
             raise EnergynetException('Invalid station')
 
 
@@ -30,6 +32,14 @@ class AuctionBidCheckStep(BaseStep):
             raise EnergynetException('Bid is less than station price')
 
 
+class PlayerCashCheckStep(BaseStep):
+    player_fields = [Player.cash]
+
+    def check_parameters(self, station, bid, *args, **kwargs):
+        if bid > self.player.cash:
+            raise EnergynetException('Player has no cash for bid')
+
+
 class AuctionLastUserStep(BaseAuctionStep):
     def apply_condition(self, station, bid):
         return self.is_last_user_for_auction()
@@ -37,6 +47,7 @@ class AuctionLastUserStep(BaseAuctionStep):
     def action(self, pipe, station, bid):
         pipe.lrem(Game.stations.key(self.game.id), 0, float(station))
         pipe.sadd(Player.stations.key(self.player.id), station)
+        pipe.decr(Player.cash.key(self.player.id), bid)
         Game.auction_user_ids.delete(pipe, self.game.id)
 
 

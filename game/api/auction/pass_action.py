@@ -26,15 +26,14 @@ class AuctionWinnerStep(BaseAuctionStep):
                and self.is_only_user_for_auction()
 
     def action(self, pipe, *args, **kwargs):
-        winner_id = next(iter(
-            self.game.get_users_left_for_auction() - {self.player.id}
-        ))
-        winner = Player.get_by_id(redis, winner_id, [Player.stations])
-
+        winner_id = self.game.auction.get('user_id')
         station = self.game.auction.get('station')
+        bid = self.game.auction.get('bid')
+        winner = Player.get_by_id(redis, winner_id, [Player.stations])
 
         pipe.lrem(Game.stations.key(self.game.id), 1, station)
         pipe.sadd(Player.stations.key(winner_id), station)
+        pipe.decr(Player.cash.key(winner_id), bid)
 
         if self.is_stations_over_limit(winner):
             Game.turn.write(pipe, winner_id, self.game.id)

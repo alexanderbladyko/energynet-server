@@ -116,8 +116,8 @@ class MaxStationToBackStep(BaseStep):
                and self.game.phase in [1, 2]
 
     def action(self, pipe, *args, **kwargs):
-        active_stations = self.map_config.get('activeStationsCount')
-        max_station = max(self.game.stations[:active_stations])
+        visible_stations = self.map_config.get('visibleStationsCount')
+        max_station = max(self.game.stations[:visible_stations])
         pipe.lrem(Game.stations.key(self.game.id), 1, max_station)
         pipe.rpush(Game.stations.key(self.game.id), max_station)
 
